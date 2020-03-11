@@ -3,17 +3,62 @@ const SpeechRecognition = webkitSpeechRecognition;
 let diagnosticPara = document.querySelector('.output');
 let testBtn = document.querySelector('#start-btn');
 
-function runRecognizer() {
-    testBtn.disabled = true;
-    testBtn.textContent = 'Test in progress';
+let isRunning = false; // the conversion process is running
+let pauseInterval = 3000; // wait a bit between 2 successive conversions
+g
+const trackId = 2;
+const utterancesPath = '../../../Music/';
 
-    let recognition = new SpeechRecognition();
-    recognition.lang = 'ro-RO';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+function padNumber(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+class UtterancePlayer {
+    constructor() {
+        this.utteranceIdx = 0;
+        this.lastUtteranceIdx = 1;
+    }
+
+    startNextUtterance() {
+        // load audio file
+        this.utteranceIdx++;
+        this.audio = new Audio(`${utterancesPath}${trackId}_${padNumber(this.utteranceIdx, 3)}.wav`);
+        this.audio.onended = () => console.log('Audio finished playing');
+
+        // start playing
+        setTimeout(() => this.audio.play().then(() => console.log("Audio started")), 800);
+    }
+
+    pendingUtterancesNum() {
+        return this.lastUtteranceIdx - this.utteranceIdx;
+    }
+
+    ensureAudioStopped() {
+        this.audio.pause();
+    }
+}
+
+const utterancePlayer = new UtterancePlayer();
+
+let recognition = new SpeechRecognition();
+recognition.lang = 'ro-RO';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+console.log("Started recognizer:", recognition.serviceURI);
+
+function runRecognizer() {
+    if (isRunning) {
+        isRunning = false;
+        testBtn.textContent = 'Start recognition';
+        return;
+    }
+
+    isRunning = true;
+    testBtn.textContent = 'Stop recognition';
 
     recognition.start();
-    let isActive = true;
 
     recognition.onresult = function (event) {
         // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
@@ -26,8 +71,10 @@ function runRecognizer() {
         // We then return the transcript property of the SpeechRecognitionAlternative object
 
         let speechResult = event.results[0][0].transcript.toLowerCase();
-        const confidence = event.results[0][0].confidence.toString();
-        diagnosticPara.innerHTML += `<li> <span style="color: #ff4f57">${confidence}</span> ${speechResult}</li>`;
+        const confidence = event.results[0][0].confidence.toFixed(5).toString();
+
+        const incomplete = utterancePlayer.audio.ended ? '' : '<span style="color: #ff0026">INCOMPLETE</span>';
+        diagnosticPara.innerHTML += `<li><span style="color: #009f29">${confidence}</span> ${incomplete} ${speechResult}</li>`;
     };
 
     recognition.onspeechend = function () {
@@ -37,16 +84,18 @@ function runRecognizer() {
     };
 
     recognition.onerror = function (event) {
-        testBtn.disabled = false;
-        testBtn.textContent = 'Start new test';
-        diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
-        isActive = false;
+        testBtn.textContent = 'Start recognition';
+        diagnosticPara.innerHTML += `<span> Error occurred in recognition: ${event.error} </span>`;
+        isRunning = false;
         recognition.stop();
     };
 
     recognition.onaudiostart = function (event) {
         //Fired when the user agent has started to capture audio.
         console.log('SpeechRecognition.onaudiostart');
+
+        // get audio to play
+        utterancePlayer.startNextUtterance();
     };
 
     recognition.onaudioend = function (event) {
@@ -58,8 +107,9 @@ function runRecognizer() {
         //Fired when the speech recognition service has disconnected.
         console.log('SpeechRecognition.onend');
 
-        if (isActive)
-            recognition.start();
+        utterancePlayer.ensureAudioStopped();
+        if (isRunning && utterancePlayer.pendingUtterancesNum() > 0)
+            setTimeout(() => recognition.start(), pauseInterval);
     };
 
     recognition.onnomatch = function (event) {
