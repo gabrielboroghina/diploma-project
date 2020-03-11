@@ -5,7 +5,7 @@ let testBtn = document.querySelector('#start-btn');
 
 let isRunning = false; // the conversion process is running
 let pauseInterval = 3000; // wait a bit between 2 successive conversions
-g
+
 const trackId = 2;
 const utterancesPath = '../../../Music/';
 
