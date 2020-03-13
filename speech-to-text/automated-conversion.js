@@ -4,10 +4,10 @@ let diagnosticPara = document.querySelector('.output');
 let testBtn = document.querySelector('#start-btn');
 
 let isRunning = false; // the conversion process is running
-let pauseInterval = 3000; // wait a bit between 2 successive conversions
+let pauseInterval = 1500; // wait a bit between 2 successive conversions
 
-const trackId = 2;
-const utterancesPath = '../../../Music/';
+const trackName = 'Puterea prezentului - Eckhart Tolle. Capitolul 1. Nu suntem totuna cu mintea noastră';
+const utterancesPath = './utterances';
 
 function padNumber(n, width, z) {
     z = z || '0';
@@ -18,13 +18,13 @@ function padNumber(n, width, z) {
 class UtterancePlayer {
     constructor() {
         this.utteranceIdx = 0;
-        this.lastUtteranceIdx = 1;
+        this.lastUtteranceIdx = 206;
     }
 
     startNextUtterance() {
         // load audio file
         this.utteranceIdx++;
-        this.audio = new Audio(`${utterancesPath}${trackId}_${padNumber(this.utteranceIdx, 3)}.wav`);
+        this.audio = new Audio(`${utterancesPath}/${trackName}_${padNumber(this.utteranceIdx, 3)}.wav`);
         this.audio.onended = () => console.log('Audio finished playing');
 
         // start playing
@@ -74,7 +74,7 @@ function runRecognizer() {
         const confidence = event.results[0][0].confidence.toFixed(5).toString();
 
         const incomplete = utterancePlayer.audio.ended ? '' : '<span style="color: #ff0026">INCOMPLETE</span>';
-        diagnosticPara.innerHTML += `<li><span style="color: #009f29">${confidence}</span> ${incomplete} ${speechResult}</li>`;
+        diagnosticPara.innerHTML += `<li>${padNumber(utterancePlayer.utteranceIdx, 3)} <span style="color: #009f29">${confidence}</span> ${incomplete} ${speechResult}</li>`;
     };
 
     recognition.onspeechend = function () {
