@@ -1,27 +1,31 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/core/actions/#custom-actions/
+"""
+Custom actions.
+"""
+
+from typing import Any, Text, Dict, List
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
+from rasa_sdk import Action, Tracker
+
+import spacy
 
 
-# This is a simple example for a custom action which utters "Hello World!"
+class ActionGetLocation(Action):
 
-# from typing import Any, Text, Dict, List
-#
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
+    def name(self) -> Text:
+        return "action_get_location"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nlp = spacy.load("rasa_spacy_ro")
+
+        print(tracker.latest_message)
+        # doc = nlp(tracker.latest_message)
+        # dispatcher.utter_message(' '.join([token.tag_ for token in doc]))
+
+        object = list(tracker.get_latest_entity_values('obj'))
+        attribute = list(tracker.get_latest_entity_values('location'))
+        dispatcher.utter_message(f"{object} -> {attribute}")
+
+        return []
