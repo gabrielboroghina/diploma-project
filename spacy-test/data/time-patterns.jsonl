@@ -18,3 +18,5 @@
 {"label": "TIME", "pattern": [{"LOWER": {"REGEX": "pe|de|până"}, "OP": "?"}, {"LOWER": {"REGEX": "la|spre"}, "OP": "?"}, {"LOWER": {"REGEX": "începutul|mijlocul|sfârșitul"}}, {"LOWER": {"REGEX": "zilei|săptămânii|lunii|anului"}}, {"LOWER": {"REGEX": "trecu(t|tă|te|ți)|viito(r|are)|acea?sta|(a|ă)sta"}, "OP": "?"}], "id": ""}
 
 {"label": "TIME", "pattern": [{"LOWER": {"REGEX": "până|de"}, "OP": "?"}, {"LOWER": "la", "OP": "?"}, {"LOWER": {"REGEX": "(primăvar|var|toamn|iarn)(a|ă)"}}, {"LOWER": {"REGEX": "trecută|viitoare|asta|aceasta"}}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "până|din"}, "OP": "?"}, {"LOWER": "în"}, {"LOWER": "anul"}, {"LOWER": {"REGEX": "[0-9]+"}}], "id": ""}

@@ -59,7 +59,7 @@ TRAIN_DATA = [
         "cărțile de matematică ale Mariei sunt sub pat",
         {
             "heads": [5, 2, 0, 4, 0, 5, 7, 5],
-            "deps": ['cine', '-', 'care', '-', 'care', 'ROOT', '-', 'unde'],
+            "deps": ['cine', '-', 'care', '-', 'al cui', 'ROOT', '-', 'unde'],
         }
     ),
     (
@@ -70,24 +70,24 @@ TRAIN_DATA = [
         }
     ),
     (
-        "azi începe vacanța",
+        "azi începe vacanța noastră",
         {
-            "heads": [1, 1, 1],
-            "deps": ['când', 'ROOT', 'cine'],
+            "heads": [1, 1, 1, 2],
+            "deps": ['când', 'ROOT', 'cine', 'al cui'],
         }
     ),
     (
         "săptămâna trecută am udat pomul meu de afară",
         {
             "heads": [3, 1, 3, 3, 3, 4, 7, 4],
-            "deps": ['când', 'care', '-', 'ROOT', 'ce', 'care', '-', 'care'],
+            "deps": ['când', 'care', '-', 'ROOT', 'ce', 'al cui', '-', 'care'],
         }
     ),
     (
         "ziua de naștere a lui Alex este pe 5 mai",
         {
             "heads": [6, 2, 0, 5, 5, 0, 6, 9, 9, 6],
-            "deps": ['cine', '-', 'care', '-', '-', 'care', 'ROOT', '-', '-', 'când'],
+            "deps": ['cine', '-', 'care', '-', '-', 'al cui', 'ROOT', '-', '-', 'când'],
         }
     ),
     (
@@ -101,7 +101,7 @@ TRAIN_DATA = [
         "cursul se ține în sala EC105 de la parter din facultatea noastră",
         {
             "heads": [2, 2, 2, 4, 2, 4, 8, 8, 4, 10, 4, 10],
-            "deps": ['cine', '-', 'ROOT', '-', 'unde', 'care', '-', '-', 'care', '-', 'care', 'care'],
+            "deps": ['cine', '-', 'ROOT', '-', 'unde', 'care', '-', '-', 'care', '-', 'care', 'al cui'],
         }
     ),
     (
@@ -122,7 +122,7 @@ TRAIN_DATA = [
         "ceasul fetei de acolo e scump",
         {
             "heads": [4, 0, 3, 1, 4, 4],
-            "deps": ['cine', 'care', '-', 'care', 'ROOT', 'cum este'],
+            "deps": ['cine', 'al cui', '-', 'care', 'ROOT', 'cum este'],
         }
     ),
     (
@@ -164,16 +164,38 @@ TRAIN_DATA = [
         "trebuie să iau pastila de hipertensiune seara și dimineața",
         {
             "heads": [0, 2, 2, 3, 5, 3, 2, 8, 2],
-            "deps": ['ROOT', '-', 'ROOT', 'ce', '-', 'care', 'când', '-', 'când'],
+            "deps": ['ROOT', '-', 'ce', 'ce', '-', 'care', 'când', '-', 'când'],
         }
     ),
-    # (
-    #     "30 martie e data limită a temei la învățare automată",
-    #     {
-    #         "heads": [1, ],
-    #         "deps": ['care', 'cine', 'care', '-', 'care', 'ROOT', 'ce'],
-    #     }
-    # ),
+    (
+        "O să trebuiască să merg la serviciu începând de luna viitoare",
+        {
+            "heads": [2, 2, 2, 4, 2, 6, 4, 9, 9, 4, 9],
+            "deps": ['-', '-', 'ROOT', '-', 'ce', '-', 'unde', '-', '-', 'când', 'care'],
+        }
+    ),
+    (
+        "am pus joia trecută ochelarii mei de soare în sertarul meu din camera mea",
+        {
+            "heads": [1, 1, 1, 2, 1, 4, 7, 4, 9, 1, 9, 12, 9, 12],
+            "deps": ['-', 'ROOT', 'când', 'care', 'ce', 'al cui', '-', 'care', '-', 'unde', 'al cui', '-', 'care',
+                     'al cui'],
+        }
+    ),
+    (
+        "Telefonul Alexandrei este 074123456",
+        {
+            "heads": [2, 0, 2, 2],
+            "deps": ['cine', 'al cui', 'ROOT', 'care este'],
+        }
+    ),
+    (
+        "Numărul de la interfon al lui Iulian apare jos la intrarea în scară",
+        {
+            "heads": [7, 3, 3, 0, 6, 6, 0, 7, 7, 10, 7, 12, 10],
+            "deps": ['cine', '-', '-', 'care', '-', '-', 'al cui', 'ROOT', 'unde', '-', 'unde', '-', 'care'],
+        }
+    ),
 ]
 
 
@@ -183,6 +205,7 @@ def analyze_data(phrases):
         for dep in relations['deps']:
             dep_freq[dep] = dep_freq.get(dep, 0) + 1
 
+    dep_freq = {k: v for k, v in sorted(dep_freq.items(), key=lambda item: item[1])}
     print('Depencencies frequencies:')
     print(dep_freq)
 
