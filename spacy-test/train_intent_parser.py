@@ -183,23 +183,65 @@ TRAIN_DATA = [
         }
     ),
     (
-        "Telefonul Alexandrei este 074123456",
+        "telefonul Alexandrei este 074123456",
         {
             "heads": [2, 0, 2, 2],
             "deps": ['cine', 'al cui', 'ROOT', 'care este'],
         }
     ),
     (
-        "Numărul de la interfon al lui Iulian apare jos la intrarea în scară",
+        "numărul de la interfon al lui Iulian apare jos la intrarea în scară",
         {
             "heads": [7, 3, 3, 0, 6, 6, 0, 7, 7, 10, 7, 12, 10],
             "deps": ['cine', '-', '-', 'care', '-', '-', 'al cui', 'ROOT', 'unde', '-', 'unde', '-', 'care'],
         }
     ),
+    (
+        "mâine voi rezolva problema cu furtunul stricat",
+        {
+            "heads": [2, 2, 2, 2, 5, 3, 5],
+            "deps": ['când', '-', 'ROOT', 'ce', '-', 'care', 'care'],
+        }
+    ),
+    (
+        "ultima zi de lucru a mea e peste două săptămâni",
+        {
+            "heads": [1, 6, 3, 1, 5, 1, 6, 9, 9, 6],
+            "deps": ['care', 'cine', '-', 'care', '-', 'al cui', 'ROOT', '-', '-', 'când'],
+        }
+    ),
+    (
+        "am de făcut o temă grea până vineri",
+        {
+            "heads": [0, 2, 0, 4, 2, 4, 7, 2],
+            "deps": ['ROOT', '-', 'ce', '-', 'ce', 'ce fel de', '-', 'când'],
+        }
+    ),
+    (
+        "în fiecare zi fac antrenament sportiv",
+        {
+            "heads": [2, 2, 3, 3, 3, 4],
+            "deps": ['-', '-', 'când', 'ROOT', 'ce', 'ce fel de'],
+        }
+    ),
+    (
+        "am de terminat proiectul la programare până în mai",
+        {
+            "heads": [0, 2, 0, 2, 5, 3, 8, 8, 2],
+            "deps": ['ROOT', '-', 'ce', 'ce', '-', 'care', '-', '-', 'când'],
+        }
+    ),
+
+
 ]
 
 
 def analyze_data(phrases):
+    """
+    Print statistics about the given phrases
+    :param phrases: list of phrases to analyze
+    """
+
     dep_freq = {}
     for phrase, relations in phrases:
         for dep in relations['deps']:
@@ -265,17 +307,17 @@ def main(model=None, output_dir=None, n_iter=30):
         print("Saved model to", output_dir)
 
 
-def dep_span(doc, node):
+def dep_span(doc, token, merge_attr=False):
     def dfs(node):
         first = last = node.i
         for child in node.children:
-            if child.dep_ == '-':
+            if child.dep_ == '-' or (merge_attr and child.dep_ in ['care', 'ce fel de']):
                 child_first, child_last = dfs(child)
                 first = min(first, child_first)
                 last = max(last, child_last)
         return first, last
 
-    first, last = dfs(node)
+    first, last = dfs(token)  # compute bounds of the span
     span = Span(doc, first, last + 1)
     return span.text
 
@@ -288,7 +330,8 @@ def test_model(nlp):
         "am pus mingea sub patul din dormitor",
         "mâine începe un serial la televizor",
         "pălăria Adinei este frumoasă",
-        "bunicul meu trebuie să hrănească animalele zilnic",
+        "săptămâna mea de vacanță de vară este luna viitoare",
+        "bunicul meu are de hrănit animalele în fiecare zi",
     ]
 
     docs = nlp.pipe(texts)
@@ -297,7 +340,7 @@ def test_model(nlp):
         for token in doc:
             if token.dep_ != "-":
                 print(TermColors.YELLOW, token.dep_, TermColors.ENDC, f'[{dep_span(doc, token.head)}] ->',
-                      TermColors.PINK, dep_span(doc, token), TermColors.ENDC)
+                      TermColors.PINK, dep_span(doc, token, True), TermColors.ENDC)
 
 
 if __name__ == "__main__":
