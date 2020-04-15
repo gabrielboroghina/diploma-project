@@ -1,56 +1,60 @@
 ## intent:greet
 - hey
-- hello
-- hi
-- good morning
-- good evening
-- hey there
+- hei
+- Salut
+- bună
 
 ## intent:goodbye
 - bye
-- goodbye
-- see you around
-- see you later
+- pa
+- pa pa
+- mersi
 
 ## intent:affirm
-- yes
-- indeed
-- of course
+- da
+- dap
+- sigur
 - that sounds good
 - correct
 
 ## intent:deny
-- no
-- never
-- I don't think so
-- don't like that
-- no way
-- not really
+- nu
+- nope
+- nu prea
+- clar nu
 
-## intent:mood_great
-- perfect
-- very good
-- great
-- amazing
-- wonderful
-- I am feeling very good
-- I am great
-- I'm good
+## intent:store_request
+- Vreau să reții ceva
+- Poți să reții ceva, te rog?
+- Memorează
+- Memorează ceva
+- Reține ceva
+- Ține minte
 
-## intent:mood_unhappy
-- sad
-- very sad
-- unhappy
-- bad
-- very bad
-- awful
-- terrible
-- not very good
-- extremely sad
-- so sad
+## intent:store_location
+- [cartea](obj) e [pe masă](location)
+- [Cardul de debit](obj) este [în portofelul vechi](location)
+- [buletinul meu](obj) se află [în rucsac](location)
+- Am pus [foile cu tema la mate](obj) [pe dulapul din sufragerie](location)
 
-## intent:bot_challenge
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
+## intent:get_location
+- Unde se află [ochelarii](obj)
+- Unde e [buletinul](obj)?
+- știi unde am pus [cheile](obj)
+- poți să-mi zici unde este [încârcătorul de telefon](obj)
+- unde am lăsat [ceasul](obj)?
+
+## intent:get_timestamp
+- Când [am fost la sala](action)
+- De când [începe vacanța](action)
+- Până când [trebuie trimisă tema](action)
+
+## intent:store_person_attr
+- Mailul lui [Alex Marin](person) este [alex@marin.com](attribute)
+- Adresa [Elenei](person) este [strada Zorilor numarul 9](attribute)
+
+## lookup:person
+  data/lookup-tables/person.txt
+  
+## lookup:location
+  data/lookup-tables/location.txt

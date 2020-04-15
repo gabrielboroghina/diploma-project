@@ -3,29 +3,54 @@ intents:
   - goodbye
   - affirm
   - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - store
+  - store_location
+  - store_person_attr
+  - get_location
+  - get_timestamp
+  - out_of_scope
+
+entities:
+  - obj
+  - location
+  - attribute
+  - action
+  - person
+
+slots:
+  obj:
+    type: unfeaturized
+  location:
+    type: unfeaturized
+  attribute:
+    type: unfeaturized
+  action:
+    type: unfeaturized
+
+actions:
+  - action_get_location
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Salutare!"
+    - text: "Hei!"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Super!"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Pa pa"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_out_of_scope:
+    - text: "Nu stiu"
+
+  utter_listening:
+    - text: "Să auzim!"
+    - text: "Sigur!"
+    - text: "Te ascult"
+
+  utter_stored:
+    - text: "Am reținut!"
 
 session_config:
   session_expiration_time: 60
