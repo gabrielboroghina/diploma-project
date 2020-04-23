@@ -13,7 +13,7 @@ class myHandler(BaseHTTPRequestHandler):
     def parse(self, phrase):
         doc = nlp(phrase)
 
-        options = {"add_lemma": True, "compact": False, "fine_grained": False}
+        options = {"add_lemma": True, "compact": True, "fine_grained": False}
 
         htmlDep = displacy.render(doc, style="dep", page=True, options=options)
         with open("../../MyAnnotator/dep-parse.html", "w", encoding='utf8') as f:

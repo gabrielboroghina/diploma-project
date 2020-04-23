@@ -1,9 +1,10 @@
 import spacy
 from spacy import displacy
 from spacy.tokens import Span
-from dexBridge import DexBridge
+# from dexBridge import DexBridge
 
-nlp = spacy.load("rasa_spacy_ro")
+nlp = spacy.load("spacy_ro")
+# nlp = spacy.load("../../UD_Romanian-RRT/models/model-best")
 if "ner" in nlp.pipe_names:
     nlp.disable_pipes("ner")
 
@@ -21,13 +22,20 @@ questionIntroductoryEnts = [
 ]
 
 phrases = [
-    'De fiecare dată când ies afara mă simt mai bine',
-    'Azi eu mi-am cumpărat un nou ceas',
+    'Adresa lui Dan este dan@mail',
+    'Cartea mea e acolo',
+    'FLorile lui Alex sunt pe pervaz',
+    'Am pus ceasul la ușă',
+    'Am scos televizorul din sufragerie din priză',
+    'cartea de istorie de pe birou e plină cu poze cu război',
+    'De fiecare dată când ies afară mă simt mai bine',
+    'Azi eu mi-am cumpărat un nou ceas de la magazin',
     'Cartea de biologie se află pe raftul din sufragerie',
     'Părțile secundare de propoziție sunt subordonate altor părți de propoziție',
     'Care era adresa băiatului în 1996?',
     'Unde statea Gabi anul trecut?',
-    'Care este mailul lui Dan?',
+    'Unde este cartea de istorie',
+    'Care este mailul lui?',
     # 'Eu și Alex am fost la concurs seara trecută',
     'Eu cânt de la 5 ani',
     'Când eu mergeam acasă l-am văzut pe Mihai la balcon',
@@ -102,6 +110,9 @@ def parsePhrase(phrase):
         lemma = ""  # dexBridge.lemmaForWord(token.text, pos(token.tag_))
         print(token.text, TermColors.YELLOW, lemma,
               TermColors.PINK, token.tag_, TermColors.ENDC)
+    for chunk in doc.noun_chunks:
+        print(chunk.text, chunk.root.text, chunk.root.dep_,
+              chunk.root.head.text)
 
     return doc
 
@@ -117,6 +128,6 @@ options = {"colors": colors, "add_lemma": True, "compact": False, "fine_grained"
 
 htmlDep = displacy.render(docs, style="dep", page=True, options=options)
 htmlEnt = displacy.render(docs, style="ent", page=True, options=options)
-with open("dep.html", "w", encoding='utf8') as f:
+with open("my.html", "w", encoding='utf8') as f:
     f.write(htmlEnt)
     f.write(htmlDep)
