@@ -3,7 +3,7 @@ intents:
   - goodbye
   - affirm
   - deny
-  - store
+  - store_request
   - store_location
   - store_person_attr
   - get_location
