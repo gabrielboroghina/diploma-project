@@ -14,7 +14,6 @@ db_bridge = DbBridge()
 class ActionStoreAttribute(Action):
     def __init__(self):
         super().__init__()
-        # self.spacy_nlp = spacy.load("ro")
 
     def name(self) -> Text:
         return "action_store_attr"
@@ -24,25 +23,20 @@ class ActionStoreAttribute(Action):
         message = tracker.latest_message
 
         # extract relevant entities from the phrase
-        owner = None
-        attr_name = None
+        entity = None
         value = None
 
         semantic_roles = message['semantic_roles']
         print(semantic_roles)
         for ent in semantic_roles:
             if ent['question'] == 'cine':
-                attr_name = ent['value']
-                for specifier in ent['specifiers']:
-                    if specifier['question'] == 'al cui':
-                        owner = specifier['value']
-                        break
+                entity = ent
             elif ent['question'] == 'care este':
                 value = ent['value']
 
         # insert data into the database
-        if owner and attr_name and value:
-            db_bridge.set_attr(owner, (attr_name, value))
+        if entity and value:
+            db_bridge.set_value(entity, value)
         else:
             dispatcher.utter_message("Nu am putut extrage entitățile")
 
@@ -68,19 +62,18 @@ class ActionGetAttribute(Action):
         message = tracker.latest_message
 
         # extract relevant entities from the phrase
-        owner = None
-        attr_name = None
+        entity = None
 
         semantic_roles = message['semantic_roles']
         print(semantic_roles)
         for ent in semantic_roles:
             if ent['question'] in ['ce', 'cine'] and ent['value'] != "care":
-                attr_name = ent['value']
-                for specifier in ent['specifiers']:
-                    if specifier['question'] == 'al cui':
-                        owner = specifier['value']
+                entity = ent
 
         # query the database
-        result = db_bridge.get_attr(owner, attr_name)
-        dispatcher.utter_message(result)
+        if entity:
+            result = db_bridge.get_value(entity)
+            dispatcher.utter_message(result)
+        else:
+            dispatcher.utter_message("Nu am putut extrage entitățile")
         return []

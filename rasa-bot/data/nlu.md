@@ -50,10 +50,12 @@
 - [anul nașterii](attribute) [lui Ștefan cel Mare](owner) a fost 1433 
 
 ## intent:get_attr
-- Care e [mailul](attribute) [lui Mihai](owner)
+- Care e [mailul](attribute) [lui Mihai](owner)?
 - care este [numele de utilizator de github](attribute) [al laborantului de EIM](owner)
 - poți să-mi spui care era [prețul](attribute) [abonamentului la sală](owner)
 - zi-mi care a fost [câștigătorul](attribute) [concursului Eestec Olympics de anul trecut](owner)
+- care e adresa colegului meu
+- care era denumirea bazei de date de la proiect?
 
 ## intent:get_location
 - Unde se află [ochelarii](obj)
