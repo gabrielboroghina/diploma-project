@@ -86,7 +86,9 @@ datetime_resolver = TimeResolver()
 nlp.add_pipe(datetime_resolver, last=True)
 
 # store the model to disk
-nlp.to_disk("./time-model")
+# nlp.to_disk("./time-model")
+
+#############################################################################
 
 TEST_DATA = [
     "trebuie să fac tema până mâine",
@@ -97,7 +99,6 @@ TEST_DATA = [
     "o să merg pe la sfârșitul săptămânii viitoare pe 25 ianuarie",
     "Spectacolul e pe la începutul lui ianuarie anul viitor"
 ]
-#############################################################################
 
 for phrase in TEST_DATA:
     doc = nlp(phrase)

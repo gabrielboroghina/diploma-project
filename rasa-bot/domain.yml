@@ -4,10 +4,13 @@ intents:
   - affirm
   - deny
   - store_request
+  - store_attr
   - store_location
-  - store_person_attr
+  - get_attr
   - get_location
   - get_timestamp
+  - get_subject
+  - get_specifier
   - out_of_scope
 
 entities:
@@ -16,6 +19,7 @@ entities:
   - attribute
   - action
   - person
+  - owner
 
 slots:
   obj:
@@ -28,29 +32,39 @@ slots:
     type: unfeaturized
 
 actions:
-  - action_get_location
+  - action_store_attr
+  - action_get_attr
 
 responses:
   utter_greet:
     - text: "Salutare!"
     - text: "Hei!"
+    - text: "Salut"
+    - text: "Bună"
 
   utter_happy:
     - text: "Super!"
 
   utter_goodbye:
     - text: "Pa pa"
+    - text: "Bye"
 
   utter_out_of_scope:
     - text: "Nu stiu"
+
+  utter_not_implemented:
+    - text: "Nu pot deocamdată"
 
   utter_listening:
     - text: "Să auzim!"
     - text: "Sigur!"
     - text: "Te ascult"
+    - text: "Spune!"
 
   utter_stored:
     - text: "Am reținut!"
+    - text: "Reținut"
+    - text: "Notat!"
 
 session_config:
   session_expiration_time: 60

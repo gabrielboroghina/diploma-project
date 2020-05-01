@@ -55,7 +55,7 @@ TRAIN_DATA = [
         }
     ),
     (
-        "cărțile de matematică ale Mariei sunt sub pat",
+        "cărțile de matematică ale mariei sunt sub pat",
         {
             "heads": [5, 2, 0, 4, 0, 5, 7, 5],
             "deps": ['cine', '-', 'care', '-', 'al cui', 'ROOT', '-', 'unde'],
@@ -83,7 +83,7 @@ TRAIN_DATA = [
         }
     ),
     (
-        "ziua de naștere a lui Alex este pe 5 mai",
+        "ziua de naștere a lui alex este pe 5 mai",
         {
             "heads": [6, 2, 0, 5, 5, 0, 6, 9, 9, 6],
             "deps": ['cine', '-', 'care', '-', '-', 'al cui', 'ROOT', '-', '-', 'când'],
@@ -182,14 +182,14 @@ TRAIN_DATA = [
         }
     ),
     (
-        "telefonul Alexandrei este 074123456",
+        "telefonul alexandrei este 074123456",
         {
             "heads": [2, 0, 2, 2],
             "deps": ['cine', 'al cui', 'ROOT', 'care este'],
         }
     ),
     (
-        "numărul de la interfon al lui Iulian apare jos la intrarea în scară",
+        "numărul de la interfon al lui iulian apare jos la intrarea în scară",
         {
             "heads": [7, 3, 3, 0, 6, 6, 0, 7, 7, 10, 7, 12, 10],
             "deps": ['cine', '-', '-', 'care', '-', '-', 'al cui', 'ROOT', 'unde', '-', 'unde', '-', 'care'],
@@ -258,7 +258,7 @@ TRAIN_DATA = [
             "deps": ["când", "care", "-", "ROOT", "-", "cât", "-", "ce"]}
     ),
     (
-        "i-am dat 10 lei lui George",
+        "i-am dat 10 lei lui george",
         {
             "heads": [3, 0, 3, 3, 5, 3, 7, 3],
             "deps": ["cui", "-", "-", "ROOT", "cât", "ce", "-", "cui"]
@@ -321,7 +321,7 @@ TRAIN_DATA = [
                      "ce fel de"]}
     ),
     (
-        "adresa de email a lui George Ionescu e george@gmail.com",
+        "adresa de email a lui george ionescu e george@gmail.com",
         {
             "heads": [7, 2, 0, 5, 5, 0, 5, 7, 7],
             "deps": ["cine", "-", "care", "-", "-", "al cui", "care", "ROOT", "care este"]}
@@ -375,13 +375,13 @@ TRAIN_DATA = [
             "deps": ["cine", "-", "care", "-", "ROOT", "-", "unde", "-", "care", "-", "-", "care"]}
     ),
     (
-        "am vizitat - o pe Irina de ziua lui Mihai",
+        "am vizitat - o pe Irina de ziua lui mihai",
         {
             "heads": [1, 1, 3, 1, 5, 1, 7, 1, 9, 7],
             "deps": ["-", "ROOT", "-", "pe cine", "-", "pe cine", "-", "când", "-", "al cui"]}
     ),
     (
-        "de obicei merg la alergat în fiecare săptămână pe malul lacului Morii",
+        "de obicei merg la alergat în fiecare săptămână pe malul lacului morii",
         {
             "heads": [1, 2, 2, 4, 2, 7, 7, 2, 9, 2, 9, 10],
             "deps": ["-", "cât de des", "ROOT", "-", "unde", "-", "-", "cât de des", "-", "unde", "al cui", "care"]}
@@ -433,6 +433,80 @@ TRAIN_DATA = [
         {
             "heads": [3, 0, 3, 3, 3, 6, 4, 8, 6],
             "deps": ["cine", "cui", "-", "ROOT", "unde", "-", "cât timp", "-", "care"]}
+    ),
+    (
+        "sala laboratorului de ML este EG105",
+        {
+            "heads": [4, 0, 3, 1, 4, 4],
+            "deps": ["cine", "al cui", "-", "care", "ROOT", "care este"]}
+    ),
+
+    # ------------------------------------ questions ------------------------------------
+    (
+        "unde se află biletul de avion",
+        {
+            "heads": [2, 2, 2, 2, 5, 3],
+            "deps": ["unde", "-", "ROOT", "cine", "-", "care"]}
+    ),
+    (
+        "de unde am cumpărat monitorul elenei",
+        {
+            "heads": [1, 3, 3, 3, 3, 4],
+            "deps": ["prep", "unde", "-", "ROOT", "ce", "al cui"]}
+    ),
+    (
+        "unde am lăsat husa de la telefon",
+        {
+            "heads": [2, 2, 2, 2, 6, 6, 3],
+            "deps": ["unde", "-", "ROOT", "ce", "-", "-", "care"]}
+    ),
+    (
+        "cât timp a durat examenul de inteligență artificială",
+        {
+            "heads": [1, 3, 3, 3, 3, 6, 4, 6],
+            "deps": ["cât", "cât timp", "-", "ROOT", "cine", "-", "care", "ce fel de"]}
+    ),
+    (
+        "când va începe colocviul de luni",
+        {
+            "heads": [2, 2, 2, 2, 5, 3],
+            "deps": ["când", "-", "ROOT", "cine", "-", "care"]}
+    ),
+    (
+        "până când o să țină înscrierea la facultatea de automatică",
+        {
+            "heads": [1, 4, 4, 4, 4, 4, 7, 5, 9, 7],
+            "deps": ["prep", "când", "-", "-", "ROOT", "cine", "-", "care", "-", "care"]}
+    ),
+    (
+        "de câți ani am geaca albastră",
+        {
+            "heads": [2, 2, 3, 3, 3, 4],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "ce", "care"]}
+    ),
+    (
+        "care telefon are ecran mare",
+        {
+            "heads": [1, 2, 2, 2, 3],
+            "deps": ["care", "cine", "ROOT", "ce", "ce fel de"]}
+    ),
+    (
+        "care aparate sunt folosite la oftalmolog",
+        {
+            "heads": [1, 3, 3, 3, 5, 3],
+            "deps": ["care", "cine", "-", "ROOT", "-", "unde"]}
+    ),
+    (
+        "câți kilometri am alergat aseară pe afară",
+        {
+            "heads": [1, 3, 3, 3, 3, 6, 3],
+            "deps": ["cât", "ce", "-", "ROOT", "când", "-", "unde"]}
+    ),
+    (
+        "câte zile mai sunt până la weekend",
+        {
+            "heads": [1, 3, 3, 3, 6, 6, 3],
+            "deps": ["cât", "cât timp", "-", "ROOT", "prep", "-", "când"]}
     ),
 ]
 
@@ -563,8 +637,8 @@ if __name__ == "__main__":
     analyze_data(TRAIN_DATA)
 
     model = None
-    model = train("spacy_ro", n_iter=40)
-    store_model(model, '../models/spacy-syntactic')
+    # model = train("spacy_ro", n_iter=40)
+    # store_model(model, '../models/spacy-syntactic')
 
     if model is None:
         model = spacy.load('../models/spacy-syntactic')

@@ -13,11 +13,11 @@ if typing.TYPE_CHECKING:
 
 
 class SyntacticParser(Component):
-    """Component that identifies syntactic entities of the phrase by their syntactic question"""
+    """ Component that identifies syntactic entities of the phrase by their syntactic question. """
 
     @classmethod
     def required_components(cls) -> List[Type[Component]]:
-        """Specify which components need to be present in the pipeline."""
+        """ Specify which components need to be present in the pipeline. """
 
         return []
 
@@ -66,7 +66,7 @@ class SyntacticParser(Component):
             def dfs(node):
                 first = last = node.i
                 for child in node.children:
-                    if child.dep_ == '-' or (merge_attr and child.dep_ in ['care', 'ce fel de', 'cât', 'al cui']):
+                    if child.dep_ == '-' or (merge_attr and child.dep_ in ['care', 'ce fel de']):
                         child_first, child_last = dfs(child)
                         first = min(first, child_first)
                         last = max(last, child_last)
@@ -76,18 +76,38 @@ class SyntacticParser(Component):
             span = Span(doc, first, last + 1)
             return span.text
 
-        # parse the phrase
-        doc = self.nlp_spacy(message.text)
+        def get_specifiers(doc, parent):
+            specifiers = []
+            for token in doc:
+                if token.head == parent:
+                    if token.dep_ in ['care', 'ce fel de']:
+                        specifiers.append({
+                            "question": token.dep_,
+                            "determiner": dep_span(doc, token.head),
+                            "value": dep_span(doc, token, True),
+                            "specifiers": []
+                        })
+                    elif token.dep_ in ['al cui']:
+                        specifiers.append({
+                            "question": token.dep_,
+                            "determiner": dep_span(doc, token.head),
+                            "value": token.text,
+                            "specifiers": get_specifiers(doc, token)
+                        })
 
-        # TODO integrate attributes into their determiners as sub-dicts
+            return specifiers
+
+        # parse the phrase
+        doc = self.nlp_spacy(message.text.lower())
+
         semantic_roles = []
         for token in doc:
-            if token.dep_ not in ['-']:
+            if token.dep_ not in ['-'] and token.head.dep_ == 'ROOT':
                 entity = {
                     "question": token.dep_,
                     "determiner": dep_span(doc, token.head),
-                    "value": dep_span(doc, token, True),
-                    "extractor": self.name
+                    "value": token.text,
+                    "specifiers": get_specifiers(doc, token)
                 }
                 semantic_roles.append(entity)
 
