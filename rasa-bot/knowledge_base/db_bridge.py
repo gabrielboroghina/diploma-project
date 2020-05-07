@@ -16,22 +16,28 @@ class QueryBuilder:
     def query_create_noun_phrase(entity):
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
-        if entity['specifiers']:
-            query = f' create ({eid}:instance)-[:IS_A]->(:class {{name: "{entity["value"]}"}})'
+        string = entity['value']
+
+        if not entity['specifiers']:
+            query = f' create ({eid}:class)'
         else:
-            query = f' create ({eid} {{name: "{entity["value"]}"}})'
+            query = f' create ({eid}:instance)-[:IS_A]->(:class {{name: "{entity["value"]}"}})'
 
-        for spec in entity['specifiers']:
-            inner_query, inner_id = QueryBuilder.query_create_noun_phrase(spec)
-            query += inner_query
+            for spec in entity['specifiers']:
+                inner_query, inner_id, inner_str = QueryBuilder.query_create_noun_phrase(spec)
+                query += inner_query
 
-            # link the nodes
-            if spec['question'] in ['care', 'ce fel de']:
-                query += f' create ({eid})-[:SPEC]->({inner_id})'
-            elif spec['question'] == "al cui":
-                query += f' create ({inner_id})-[:HAS]->({eid})'
+                # link the nodes
+                if spec['question'] in ['care', 'ce fel de']:
+                    query += f' create ({eid})-[:SPEC]->({inner_id})'
+                elif spec['question'] == "al cui":
+                    query += f' create ({inner_id})-[:HAS]->({eid})'
 
-        return query, eid
+                string += " " + inner_str
+
+        query += f' set {eid}.name = "{string}"'
+
+        return query, eid, string
 
     @staticmethod
     def query_match_noun_phrase(entity):
@@ -64,21 +70,32 @@ class DbBridge:
     def __del__(self):
         self.driver.close()
 
-    def set_value(self, entity, value):
-        query, node_id = QueryBuilder.query_create_noun_phrase(entity)
-        query += f' create ({node_id})-[:VAL]->(:val {{value: "{value}"}})'
+    def set_value(self, entity, value, type='VAL'):
+        query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity)
+
+        if type == "VAL":
+            query += f' create ({node_id})-[:VAL]->(:val {{value: "{value}"}})'
+        elif type == "LOC":
+            query_create_location, location_node_id, _ = QueryBuilder.query_create_noun_phrase(value)
+            query += query_create_location
+            query += f' create ({node_id})-[:LOC]->({location_node_id})'
         print(query)
 
         self.session.run(query)
 
-    def get_value(self, entity):
+    def get_value(self, entity, type='VAL'):
         query, node_id = QueryBuilder.query_match_noun_phrase(entity)
-        query += f'match ({node_id})-[:VAL]->(val) return val.value'
-        print(query)
+        query += f'match ({node_id})-[:{type}]->(val) return val'
 
         result = self.session.run(query)
         values = [record.value() for record in result]
-        return "Nu știu" if not values else values[0]
+
+        if not values:
+            return "Nu știu"
+        if type == "VAL":
+            return values[0]['value']
+        if type == "LOC":
+            return values[0]['name']
 
     def set_attr(self, entity_name, attr):
         attr_name, attr_val = attr
@@ -96,6 +113,6 @@ class DbBridge:
         values = [record.value() for record in result]
         return "Nu știu" if not values else values[0]
 
-#
+
 # bridge = DbBridge()
-# print(bridge.get_attr("mariei", "interfonul"))
+# print(bridge.get_value())

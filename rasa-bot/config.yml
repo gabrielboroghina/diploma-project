@@ -30,6 +30,7 @@ pipeline:
     max_ngram: 4
   - name: DIETClassifier
     epochs: 100
+#  - name: SklearnIntentClassifier
   - name: syntactic_parser.SyntacticParser
   - name: EntitySynonymMapper
   - name: ResponseSelector
@@ -44,4 +45,4 @@ policies:
     epochs: 100
   - name: MappingPolicy
   - name: TwoStageFallbackPolicy
-    nlu_threshold: 0.5
+    nlu_threshold: 0.2

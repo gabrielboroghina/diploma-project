@@ -47,15 +47,18 @@
 - [Adresa](attribute) [Elenei](owner) este strada Zorilor numărul 9
 - [Numărul de telefon](attribute) [al lui Dan](owner) e 123456789
 - [numărul blocului](attribute) [fratelui Mihaelei](owner) e 10
-- [anul nașterii](attribute) [lui Ștefan cel Mare](owner) a fost 1433 
+- [anul nașterii](attribute) [lui Ștefan cel Mare](owner) a fost 1433
+- [numele](attribute) [meu](ownner) este Gabriel
+- cheile [mele](owner) de la casă sunt ușoare
 
 ## intent:get_attr
 - Care e [mailul](attribute) [lui Mihai](owner)?
 - care este [numele de utilizator de github](attribute) [al laborantului de EIM](owner)
 - poți să-mi spui care era [prețul](attribute) [abonamentului la sală](owner)
 - zi-mi care a fost [câștigătorul](attribute) [concursului Eestec Olympics de anul trecut](owner)
-- care e adresa colegului meu
-- care era denumirea bazei de date de la proiect?
+- care e adresa colegului meu?
+- care era [denumirea bazei de date de la proiect](attribute)?
+- care sunt tipurile de rețele neurale
 
 ## intent:get_location
 - Unde se află [ochelarii](obj)
@@ -63,6 +66,8 @@
 - știi unde am pus [cheile](obj)
 - poți să-mi zici unde este [încârcătorul de telefon](obj)
 - unde am lăsat [ceasul](obj)?
+- pe unde e [sticla de ulei](obj)
+- de unde am cumpărat [uscătorul de păr](obj)
 
 ## intent:get_timestamp
 - Când [am fost la sală](action)?
@@ -70,16 +75,21 @@
 - Până când [trebuie trimisă tema](action)
 - cât timp [a durat prezentarea temei](action)
 - peste câte zile [începe sesiunea de examene](action)
+- când am avut ultimul examen anul trecut?
+- când vor avea loc alegerile locale din 2020
 
 ## intent:get_subject
-- Cine stă în căminul P16?
-- Spune-mi te rog cine a inventat becul
-- cine a câștigat locul 1 la olimpiada națională de matematică din 2016
+- Cine [stă în căminul P16](action)?
+- Spune-mi te rog cine [a inventat becul](action)
+- cine [a câștigat locul 1 la olimpiada națională de matematică din 2016](action)
+- cine [m-a tuns ultima dată](action)
 
 ## intent:get_specifier
 - care student a terminat primul tema
 - la ce apartament locuiește verișorul meu
-- ce fel de imprimantă am acasă 
+- ce fel de imprimantă am acasă
+- în care dulap am pus dosarul
+- ce examene vor fi date în iunie?
 
 
 ## lookup:person

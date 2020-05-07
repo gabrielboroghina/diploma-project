@@ -77,3 +77,60 @@ class ActionGetAttribute(Action):
         else:
             dispatcher.utter_message("Nu am putut extrage entitățile")
         return []
+
+
+class ActionStoreLocation(Action):
+    def __init__(self):
+        super().__init__()
+
+    def name(self) -> Text:
+        return "action_store_location"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        message = tracker.latest_message
+
+        # extract relevant entities from the phrase
+        entity = None
+        location = None
+
+        semantic_roles = message['semantic_roles']
+        print(semantic_roles)
+        for ent in semantic_roles:
+            if ent['question'] in ['ce', 'cine']:
+                entity = ent
+            elif ent['question'] == 'unde':
+                location = ent
+
+        # query the database
+        if entity and location:
+            db_bridge.set_value(entity, location, type="LOC")
+        else:
+            dispatcher.utter_message("Nu am putut extrage entitățile")
+        return []
+
+
+class ActionGetLocation(Action):
+    def __init__(self):
+        super().__init__()
+
+    def name(self) -> Text:
+        return "action_get_location"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        message = tracker.latest_message
+
+        # extract relevant entities from the phrase
+        entity = None
+
+        semantic_roles = message['semantic_roles']
+        print(semantic_roles)
+        for ent in semantic_roles:
+            if ent['question'] in ['ce', 'cine']:
+                entity = ent
+
+        if entity:
+            result = db_bridge.get_value(entity, type="LOC")
+            dispatcher.utter_message(result)
+        else:
+            dispatcher.utter_message("Nu am putut extrage entitățile")
+        return []

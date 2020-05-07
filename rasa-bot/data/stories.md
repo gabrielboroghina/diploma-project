@@ -12,7 +12,7 @@
   
 ## retrieve location
 * get_location
-  - utter_not_implemented
+  - action_get_location
   
 ## retrieve attribute
 * get_attr
@@ -22,6 +22,7 @@
 * store_request
   - utter_listening
 * store_location
+  - action_store_location
   - utter_stored
   
 ## store attribute

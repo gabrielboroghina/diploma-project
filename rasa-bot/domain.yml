@@ -34,6 +34,8 @@ slots:
 actions:
   - action_store_attr
   - action_get_attr
+  - action_store_location
+  - action_get_location
 
 responses:
   utter_greet:
