@@ -7,6 +7,8 @@ from rasa.nlu.training_data import Message, TrainingData
 
 import spacy
 from spacy.tokens import Span
+from spacy.lookups import Lookups
+from spacy.lang.ro import tag_map
 
 if typing.TYPE_CHECKING:
     from rasa.nlu.model import Metadata
@@ -40,6 +42,22 @@ class SyntacticParser(Component):
 
         self.nlp_spacy = spacy.load('../models/spacy-syntactic')
 
+        def load_lemmas():
+            lookups = spacy.lookups.Lookups()
+            lookups.from_disk('./data')
+            noun_lemmas = lookups.get_table("noun-lemmas")
+
+            pronouns = {'meu': 'eu', 'mea': 'eu', 'mei': 'eu', 'mele': 'eu',
+                        'lui': 'el', 'lor': 'ei'}
+            pron_lemmas = spacy.lookups.Table.from_dict(pronouns)
+
+            return {
+                tag_map.NOUN: noun_lemmas,
+                tag_map.PRON: pron_lemmas
+            }
+
+        self.lemmas = load_lemmas()
+
     def train(
             self,
             training_data: TrainingData,
@@ -62,7 +80,29 @@ class SyntacticParser(Component):
         of ANY component and on any context attributes created by a call to :meth:`components.Component.process`
         of components previous to this one."""
 
-        def dep_span(doc, token, merge_attr=False):
+        def lemmatize(token):
+            pos = tag_map.TAG_MAP[token.tag_.split('__')[0]][tag_map.POS]  # part of speech
+            word = token.text
+
+            # POS = pronume
+            if word in self.lemmas[tag_map.PRON]:
+                return self.lemmas[tag_map.PRON][word]
+
+            # POS = substantiv
+            if pos == tag_map.NOUN:
+                return self.lemmas[tag_map.NOUN].get(word, word)
+
+            # TODO verb - plural -> singular
+            # TODO numeral - doi/două -> 2
+
+            return word
+
+        def get_dependency_span(doc, token, merge_attr=False):
+            """
+            Build the span of words connected to a given token
+            (representing attributes/prepositions/conjunctions etc).
+            """
+
             def dfs(node):
                 first = last = node.i
                 for child in node.children:
@@ -77,21 +117,25 @@ class SyntacticParser(Component):
             return span.text
 
         def get_specifiers(doc, parent):
+            """ Extract attributes (that identifies a specific instance of an entity) of a given token. """
+
             specifiers = []
             for token in doc:
                 if token.head == parent:
                     if token.dep_ in ['care', 'ce fel de']:
                         specifiers.append({
                             "question": token.dep_,
-                            "determiner": dep_span(doc, token.head),
-                            "value": dep_span(doc, token, True),
+                            "determiner": get_dependency_span(doc, token.head),
+                            "value": get_dependency_span(doc, token, True),
+                            "lemma": get_dependency_span(doc, token, True),
                             "specifiers": []
                         })
                     elif token.dep_ in ['al cui']:
                         specifiers.append({
                             "question": token.dep_,
-                            "determiner": dep_span(doc, token.head),
+                            "determiner": get_dependency_span(doc, token.head),
                             "value": token.text,
+                            "lemma": lemmatize(token),
                             "specifiers": get_specifiers(doc, token)
                         })
 
@@ -105,8 +149,9 @@ class SyntacticParser(Component):
             if token.dep_ not in ['-'] and token.head.dep_ == 'ROOT':
                 entity = {
                     "question": token.dep_,
-                    "determiner": dep_span(doc, token.head),
+                    "determiner": get_dependency_span(doc, token.head),
                     "value": token.text,
+                    "lemma": lemmatize(token),
                     "specifiers": get_specifiers(doc, token)
                 }
                 semantic_roles.append(entity)

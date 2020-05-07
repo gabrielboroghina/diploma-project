@@ -20,8 +20,9 @@ class QueryBuilder:
 
         if not entity['specifiers']:
             query = f' create ({eid}:class)'
+            query += f' set {eid}.name = "{entity["lemma"]}"'
         else:
-            query = f' create ({eid}:instance)-[:IS_A]->(:class {{name: "{entity["value"]}"}})'
+            query = f' create ({eid}:instance)-[:IS_A]->(:class {{name: "{entity["lemma"]}"}})'
 
             for spec in entity['specifiers']:
                 inner_query, inner_id, inner_str = QueryBuilder.query_create_noun_phrase(spec)
@@ -35,7 +36,7 @@ class QueryBuilder:
 
                 string += " " + inner_str
 
-        query += f' set {eid}.name = "{string}"'
+            query += f' set {eid}.name = "{string}"'
 
         return query, eid, string
 
@@ -44,9 +45,9 @@ class QueryBuilder:
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
         if entity['specifiers']:
-            query = f' match ({eid})-[:IS_A]->({{name: "{entity["value"]}"}})'
+            query = f' match ({eid})-[:IS_A]->({{name: "{entity["lemma"]}"}})'
         else:
-            query = f' match ({eid} {{name: "{entity["value"]}"}})'
+            query = f' match ({eid} {{name: "{entity["lemma"]}"}})'
 
         for spec in entity['specifiers']:
             inner_query, inner_id = QueryBuilder.query_match_noun_phrase(spec)
@@ -112,7 +113,6 @@ class DbBridge:
 
         values = [record.value() for record in result]
         return "Nu știu" if not values else values[0]
-
 
 # bridge = DbBridge()
 # print(bridge.get_value())
