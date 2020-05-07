@@ -20,6 +20,7 @@ entities:
   - action
   - person
   - owner
+  - query_word
 
 slots:
   obj:
