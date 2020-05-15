@@ -35,14 +35,24 @@
 - Memo
 
 ## intent:store_location
-- [cartea](obj) e [pe masă](location)
-- [Cardul de debit](obj) este [în portofelul vechi](location)
-- [buletinul meu](obj) se află [în rucsac](location)
-- Am pus [foile cu tema la mate](obj) [pe dulapul din sufragerie](location)
+- cartea e [pe masă](location)
+- Cardul de debit este [în portofelul vechi](location)
+- buletinul meu se află [în rucsac](location)
+- Am pus foile cu tema la mate [pe dulapul din sufragerie](location)
 - Alex stă [în căminul P5](location)
 - Maria Popescu locuiește [pe Bulevardul Timișoara numărul 5](location)
 - Bonurile de transport sunt [în plicul de pe raft](location)
 - cardul de memorie e [sub cutia telefonului](location)
+
+## intent:get_location
+- [Unde](query_word_loc) se află ochelarii
+- [Unde](query_word_loc) e buletinul?
+- știi [unde](query_word_loc) am pus cheile
+- poți să-mi zici [unde](query_word_loc) este încârcătorul de telefon
+- [unde](query_word_loc) am lăsat ceasul?
+- [pe unde](query_word_loc) e sticla de ulei
+- [de unde](query_word_loc) am cumpărat uscătorul de păr
+- [până unde](query_word_loc) a alergat aseară Marius?
 
 ## intent:store_attr
 - Mailul lui [Alex](person) Marin este alex@marin.com
@@ -65,16 +75,6 @@
 - [Care este](query_word_spec) valoarea de adevăr a propoziției
 - [care e](query_word_spec) frecvența procesorului meu
 
-## intent:get_location
-- [Unde](query_word_loc) se află [ochelarii](obj)
-- [Unde](query_word_loc) e [buletinul](obj)?
-- știi [unde](query_word_loc) am pus [cheile](obj)
-- poți să-mi zici [unde](query_word_loc) este [încârcătorul de telefon](obj)
-- [unde](query_word_loc) am lăsat [ceasul](obj)?
-- [pe unde](query_word_loc) e [sticla de ulei](obj)
-- [de unde](query_word_loc) am cumpărat [uscătorul de păr](obj)
-- [până unde](query_word_loc) a alergat aseară Marius?
-
 ## intent:get_timestamp
 - zi-mi [când](query_word_time) [am fost la sală](action)?
 - [De când](query_word_time) [începe vacanța](action)
@@ -96,6 +96,7 @@
 - [pentru ce](query_word_spec) test am învățat acum 2 zile
 - [pe care](query_word_spec) masă am lăsat ieri periuța de dinți?
 - [care](query_word_spec) fotbalist a fost dat afară săptămâna trecută
+- [ce](query_word_spec) floare s-a uscat
 
 ## intent:get_subject
 - [Cine](query_word_subj) [stă în căminul P16](action)?
@@ -115,6 +116,3 @@
 
 ## lookup:person
   data/lookup-tables/person.txt
-  
-## lookup:location
-  data/lookup-tables/location.txt
