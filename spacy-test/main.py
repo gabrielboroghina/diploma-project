@@ -2,6 +2,7 @@ import spacy
 from spacy import displacy
 from spacy.tokens import Span
 # from dexBridge import DexBridge
+from spacy.lang.ro import tag_map
 
 nlp = spacy.load("spacy_ro")
 # nlp = spacy.load("../../UD_Romanian-RRT/models/model-best")
@@ -22,6 +23,7 @@ questionIntroductoryEnts = [
 ]
 
 phrases = [
+    'cartea elenei este pe biroul înalt',
     'Adresa lui Dan este dan@mail',
     'Cartea mea e acolo',
     'FLorile lui Alex sunt pe pervaz',
@@ -109,7 +111,7 @@ def parsePhrase(phrase):
     for token in doc:
         lemma = ""  # dexBridge.lemmaForWord(token.text, pos(token.tag_))
         print(token.text, TermColors.YELLOW, lemma,
-              TermColors.PINK, token.tag_, TermColors.ENDC)
+              TermColors.PINK, token.tag_, TermColors.OKGREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]], TermColors.ENDC)
     for chunk in doc.noun_chunks:
         print(chunk.text, chunk.root.text, chunk.root.dep_,
               chunk.root.head.text)

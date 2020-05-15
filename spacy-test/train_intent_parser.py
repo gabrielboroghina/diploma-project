@@ -508,6 +508,12 @@ TRAIN_DATA = [
             "heads": [1, 3, 3, 3, 6, 6, 3],
             "deps": ["cât", "cât timp", "-", "ROOT", "prep", "-", "când"]}
     ),
+    (
+        "șurubelnița dreaptă e în dulapul din camera mea",
+        {
+            "heads": [2, 0, 2, 4, 2, 6, 4, 6],
+            "deps": ["cine", "care", "ROOT", "-", "unde", "-", "care", "al cui"]}
+    ),
 ]
 
 

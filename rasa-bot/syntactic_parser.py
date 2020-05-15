@@ -80,8 +80,27 @@ class SyntacticParser(Component):
         of ANY component and on any context attributes created by a call to :meth:`components.Component.process`
         of components previous to this one."""
 
+        def part_of_speech(tag):
+            pos_tag_map = {
+                "A": tag_map.ADJ,
+                "D": tag_map.DET,
+                "C": tag_map.CCONJ,
+                "I": tag_map.INTJ,
+                "M": tag_map.NUM,
+                "N": tag_map.NOUN,
+                "P": tag_map.PRON,
+                "R": tag_map.ADV,
+                "T": tag_map.DET,
+                "V": tag_map.VERB,
+            }
+
+            if tag in tag_map.TAG_MAP:
+                return tag_map.TAG_MAP[tag][tag_map.POS]
+            return pos_tag_map.get(tag[0])
+
         def lemmatize(token):
-            pos = tag_map.TAG_MAP[token.tag_.split('__')[0]][tag_map.POS]  # part of speech
+            tag = token.tag_.split('__')[0]
+            pos = part_of_speech(tag)
             word = token.text
 
             # POS = pronume

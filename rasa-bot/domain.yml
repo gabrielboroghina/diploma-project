@@ -21,6 +21,11 @@ entities:
   - person
   - owner
   - query_word
+  - query_word_loc
+  - query_word_time
+  - query_word_value
+  - query_word_subj
+  - query_word_spec
 
 slots:
   obj:
