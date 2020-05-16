@@ -26,6 +26,9 @@ entities:
   - query_word_value
   - query_word_subj
   - query_word_spec
+  - query_word_which
+  - a_fi
+  - prep
 
 slots:
   obj:
