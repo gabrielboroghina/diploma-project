@@ -20,20 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="731b7501-4b2e-4e7a-aa0a-33c8ec7dc2e7" name="Default Changelist" comment="[RASA bot] Added a few data. Tested a custom action">
-      <change afterPath="$PROJECT_DIR$/.idea/GraphDatabaseSupport_DataSourcesState.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/knowledge_base/db_bridge.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/nlu.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/nlu.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/stories.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/stories.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain.yml" beforeDir="false" afterPath="$PROJECT_DIR$/domain.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/syntactic_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntactic_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spacy-test/dep.html" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/dep.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spacy-test/pad.py" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/pad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spacy-test/time-recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/time-recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spacy-test/train_intent_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/train_intent_parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/nlu_test.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spacy-test/lemmatize.py" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/lemmatize.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +49,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;Python&#10;TEXT" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/rasa/nlu/training_data/message.py" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JSON&#10;Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.rasa api">
     <configuration name="db_bridge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="rasa-bot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,6 +98,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="rasa api" type="PythonConfigurationType" factoryName="Python">
+      <module name="rasa-bot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="CUDA_VISIBLE_DEVICES" value="&quot;&quot;" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\gabri\AppData\Local\Programs\Python\Python37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="rasa" />
+      <option name="PARAMETERS" value="run --enable-api" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.rasa api" />
+      <item itemvalue="Python.db_bridge" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.db_bridge" />
@@ -139,6 +154,14 @@
       <workItem from="1587731769074" duration="18597000" />
       <workItem from="1588234135638" duration="16229000" />
       <workItem from="1588325121345" duration="1212000" />
+      <workItem from="1589562208090" duration="10337000" />
+      <workItem from="1589613904427" duration="14927000" />
+      <workItem from="1589785836952" duration="39000" />
+      <workItem from="1589786040309" duration="6000" />
+      <workItem from="1589917071309" duration="3911000" />
+      <workItem from="1589921064781" duration="2290000" />
+      <workItem from="1589957684705" duration="6605000" />
+      <workItem from="1590044917704" duration="24644000" />
     </task>
     <task id="LOCAL-00001" summary="[RASA bot] Inital commit">
       <created>1585317110133</created>
@@ -161,7 +184,49 @@
       <option name="project" value="LOCAL" />
       <updated>1587672400854</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="NLU intent fixes">
+      <created>1589566221087</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589566221087</updated>
+    </task>
+    <task id="LOCAL-00005" summary="NLU intent fixes">
+      <created>1589566274649</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589566274649</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Improvements for intent classifier">
+      <created>1589626062520</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589626062520</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Improvements for intent classifier">
+      <created>1589917950361</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589917950361</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add forward layers to intent classifier">
+      <created>1590067218246</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590067218246</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters">
+      <created>1590077961656</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590077961656</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,50 +246,58 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[RASA bot] Inital commit" />
-    <MESSAGE value="[RASA bot] Added a few data. Tested a custom action" />
     <MESSAGE value="[RASA bot] POC for &lt;syntactic parser&gt; custom component" />
-    <option name="LAST_COMMIT_MESSAGE" value="[RASA bot] POC for &lt;syntactic parser&gt; custom component" />
+    <MESSAGE value="NLU intent fixes" />
+    <MESSAGE value="Improvements for intent classifier" />
+    <MESSAGE value="Add forward layers to intent classifier" />
+    <MESSAGE value="[RASA bot] Added a few data. Tested a custom action" />
+    <MESSAGE value="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588262388999">
+    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589962444459">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1588262388999" />
-    <state x="465" y="99" key="CommitChangelistDialog2" timestamp="1587672400201">
+    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589962444459" />
+    <state x="465" y="99" key="CommitChangelistDialog2" timestamp="1590077961062">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="443" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1586980436259" />
-    <state x="465" y="99" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1587672400201" />
+    <state x="465" y="99" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1590077961062" />
     <state x="97" y="108" width="1487" height="794" key="DiffContextDialog" timestamp="1588250320675">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1586980735569" />
     <state x="97" y="108" width="1487" height="794" key="DiffContextDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1588250320675" />
-    <state x="590" y="221" key="FileChooserDialogImpl" timestamp="1586977237244">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="707" y="259" key="EnvironmentVariablesDialog" timestamp="1589962442077">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="707" y="259" key="EnvironmentVariablesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589962442077" />
+    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1589962376932">
+      <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="590" y="221" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1586977237244" />
-    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1585741773258" />
-    <state width="1637" height="336" key="GridCell.Tab.0.bottom" timestamp="1588281871716">
+    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1589962376932" />
+    <state width="1637" height="382" key="GridCell.Tab.0.bottom" timestamp="1590077318266">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="336" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1588281871716" />
-    <state width="1637" height="336" key="GridCell.Tab.0.center" timestamp="1588281871716">
+    <state width="1637" height="382" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
+    <state width="1637" height="382" key="GridCell.Tab.0.center" timestamp="1590077318266">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="336" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1588281871716" />
-    <state width="1637" height="336" key="GridCell.Tab.0.left" timestamp="1588281871716">
+    <state width="1637" height="382" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
+    <state width="1637" height="382" key="GridCell.Tab.0.left" timestamp="1590077318265">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="336" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1588281871716" />
-    <state width="1637" height="336" key="GridCell.Tab.0.right" timestamp="1588281871716">
+    <state width="1637" height="382" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318265" />
+    <state width="1637" height="382" key="GridCell.Tab.0.right" timestamp="1590077318266">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="336" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588281871716" />
+    <state width="1637" height="382" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
     <state width="1637" height="336" key="GridCell.Tab.1.bottom" timestamp="1588281871716">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -245,21 +318,21 @@
     </state>
     <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1587733430637" />
     <state width="1637" height="336" key="GridCell.Tab.1.right/0.0.1680.1010@0.0.1680.1010" timestamp="1588281871716" />
-    <state x="399" y="193" key="IDE.errors.dialog" timestamp="1588261370601">
+    <state x="399" y="193" key="IDE.errors.dialog" timestamp="1589918087377">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="380" y="164" key="IDE.errors.dialog/0.0.1600.860@0.0.1600.860" timestamp="1587732112626" />
-    <state x="399" y="193" key="IDE.errors.dialog/0.0.1680.1010@0.0.1680.1010" timestamp="1588261370601" />
+    <state x="399" y="193" key="IDE.errors.dialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589918087377" />
     <state x="316" y="87" key="SettingsEditor" timestamp="1588250441339">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="301" y="74" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1587731740440" />
     <state x="316" y="87" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1588250441339" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1588249720378">
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1589626072859">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="411" y="202" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1586980674418" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1588249720378" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1589626072859" />
     <state x="486" y="119" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588260341500">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -273,10 +346,10 @@
     </state>
     <state x="510" y="65" width="579" height="795" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1587734568803" />
     <state x="536" y="103" width="607" height="804" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1588261146878" />
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1588248896122">
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1590065978991">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1588248896122" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590065978991" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -288,5 +361,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge.coverage" NAME="db_bridge Coverage Results" MODIFIED="1587733520387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge-base" />
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge__1_.coverage" NAME="db_bridge (1) Coverage Results" MODIFIED="1588260674535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_base" />
+    <SUITE FILE_PATH="coverage/rasa_bot$rasa_api.coverage" NAME="rasa api Coverage Results" MODIFIED="1590076365335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

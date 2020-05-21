@@ -2,6 +2,7 @@
 - hey
 - hei
 - Salut
+- salut
 - bună
 - salutare
 - hello
@@ -15,6 +16,8 @@
 - paa
 - pa pa
 - mersi
+- merci
+- mulțumesc
 - gata
 - super
 
@@ -22,17 +25,12 @@
 - da
 - daa
 - da da
+- dada
 - dap
 - sigur
 - ok
 - yep
 - yes
-
-## intent:deny
-- nu
-- nope
-- nu prea
-- clar nu
 
 ## intent:store_request
 - Vreau să reții ceva
@@ -60,6 +58,11 @@
 - am lăsat lădița cu cartofi [în](prep) pivniță
 - mi-am pus casca de înot [în](prep) dulapul cu tricouri
 - geaca de iarnă este [în](prep) șifonierul de acasă
+- lămpile solare sunt [de la](prep) bricostore
+- perechea de adidași albi este [de la](prep) intersport din Afi
+- Alin Dumitru stă în Militari Residence
+- am lăsat suportul de brad la țară în garaj
+- pachetul de creioane colorate este pe polița de pe perete 
 
 ## intent:get_location
 - [Unde](query_word_loc) se află ochelarii
@@ -75,23 +78,27 @@
 - de unde pleacă trenul IR1892
 - [până unde](query_word_loc) a alergat aseară Marius?
 - până unde au ajuns radiațiile de la Cernobâl
+- de unde am luat draperiile din sufragerie?
 
 ## intent:store_attr
 - Mailul lui [Alex](person) Marin [este](a_fi) alex@marin.com
 - Adresa [Elenei](owner) [este](a_fi) strada Zorilor numărul 9
 - Numărul de telefon al lui [Dan](person) [e](a_fi) 123456789
-- numărul blocului [fratelui Mihaelei](owner) [e](a_fi) 10
+- numărul blocului fratelui Mihaelei [e](a_fi) 10
 - anul nașterii lui [Ștefan](person) cel Mare [a fost](a_fi) 1433
-- numele [meu](owner) [este](a_fi) Gabriel
-- cheile [mele](owner) de la casă sunt ușoare
+- numele meu [este](a_fi) Gabriel
+- cheile mele de la casă sunt ușoare
 - adresa de la serviciu este Bulevardul Unirii nr. 0
 - numele asistentului de programare paralelă [e](a_fi) Paul Walker
 - suprafața apartamentului de la București [este](a_fi) de 58mp
-- prețul canapelei a fost de 1300 de lei
+- prețul canapelei [a fost](a_fi) de 1300 de lei
 - codul de activare al sistemului de operare [e](a_fi) APCHF6798HJ67GI90
 - sala laboratorului de PP este EG321
-- username-ul meu de github este gabrielboroghina
-- seria mea de la buletin este GG2020
+- username-ul meu de github [este](a_fi) gabrielboroghina
+- seria mea de la buletin [este](a_fi) GG2020
+- codul PIN de la cardul meu de sănătate este 0000
+- placa mea video este NVidia GeForce GTX950m
+- telefonul Karinei este 243243
 
 ## intent:get_attr
 - [Care](query_word_which) [e](a_fi) mailul lui [Mihai](person)?
@@ -113,12 +120,96 @@
 - zi-mi și mie [care](query_word_which) era adresa de căsuță poștală a Karinei Preda
 - [care](query_word_which) [sunt](a_fi) datele cardului meu revolut
 - [care](query_word_which) este telefonul de la frizerie
+- care e dobânda de la creditul pentru casă?
+- care este tipografia
+- care sunt punghițele
+- care este sferimea
+- care a fost eviscerarea
+- care sunt biofondurile
+- care e minciogul
+- care sunt trombopoiezele
+- care sunt grunduirile
+- care sunt indeterminiștii
+- zi-mi care erau imperativele
+- care erau ciflâcurile
+- care sunt circărelile
+- care e intimata
+- care este biotomul
+- care este nocicepția
+- care sunt ponevițele
+- care e asimilismul
+- care e triorarea
+- care sunt exuviile
+- care sunt aclamările
+- care e faringocelul
+- care e ayatolahul
+- care sunt galiongiii
+- care e spirocheta
+- care sunt tartarurile
+- care e corupătorul
+- care sunt sacagioaicele
+- care sunt hăicăirile
+- care este zolitura
+- care e cocontractantul
+- care a fost osianismul
+- care este mânzata
+- care e poftirea
+- care e curionul
+- care sunt icteniile
+- care sunt uteromaniile
+- care este stereofonia
+- care e mucenicia
+- care este metropatia
+- care este zobonul
+- care este tahogeneratorul
+- care e pitica
+- care e cioplitoarea
+- care e freudismul
+- care este elizeul
+- care este cerșătorirea
+- care este inoxul
+- care au fost femtosecundele
+- care este plombarea
+- care este gazetăria
+- care erau staturile
+- care este străinismul
+- care e superioritatea
+- care e radiojurnalul
+- care sunt prubele
+- care a fost zidăria
+- care sunt urechelile
+- care e spinăruța
+- care sunt poetesele
+- care e hiba
+- care sunt vibroscoapele
+- care e tehnocrația
+- care sunt oncografele
+- care este orograful
+- care erau beilerbeii
+- care sunt rântașurile
+- care sunt polialgoritmii
+- care sunt mpletitorile
+- care este monstranța
+- care este coropeșnița
+- care erau anticriticile
+- care sunt globulețele
+- care este acaparanta
+- care sunt misopediile
+- care e mirabilisul
+- care sunt încăperile
+- care sunt fluierătorile
+- care este salicilicul
+- care au fost ortosporangii
+- care este cherofobia
+- care e edafotipul
+- care este caligrafia
+- care sunt ministerele
 
 ## intent:get_specifier
 - [ce floare](query_word_spec) s-a uscat
 - [ce hackathon](query_word_spec) va avea loc săptămâna viitoare
 - [ce windows](query_word_spec) am acum pe calculator
-- [ce](query_word_spec) examene vor fi date în iunie?
+- [ce examene](query_word_spec) vor fi date în iunie?
 - [ce temperatură](query_word_spec) a fost în iulie anul trecut
 - [ce culoare](query_word_spec) au ochii Andreei
 - [ce mail](query_word_spec) am folosit la serviciu
@@ -131,7 +222,7 @@
 - [ce fel de imprimantă](query_word_spec)  am acasă
 - [ce fel de baterie](query_word_spec) folosește ceasul de mână
 - [ce fel de procesor](query_word_spec) are telefonul meu
-- [în care](query_word_spec) dulap am pus dosarul
+- în [care](query_word_spec) dulap am pus dosarul
 - în [care cameră](query_word_spec) am lăsat încărcătorul de telefon
 - în [care săptămână](query_word_spec) e examenul de învățare automată
 - de la [care prieten](query_word_spec) e cadoul acesta
@@ -142,6 +233,126 @@
 - de pe [care cont](query_word_spec) am plătit factura de curent acum 3 zile
 - pe [ce viteză](query_word_spec) am setat aerul condiționat
 - pe [ce loc](query_word_spec) am ieșit la olimpiada de info din clasa a 12-a
+- care aparat e
+- ce fel de uscător de păr
+- care clasificare e
+- [care emisferă](query_word_spec) este
+- [care elicopter](query_word_spec)
+- care autoturism
+- ce fel de obliganță e
+- care gălbenușă
+- care erată
+- care gamacism
+- ce coțofană
+- ce chemare
+- ce fel de lojă
+- ce fel de devans
+- de la ce sprânceană e problema
+- care sicoză
+- ce fel de dileală
+- ce fel de ocrodermie
+- care anticvar e
+- care pineocit
+- ce fel de periorhită
+- care troinicire
+- ce fel de pocănit
+- care hidraulician
+- care poclon
+- care adâncime
+- care amfigeneză
+- la ce fel de neurooftalmologie
+- ce fel de glomerulă
+- ce fel de tutuire
+- care trilobit
+- ce fel de subchiriașă
+- despre ce răsturnătură
+- care toxicolog este cel mai bun
+- ce fel de stereoteleviziune
+- de la care aiurit
+- care saltarella
+- ce fel de angemaht
+- ce ciubăraș
+- care congenitalitate
+- ce fel de olistolit
+- pentru care dejectare
+- care teutonă e
+- la care spată
+- care heptatlon
+- care șoronar
+- care deconfitură
+- ce roentgenolog
+- ce fel de sinimiton e
+- ce dinamometru e
+- ce fel de ininflamabilitate
+- care coalițiune
+- care pluripartitism
+- la care psihopedagogie
+- pentru ce capitaluță
+- ce fel de coprocrazie
+- ce fel de zigomorfie
+- care delectație este
+- care incastrare
+- pentru ce gest
+- ce mielosarcom
+- ce textieră este
+- ce contralumină
+- ce fel de nevestică
+- la care uzaj a lucrat
+- care credent
+- de la ce încolțire
+- care blestemare
+- la ce haram
+- ce fel de militarist
+- care aduct este
+- ce coronoidotomie
+- ce metafosforos
+- care asomator
+- la ce mânecar
+- de la care sporangiu
+- ce cezaropapism
+- ce fel de curechi
+- ce fel de ovoscop
+- ce dodii
+- care criochimie
+- care spectru este
+- ce băitănime
+- care bravură a fost
+- ce fel de manevrabilitate
+- la care canonadă
+- care capucinadă
+- la care geminațiune
+- ce fel de pășcănean
+- ce aviditate
+- care săbăire
+- care cută
+- ce izodrom
+- care florentin
+- care fel de străluminare
+- la ce măslină
+- care moșinoi
+- care numerație
+- ce năravnică
+- ce fel de catapeteazmă există
+- care estrogenoterapie
+- care placă de bază este
+- ce fel de birtar
+- care paginatoare
+- ce hipermetropă
+- ce fel de cistoree
+- ce fel de înzdrevenire
+- pentru ce căcăjder
+- ce fel de puzderie
+- ce polipeptidă
+- ce germicid
+- ce fel de dagherotip
+- ce fel de samaritean
+- ce fel de depresie este
+- care depolarizare e
+- ce limfangiectazie
+- ce fel de dimensionare e
+- care activist e
+- ce fel de clasificațiune este
+- ce fel de stancă
 
 ## intent:get_timestamp
 - [când](query_word_time) vor avea loc alegerile locale din 2020
@@ -165,6 +376,8 @@
 - de la [cine](query_word_subj) a cumpărat mihaela cireșele
 - de la cine a apărut problema
 - [cine](query_word_subj) a fost primul om pe lună?
+- cine a venit ieri la cursul de astronomie
+- zi-mi cine a propus problemele de la concursul InfoOlt 2016
 
   
 ## lookup:query_word_loc

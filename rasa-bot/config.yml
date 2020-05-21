@@ -8,13 +8,23 @@ pipeline:
   - name: SpacyFeaturizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
+    features: [
+    ["pos", "prefix5"],
+    ["pos", "prefix5"],
+    ["pos", "prefix5"],
+    ]
   - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: "char_wb"
-    min_ngram: 1
-    max_ngram: 4
+  #  - name: CountVectorsFeaturizer
+  #    analyzer: "char_wb"
+  #    min_ngram: 1
+  #    max_ngram: 4
   - name: DIETClassifier
     epochs: 350
+    entity_recognition: False
+    hidden_layers_sizes:
+      text: [256, 128]
+      label: []
+    weight_sparsity: 0
   - name: syntactic_parser.SyntacticParser
   - name: EntitySynonymMapper
   - name: ResponseSelector

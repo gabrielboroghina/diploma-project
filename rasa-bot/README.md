@@ -12,5 +12,9 @@
 `
 
 Test NLU:
+
+`rasa test nlu -u train_test_split\test_data.md`
+ 
+ Test manually via HTTP server:
  
 `curl localhost:5005/model/parse -d '{"text":"hello"}'`
