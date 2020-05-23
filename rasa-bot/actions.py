@@ -1,5 +1,5 @@
 """
-Custom actions.
+Custom actions to be performed in response to specific intents.
 """
 
 from typing import Any, Text, Dict, List

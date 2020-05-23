@@ -9,6 +9,7 @@
 ## intent:affirm
 - ok
 - da
+- dap
 
 ## intent:store_request
 - Reține
@@ -21,6 +22,8 @@
 - am lăsat geanta în dulapul numărul 4
 - Victor stă pe Aleea Romancierilor numărul 12
 - eu stau la blocul nr. 8
+- am lăsat mașina la service-ul auto din Crângași
+- pliculețele de praf de copt sunt în cutiuța din primul sertar
 
 ## intent:get_location
 - unde am pus caietul de matematică 1?
@@ -30,6 +33,9 @@
 - de unde este brelocul meu de la chei?
 - unde se află bazinul de înot Dinamo
 - unde mi-am aruncat sculele de construcții
+- de unde mi-am luat cravata cea grena
+- zi-mi unde am lăsat certificatul meu de naștere
+- unde este setul de baterii pentru mouse?
 
 ## intent:store_attr
 - telefonul Dianei este 0745789654
@@ -41,6 +47,8 @@
 - materiile la care am luat 9 sunt M1 și M2
 - rank-ul universității Politehnica este 800
 - tipul de baterii de la tastatură este AAA
+- modelul tastaturii mele este logitech mx keys
+- ziua de naștere a Grațielei este pe 12 mai 1995
 
 ## intent:get_attr
 - care este telefonul Dianei
@@ -53,6 +61,8 @@
 - care a fost durata domniei lui Cezar
 - zi-mi care e codul de pe spatele telefonului
 - care e vărsta de pensionare la bărbați
+- care era modelul tastaturii mele?
+- care este înălțimea vârfului Everest?
 
 ## intent:get_specifier
 - la ce apartament stă Alex Marin?
@@ -80,6 +90,7 @@
 - de cât timp s-a deschis fabrica de mașini din Pitești
 - de cât timp era însurat Ghiță
 - pentru cât timp o să fie plecat Mihai
+= în cât timp am urcat pe vârful Omu? 
 
 ## intent:get_subject
 - cine a inventat motorul cu reacție

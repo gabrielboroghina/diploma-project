@@ -5,7 +5,7 @@ from time import time
 
 
 def to_bin():
-    with open(f'noun-lemmas.json', 'r', encoding="utf-8") as f:
+    with open(f'data/noun-lemmas.json', 'r', encoding="utf-8") as f:
         dexonline_lemmas = eval(f.read())
 
     lookups = Lookups()

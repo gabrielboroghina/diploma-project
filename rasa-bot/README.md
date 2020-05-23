@@ -13,7 +13,7 @@
 
 Test NLU:
 
-`rasa test nlu -u train_test_split\test_data.md`
+`rasa test nlu -u data\nlu_test.md`
  
  Test manually via HTTP server:
  
