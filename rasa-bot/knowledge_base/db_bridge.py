@@ -1,4 +1,5 @@
 from neo4j import GraphDatabase
+from .types import InfoType
 
 NEO4J_URI = "bolt://localhost:7687"
 USERNAME = "neo4j"
@@ -71,12 +72,12 @@ class DbBridge:
     def __del__(self):
         self.driver.close()
 
-    def set_value(self, entity, value, type='VAL'):
+    def set_value(self, entity, value, type=InfoType.VAL):
         query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity)
 
-        if type == "VAL":
+        if type == InfoType.VAL:
             query += f' create ({node_id})-[:VAL]->(:val {{value: "{value}"}})'
-        elif type == "LOC":
+        elif type == InfoType.LOC:
             query_create_location, location_node_id, _ = QueryBuilder.query_create_noun_phrase(value)
             query += query_create_location
             query += f' create ({node_id})-[:LOC]->({location_node_id})'
@@ -84,19 +85,18 @@ class DbBridge:
 
         self.session.run(query)
 
-    def get_value(self, entity, type='VAL'):
+    def get_value(self, entity, type=InfoType.VAL):
         query, node_id = QueryBuilder.query_match_noun_phrase(entity)
-        query += f'match ({node_id})-[:{type}]->(val) return val'
+        query += f'match ({node_id})-[:{type.value}]->(val) return val'
 
         result = self.session.run(query)
         values = [record.value() for record in result]
 
         if not values:
             return "Nu știu"
-        if type == "VAL":
-            return values[0]['value']
-        if type == "LOC":
+        if type == InfoType.LOC:
             return values[0]['name']
+        return values[0].get('value', "Nicio valoare")
 
     def set_attr(self, entity_name, attr):
         attr_name, attr_val = attr

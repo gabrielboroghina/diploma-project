@@ -12,7 +12,9 @@
 - dap
 
 ## intent:store_request
-- Reține
+- Reține te rog
+- memo te rog
+- ține minte ceva
 
 ## intent:store_location
 - atlasul de geografie se află pe raftul cu dicționarul
@@ -24,6 +26,7 @@
 - eu stau la blocul nr. 8
 - am lăsat mașina la service-ul auto din Crângași
 - pliculețele de praf de copt sunt în cutiuța din primul sertar
+- am așezat etuiul de la ochelari peste teancul de reviste din hol
 
 ## intent:get_location
 - unde am pus caietul de matematică 1?
@@ -80,6 +83,21 @@
 - ce os a înghițit acel băiat
 - care bomboane sunt de la auchan
 
+## intent:store_timestamp
+- mâine se termină perioada de rodaj al mașinii
+- examenul la ML este peste 4 zile
+- testul practic de EIM o să fie săptămâna viitoare
+- peste o zi expiră prăjiturile
+- ieri m-am tuns
+- aniversarea prieteniei cu Andreea e pe 30 aprilie
+- am trimis rezolvările la gazeta matematică miercurea trecută
+- vineri apare revista historia
+- virusul a apărut acum 3 luni
+- peste 123 de secunde trecem în noul an
+- hackathonul s-a organizat weekend-ul trecut
+- la primăvară e gata blocul
+- voi pleca in Monaco peste 3 ore
+
 ## intent:get_timestamp
 - când începe vacanța de iarnă
 - când am fost la mare anul trecut
@@ -90,10 +108,12 @@
 - de cât timp s-a deschis fabrica de mașini din Pitești
 - de cât timp era însurat Ghiță
 - pentru cât timp o să fie plecat Mihai
-= în cât timp am urcat pe vârful Omu? 
+- în cât timp am urcat pe vârful Omu?
+- peste cât timp începe sesiunea de comunicări științifice?
 
 ## intent:get_subject
 - cine a inventat motorul cu reacție
 - cine a fost la ziua mea acum 3 ani
 - cine m-a ajutat la proiectul de la anatomie?
 - cine mi-a reparat bateria de la chiuveta de la baie?
+- spune-mi te rog cine a luat 10 la arhitectura sistemelor de calcul

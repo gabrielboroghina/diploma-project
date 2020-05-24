@@ -64,7 +64,8 @@
 - perechea de adidași albi este [de la](prep) intersport din Afi
 - Alin Dumitru stă în Militari Residence
 - am lăsat suportul de brad la țară în garaj
-- pachetul de creioane colorate este pe polița de pe perete 
+- pachetul de creioane colorate este pe polița de pe perete
+- mi-am așezat prosoapele pe suport
 
 ## intent:get_location
 - [Unde](query_word_loc) se află ochelarii
@@ -164,6 +165,52 @@
 - la ce fel de neurooftalmologie trebuie să meargă?
 - pentru care deversare au fost amedați
 - ce fel de pocănit se auzea ieri
+
+## intent:store_timestamp
+- concursul va fi pe 12 [ianuarie](time)
+- îmi expiră permisul de conducere pe 25 [februarie](time) 2023
+- plecarea în Franța este pe 5 [martie](time)
+- abonamentul STB îmi expiră pe 23 [aprilie](time)
+- Viorel e născut pe 16 [mai](time) [1998](time)
+- Vacanța de vară începe pe 30 [iunie](time)
+- Pe 3 [iulie](time) se termină sesiunea de licență
+- ziua Daianei este în [august](time)
+- în [septembrie](time) începe școala
+- din [octombrie](time) apare un nou film la cinema
+- până în [noiembrie](time) trebuie să termin task-ul
+- noile autobuze au apărut în [decembrie](time)
+- [luni](time) am fost la alergat
+- am mers la bazinul de înot [marți](time)
+- coletul cu jacheta va ajunge [miercuri](time)
+- testul de curs la rețele neurale a fost [joi](time)
+- [vineri](time) încep promoțiile de black friday
+- până [sâmbătă](time) e interzis accesul în mall
+- Jack a fost la biserică [duminică](time)
+- [azi](time) am fost în parcul Titan
+- [Mâine](time) vine Mihai pe la mine
+- [poimâine](time) merg la mall
+- de [ieri](time) s-a făcut cald afară
+- am terminat proiecul la programare web [alaltăieri](time)
+- peste 2 [zile](time) începe examenul de bacalaureat
+- sesiunea din browser a expirat acum 10 [secunde](time)
+- am de prezentat temele peste o [oră](time)
+- am m\ncat acum 2 [ore](time)
+- Maria pleacă în concediu peste 5 [săptămâni](time)
+- conferința de bioinformatică a fost acum o [lună](time)
+- peste 2 [ani](time) termină Nicoleta masterul
+- buletinul îmi expiră peste 3 [ani](time)
+- mi-am făcut pașaportul acum un [an](time)
+- garanția de la frigider se termină [marțea](time) viitoare
+- [săptămâna](time) viitoare încep cursurile de înot
+- luna viitoare vine Florin din Spania
+- prezentarea proiectului durează 45 de [minute](time)
+- meciul dintre Franța și Spania va fi în [weekend](time)
+- întâlnirea cu managerul este peste o jumătate de [oră](time)
+- la [anul](time) se deschide mall-ul din Slatina
+- mi-am făcut analize [primăvara](time) trecută
+- restricțiile de circulație se încheie la [vară](time)
+- [toamna](time) viitoare încep masterul
+- Darius și-a schimbat domiciliul [iarna](time) trecută
 
 ## intent:get_timestamp
 - [când](query_word_time) vor avea loc alegerile locale din 2020

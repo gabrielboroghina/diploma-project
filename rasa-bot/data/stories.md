@@ -14,10 +14,6 @@
 * get_location
   - action_get_location
   
-## retrieve attribute
-* get_attr
-  - action_get_attr
-  
 ## store location
 * store_request
   - utter_listening
@@ -25,9 +21,21 @@
   - action_store_location
   - utter_stored
   
+## retrieve attribute
+* get_attr
+  - action_get_attr
+  
 ## store attribute
 * store_request
   - utter_listening
 * store_attr
   - action_store_attr
   - utter_stored
+  
+## retrieve timestamp
+* get_timestamp
+  - action_get_time
+  
+## store timestamp
+* store_timestamp
+  - action_store_time

@@ -520,6 +520,8 @@ TRAIN_DATA = [
 # TODO prepozitiile compuse ar trebui sa fie inlantuite?
 # TODO exemple pentru intrebari
 
+# când va fi sesiunea
+
 def analyze_data(phrases):
     """
     Print statistics about the given phrases

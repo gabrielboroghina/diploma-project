@@ -6,6 +6,7 @@ intents:
   - store_request
   - store_attr
   - store_location
+  - store_timestamp
   - get_attr
   - get_location
   - get_timestamp
@@ -29,6 +30,7 @@ entities:
   - query_word_which
   - a_fi
   - prep
+  - time
 
 slots:
   obj:
@@ -45,6 +47,8 @@ actions:
   - action_get_attr
   - action_store_location
   - action_get_location
+  - action_get_time
+  - action_store_time
 
 responses:
   utter_greet:

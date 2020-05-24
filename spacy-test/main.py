@@ -44,7 +44,9 @@ phrases = [
     'Lui Winston îi displăcuse fata asta din primul moment când o văzuse.',
     'E făcut de o luna de cineva de la Elena',
     'Prezenta gramatică este normativă prin faptul că face ceva important',
-    'Complementul circumstanţial de timp este partea secundară de propoziție care arată timpul în care se petrece o acțiune'
+    'Complementul circumstanţial de timp este partea secundară de propoziție care arată timpul în care se petrece o acțiune',
+    'Când își face temele colegul meu',
+    'când se termină starea',
 ]
 
 # dexBridge = DexBridge()
