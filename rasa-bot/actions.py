@@ -105,7 +105,7 @@ class ActionStoreLocation(Action):
 
         # query the database
         if entity and location:
-            db_bridge.set_value(entity, location, type="LOC")
+            db_bridge.set_value(entity, location, type=InfoType.LOC)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
         return []
@@ -131,7 +131,7 @@ class ActionGetLocation(Action):
                 entity = ent
 
         if entity:
-            result = db_bridge.get_value(entity, type="LOC")
+            result = db_bridge.get_value(entity, type=InfoType.LOC)
             dispatcher.utter_message(result)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
@@ -201,15 +201,38 @@ class ActionStoreTime(Action):
 
         # extract relevant entities from the phrase
         entity = None
+        action = None
+        time = None
+        is_simple_event = True
 
         semantic_roles = message['semantic_roles']
         print(semantic_roles)
 
-        # TODO
+        for ent in semantic_roles:
+            if ent['question'] in ['ce', 'cine']:
+                if entity:
+                    is_simple_event = False
+                entity = ent
+            elif ent['question'] in ['când', 'cât timp']:
+                time = ent
+            elif ent['question'] == "ROOT":
+                pass
+            else:
+                is_simple_event = False
+
+        info_type = InfoType.TIME_POINT
+        if time['ext_value'] in ['de când'] or action in ["începe", "porni", "apărea", "veni"]:
+            info_type = InfoType.TIME_START
+        elif time['ext_value'] in ['până când'] or action in ["termina", "sfârși", "încheia", "finaliza"]:
+            info_type = InfoType.TIME_END
+        elif time['question'] == "cât timp":
+            info_type = InfoType.TIME_DURATION
+
+        print(time, time['question'], info_type)
 
         if entity:
-            # result = db_bridge.get_value(entity, type="LOC")
-            dispatcher.utter_message("Not implemented")
+            if is_simple_event:
+                db_bridge.set_value(entity, time['ext_value'], type=info_type)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
         return []

@@ -39,3 +39,4 @@
 ## store timestamp
 * store_timestamp
   - action_store_time
+  - utter_stored

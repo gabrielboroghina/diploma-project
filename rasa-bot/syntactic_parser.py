@@ -153,7 +153,8 @@ class SyntacticParser(Component):
         specifiers = []
         for token in doc:
             if token.head == parent:
-                if token.dep_ in ['care', 'ce fel de']:
+                if token.dep_ in ['care', 'ce fel de', 'cât'] or \
+                        token.dep_ == 'cât timp' and token.head.dep_ != "ROOT":
                     specifiers.append({
                         "question": token.dep_,
                         "determiner": self.__get_dependency_span(doc, token.head),

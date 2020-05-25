@@ -76,11 +76,15 @@ class DbBridge:
         query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity)
 
         if type == InfoType.VAL:
-            query += f' create ({node_id})-[:VAL]->(:val {{value: "{value}"}})'
+            query += f' create ({node_id})-[:{type.value}]->(:val {{value: "{value}"}})'
         elif type == InfoType.LOC:
             query_create_location, location_node_id, _ = QueryBuilder.query_create_noun_phrase(value)
             query += query_create_location
-            query += f' create ({node_id})-[:LOC]->({location_node_id})'
+            query += f' create ({node_id})-[:{type.value}]->({location_node_id})'
+        elif type in [InfoType.TIME_POINT, InfoType.TIME_START, InfoType.TIME_END, InfoType.TIME_RANGE,
+                      InfoType.TIME_DURATION]:
+            query += f' create ({node_id})-[:{type.value}]->(:val {{value: "{value}"}})'
+
         print(query)
 
         self.session.run(query)
