@@ -1,3 +1,7 @@
+"""
+Server for accessing spaCy's NLU features from a web application.
+"""
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import spacy
@@ -8,7 +12,7 @@ nlp = spacy.load("spacy_ro")
 PORT_NUMBER = 3333
 
 
-class myHandler(BaseHTTPRequestHandler):
+class RequestHandler(BaseHTTPRequestHandler):
 
     def parse(self, phrase):
         doc = nlp(phrase)
@@ -19,7 +23,7 @@ class myHandler(BaseHTTPRequestHandler):
         with open("../../MyAnnotator/dep-parse.html", "w", encoding='utf8') as f:
             f.write(htmlDep)
 
-    # Handler for the GET requests
+    # Handler for the POST requests
     def do_POST(self):
         self.send_response(200)
 
@@ -39,7 +43,7 @@ class myHandler(BaseHTTPRequestHandler):
 
 try:
     # Create a web server and define the handler to manage the incoming request
-    server = HTTPServer(('', PORT_NUMBER), myHandler)
+    server = HTTPServer(('', PORT_NUMBER), RequestHandler)
     print('Started httpserver on port ', PORT_NUMBER)
 
     # Wait forever for incoming htto requests

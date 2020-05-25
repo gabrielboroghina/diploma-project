@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class InfoType(Enum):
+    """ Types of information stored in the knowledge base. """
+
     LOC = 'LOC'
     VAL = 'VAL'
     TIME_POINT = 'TIME_POINT'

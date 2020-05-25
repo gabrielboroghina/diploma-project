@@ -22,7 +22,7 @@ pipeline:
     epochs: 350
     entity_recognition: False
     hidden_layers_sizes:
-      text: [256, 128]
+      text: [32, 16]
       label: []
     weight_sparsity: 0
   - name: syntactic_parser.SyntacticParser

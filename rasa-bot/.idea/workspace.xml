@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731b7501-4b2e-4e7a-aa0a-33c8ec7dc2e7" name="Default Changelist" comment="[RASA bot] Added a few data. Tested a custom action">
-      <change afterPath="$PROJECT_DIR$/data/nlu_test.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spacy-test/lemmatize.py" beforeDir="false" afterPath="$PROJECT_DIR$/../spacy-test/lemmatize.py" afterDir="false" />
+    <list default="true" id="731b7501-4b2e-4e7a-aa0a-33c8ec7dc2e7" name="Default Changelist" comment="Initial implementation for store_timestamp action (handle">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_base/db_bridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_base/db_bridge.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +50,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JSON&#10;Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../README.md" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data\lookups" />
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\knowledge_base" />
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data\lookups" />
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.rasa api">
     <configuration name="db_bridge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -113,7 +124,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="rasa" />
-      <option name="PARAMETERS" value="run --enable-api" />
+      <option name="PARAMETERS" value="run --enable-api -p 3333" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="true" />
@@ -121,8 +132,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="shell" type="PythonConfigurationType" factoryName="Python">
+      <module name="rasa-bot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="CUDA_VISIBLE_DEVICES" value="&quot;&quot;" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\gabri\AppData\Local\Programs\Python\Python37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="rasa" />
+      <option name="PARAMETERS" value="shell" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.rasa api" />
+      <item itemvalue="Python.shell" />
       <item itemvalue="Python.db_bridge" />
     </list>
     <recent_temporary>
@@ -161,7 +196,10 @@
       <workItem from="1589917071309" duration="3911000" />
       <workItem from="1589921064781" duration="2290000" />
       <workItem from="1589957684705" duration="6605000" />
-      <workItem from="1590044917704" duration="24644000" />
+      <workItem from="1590044917704" duration="29312000" />
+      <workItem from="1590244191802" duration="7552000" />
+      <workItem from="1590305721971" duration="28758000" />
+      <workItem from="1590408564411" duration="4586000" />
     </task>
     <task id="LOCAL-00001" summary="[RASA bot] Inital commit">
       <created>1585317110133</created>
@@ -226,7 +264,84 @@
       <option name="project" value="LOCAL" />
       <updated>1590077961656</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters">
+      <created>1590078048640</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590078048640</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Intent classification improvements">
+      <created>1590244565373</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1590244565373</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Intent classification improvements. Removed bulk train examples. A few more test examples">
+      <created>1590251822232</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1590251822232</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Intent classification improvements. Removed bulk train examples. A few more test examples">
+      <created>1590252582257</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1590252582257</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Implemented simple case of get_timestamp action. Added intent examples for store_time">
+      <created>1590350032308</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590350032308</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Implemented simple case of get_timestamp action. Added intent examples for store_time">
+      <created>1590350193206</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590350193206</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Implemented simple case of get_timestamp action. Added intent examples for store_time">
+      <created>1590350744413</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590350744413</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Initial implementation for store_timestamp action (handle simple event case)">
+      <created>1590408717786</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590408717786</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Initial implementation for store_timestamp action (handle simple event case). Added test results to git">
+      <created>1590408778658</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1590408778658</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added global README. Added syntactic annotator project to git. Small changes.">
+      <created>1590411893781</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1590411893781</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added global README. Added syntactic annotator project to git. Small changes.">
+      <created>1590412924001</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1590412924001</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,54 +365,61 @@
     <MESSAGE value="NLU intent fixes" />
     <MESSAGE value="Improvements for intent classifier" />
     <MESSAGE value="Add forward layers to intent classifier" />
-    <MESSAGE value="[RASA bot] Added a few data. Tested a custom action" />
     <MESSAGE value="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add forward layers to intent classifier. Updated LexicalSyntacticFeaturizer parameters" />
+    <MESSAGE value="Intent classification improvements" />
+    <MESSAGE value="Intent classification improvements. Removed bulk train examples. A few more test examples" />
+    <MESSAGE value="[RASA bot] Added a few data. Tested a custom action" />
+    <MESSAGE value="Implemented simple case of get_timestamp action. Added intent examples for store_time" />
+    <MESSAGE value="Initial implementation for store_timestamp action (handle simple event case)" />
+    <MESSAGE value="Initial implementation for store_timestamp action (handle simple event case). Added test results to git" />
+    <MESSAGE value="Initial implementation for store_timestamp action (handle" />
+    <MESSAGE value="Added global README. Added syntactic annotator project to git. Small changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added global README. Added syntactic annotator project to git. Small changes." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589962444459">
+    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590079875385">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589962444459" />
-    <state x="465" y="99" key="CommitChangelistDialog2" timestamp="1590077961062">
+    <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590079875385" />
+    <state x="465" y="99" key="CommitChangelistDialog2" timestamp="1590412923411">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="443" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1586980436259" />
-    <state x="465" y="99" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1590077961062" />
-    <state x="97" y="108" width="1487" height="794" key="DiffContextDialog" timestamp="1588250320675">
+    <state x="465" y="99" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1590412923411" />
+    <state x="97" y="108" width="1487" height="794" key="DiffContextDialog" timestamp="1590078915345">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1586980735569" />
-    <state x="97" y="108" width="1487" height="794" key="DiffContextDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1588250320675" />
-    <state x="707" y="259" key="EnvironmentVariablesDialog" timestamp="1589962442077">
+    <state x="97" y="108" width="1487" height="794" key="DiffContextDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078915345" />
+    <state x="707" y="259" key="EnvironmentVariablesDialog" timestamp="1590078913043">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="707" y="259" key="EnvironmentVariablesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589962442077" />
-    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1589962376932">
+    <state x="707" y="259" key="EnvironmentVariablesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078913043" />
+    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1590411597192">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="590" y="221" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1586977237244" />
-    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1589962376932" />
-    <state width="1637" height="382" key="GridCell.Tab.0.bottom" timestamp="1590077318266">
+    <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1590411597192" />
+    <state width="1637" height="315" key="GridCell.Tab.0.bottom" timestamp="1590355602335">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="382" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
-    <state width="1637" height="382" key="GridCell.Tab.0.center" timestamp="1590077318266">
+    <state width="1637" height="315" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
+    <state width="1637" height="315" key="GridCell.Tab.0.center" timestamp="1590355602335">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="382" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
-    <state width="1637" height="382" key="GridCell.Tab.0.left" timestamp="1590077318265">
+    <state width="1637" height="315" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
+    <state width="1637" height="315" key="GridCell.Tab.0.left" timestamp="1590355602335">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="382" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318265" />
-    <state width="1637" height="382" key="GridCell.Tab.0.right" timestamp="1590077318266">
+    <state width="1637" height="315" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
+    <state width="1637" height="315" key="GridCell.Tab.0.right" timestamp="1590355602335">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="382" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1590077318266" />
+    <state width="1637" height="315" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
     <state width="1637" height="336" key="GridCell.Tab.1.bottom" timestamp="1588281871716">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -323,16 +445,28 @@
     </state>
     <state x="380" y="164" key="IDE.errors.dialog/0.0.1600.860@0.0.1600.860" timestamp="1587732112626" />
     <state x="399" y="193" key="IDE.errors.dialog/0.0.1680.1010@0.0.1680.1010" timestamp="1589918087377" />
+    <state x="243" y="82" key="MergeDialog" timestamp="1590078248986">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="243" y="82" key="MergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078248986" />
+    <state x="728" y="372" width="389" height="265" key="MultipleFileMergeDialog" timestamp="1590078254232">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="728" y="372" width="389" height="265" key="MultipleFileMergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078254232" />
     <state x="316" y="87" key="SettingsEditor" timestamp="1588250441339">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="301" y="74" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1587731740440" />
     <state x="316" y="87" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1588250441339" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1589626072859">
+    <state x="604" y="209" key="VCS.ChangeListViewerDialog" timestamp="1590078853644">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="604" y="209" key="VCS.ChangeListViewerDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078853644" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1590412479018">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="411" y="202" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1586980674418" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1589626072859" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1590412479018" />
     <state x="486" y="119" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588260341500">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -341,15 +475,19 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="649" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1010@0.0.1680.1010" timestamp="1585931062767" />
-    <state x="536" y="103" width="607" height="804" key="find.popup" timestamp="1588261146878">
+    <state x="536" y="103" width="607" height="804" key="find.popup" timestamp="1590312210682">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="510" y="65" width="579" height="795" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1587734568803" />
-    <state x="536" y="103" width="607" height="804" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1588261146878" />
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1590065978991">
+    <state x="536" y="103" width="607" height="804" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590312210682" />
+    <state x="627" y="351" key="git4idea.ui.GitUnstashDialog" timestamp="1590078855162">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590065978991" />
+    <state x="627" y="351" key="git4idea.ui.GitUnstashDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078855162" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1590352700103">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590352700103" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -361,6 +499,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge.coverage" NAME="db_bridge Coverage Results" MODIFIED="1587733520387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge-base" />
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge__1_.coverage" NAME="db_bridge (1) Coverage Results" MODIFIED="1588260674535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_base" />
-    <SUITE FILE_PATH="coverage/rasa_bot$rasa_api.coverage" NAME="rasa api Coverage Results" MODIFIED="1590076365335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rasa_bot$rasa_api.coverage" NAME="rasa api Coverage Results" MODIFIED="1590355277953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rasa_bot$shell.coverage" NAME="shell Coverage Results" MODIFIED="1590345844894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

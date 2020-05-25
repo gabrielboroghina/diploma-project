@@ -521,6 +521,7 @@ TRAIN_DATA = [
 # TODO exemple pentru intrebari
 
 # când va fi sesiunea
+# sezonul de pescuit se finalizează pe 2 iunie
 
 def analyze_data(phrases):
     """
@@ -543,7 +544,8 @@ def analyze_data(phrases):
     n_iter=("Number of training iterations", "option", "n", int),
 )
 def train(model=None, n_iter=30):
-    """Load the model, set up the pipeline and train the parser."""
+    """ Load the model, set up the pipeline and train the parser. """
+
     if model is not None:
         nlp = spacy.load(model)  # load existing spaCy model
         print("Loaded model '%s'" % model)
@@ -603,7 +605,8 @@ def print_parse_result(doc):
 
 
 def store_model(nlp, output_dir=None):
-    # save model to output directory
+    """ Save the model to the output directory. """
+
     if output_dir is not None:
         output_dir = Path(output_dir)
         if not output_dir.exists():
@@ -625,7 +628,6 @@ def test_model(nlp, interactive=False):
         "de mâine va fi cald afară",
         "peste câteva săptămâni se va termina starea de urgență",
         "numele de utilizator al Irinei este irina",
-        "ieri m-am jucat fifa 2 ore",
     ]
 
     if interactive:
@@ -645,9 +647,13 @@ if __name__ == "__main__":
     analyze_data(TRAIN_DATA)
 
     model = None
+
+    # uncomment this to train the model before the testing step
+
     # model = train("spacy_ro", n_iter=40)
     # store_model(model, '../models/spacy-syntactic')
 
+    # load the last version of the model if the training was not performed
     if model is None:
         model = spacy.load('../models/spacy-syntactic')
 

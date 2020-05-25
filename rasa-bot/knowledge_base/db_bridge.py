@@ -1,6 +1,7 @@
 from neo4j import GraphDatabase
 from .types import InfoType
 
+# Neo4j database connection strings
 NEO4J_URI = "bolt://localhost:7687"
 USERNAME = "neo4j"
 PASSWORD = "pass"
@@ -15,6 +16,8 @@ class QueryBuilder:
 
     @staticmethod
     def query_create_noun_phrase(entity):
+        """ Build a Neo4j query that inserts a new entity into the database. """
+
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
         string = entity['value']
@@ -43,6 +46,8 @@ class QueryBuilder:
 
     @staticmethod
     def query_match_noun_phrase(entity):
+        """ Build a Neo4j query that tries to match (find) an entity in the database. """
+
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
         if entity['specifiers']:
@@ -73,6 +78,8 @@ class DbBridge:
         self.driver.close()
 
     def set_value(self, entity, value, type=InfoType.VAL):
+        """ Store a detail of an entity in the database. """
+
         query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity)
 
         if type == InfoType.VAL:
@@ -81,15 +88,16 @@ class DbBridge:
             query_create_location, location_node_id, _ = QueryBuilder.query_create_noun_phrase(value)
             query += query_create_location
             query += f' create ({node_id})-[:{type.value}]->({location_node_id})'
-        elif type in [InfoType.TIME_POINT, InfoType.TIME_START, InfoType.TIME_END, InfoType.TIME_RANGE,
-                      InfoType.TIME_DURATION]:
+        elif type in [InfoType.TIME_POINT, InfoType.TIME_START, InfoType.TIME_END,
+                      InfoType.TIME_RANGE, InfoType.TIME_DURATION]:
             query += f' create ({node_id})-[:{type.value}]->(:val {{value: "{value}"}})'
 
         print(query)
-
         self.session.run(query)
 
     def get_value(self, entity, type=InfoType.VAL):
+        """ Get a detail of an entity from the database. """
+
         query, node_id = QueryBuilder.query_match_noun_phrase(entity)
         query += f'match ({node_id})-[:{type.value}]->(val) return val'
 

@@ -1,3 +1,7 @@
+"""
+Test the general spaCy model for Romanian.
+"""
+
 import spacy
 from spacy import displacy
 from spacy.tokens import Span
@@ -48,6 +52,7 @@ phrases = [
     'Când își face temele colegul meu',
     'când se termină starea',
 ]
+
 
 # dexBridge = DexBridge()
 
@@ -113,7 +118,8 @@ def parsePhrase(phrase):
     for token in doc:
         lemma = ""  # dexBridge.lemmaForWord(token.text, pos(token.tag_))
         print(token.text, TermColors.YELLOW, lemma,
-              TermColors.PINK, token.tag_, TermColors.OKGREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]], TermColors.ENDC)
+              TermColors.PINK, token.tag_, TermColors.OKGREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]],
+              TermColors.ENDC)
     for chunk in doc.noun_chunks:
         print(chunk.text, chunk.root.text, chunk.root.dep_,
               chunk.root.head.text)
