@@ -5,6 +5,7 @@ intents:
   - deny
   - store_request
   - store_attr
+  - store_following_attr
   - store_location
   - store_timestamp
   - get_attr
@@ -33,14 +34,15 @@ entities:
   - time
 
 slots:
-  obj:
+  raw_attr_entity:
     type: unfeaturized
-  location:
+    auto_fill: false
+  raw_attr_val:
     type: unfeaturized
-  attribute:
-    type: unfeaturized
-  action:
-    type: unfeaturized
+    auto_fill: false
+
+forms:
+  - raw_data_store_form
 
 actions:
   - action_store_attr
@@ -49,6 +51,7 @@ actions:
   - action_get_location
   - action_get_time
   - action_store_time
+  - action_keep_raw_attr_entity
 
 responses:
   utter_greet:
@@ -80,6 +83,10 @@ responses:
     - text: "Am reținut!"
     - text: "Reținut"
     - text: "Notat!"
+
+  utter_ask_raw_attr_val:
+    - text: "da:"
+    - text: "ascult:"
 
 session_config:
   session_expiration_time: 60

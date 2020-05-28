@@ -83,6 +83,22 @@
 - până unde au ajuns radiațiile de la Cernobâl
 - de unde am luat draperiile din sufragerie?
 
+## intent:store_following_attr
+- mailul lui Alex [este](a_fi) următorul
+- valoarea constantei pi [este](a_fi) următoarea
+- colegii care au luat 10 la ML [sunt](a_fi) următorii:
+- materiile opționale din anul 1 [sunt](a_fi) următoarele
+- tehnologiile folosite de aplicație sunt următoarele
+- codul de acces [este](a_fi) ăsta
+- numărul de la casă al Mariei [e](a_fi) acesta
+- dimensiunile portbagajului meu de la mașină [sunt](a_fi) acestea
+- adresa mea de la București [e](a_fi) aceasta
+- versiunile de Windows 10 [sunt](a_fi) acestea
+- lunile pe care am decontat abonamentul sunt cele care urmează
+- ecuația fluxului electromagnetic [e](a_fi) cea care urmează
+- colegii mei de liceu [erau](a_fi) cei ce urmează
+- dioptriile mele de la ochelari [erau](a_fi) ultima dată cele ce urmează
+
 ## intent:store_attr
 - Mailul lui [Alex](person) Marin [este](a_fi) alex@marin.com
 - Adresa [Elenei](owner) [este](a_fi) strada Zorilor numărul 9
@@ -194,7 +210,7 @@
 - peste 2 [zile](time) începe examenul de bacalaureat
 - sesiunea din browser a expirat acum 10 [secunde](time)
 - am de prezentat temele peste o [oră](time)
-- am m\ncat acum 2 [ore](time)
+- am mâncat acum 2 [ore](time)
 - Maria pleacă în concediu peste 5 [săptămâni](time)
 - conferința de bioinformatică a fost acum o [lună](time)
 - peste 2 [ani](time) termină Nicoleta masterul

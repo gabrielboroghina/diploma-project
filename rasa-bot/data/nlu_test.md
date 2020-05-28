@@ -40,6 +40,18 @@
 - zi-mi unde am lăsat certificatul meu de naștere
 - unde este setul de baterii pentru mouse?
 
+## intent:store_following_attr
+- codul meu IBAN este următorul
+- linkul de la concursul ACM de anul trecut e următorul
+- studenții care s-au înscris la masterul de securitate sunt următorii
+- numerele de telefon ale Georgianei sunt acestea
+- emailul lui Ionuț este acesta
+- membrii lotului de informatică din 2016 sunt cei care urmează
+- codul meu numeric personal este cel ce urmează
+- teorema lui Pitagora este asta
+- modelul SSD-ului meu e ăsta
+- hotelul la care ne-am cazat anul trecut la mare e acesta:
+
 ## intent:store_attr
 - telefonul Dianei este 0745789654
 - prețul ceasului meu Atlantic a fost 500 de lei

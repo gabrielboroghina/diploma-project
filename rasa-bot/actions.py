@@ -2,10 +2,12 @@
 Custom actions to be performed in response to specific intents.
 """
 
-from typing import Any, Text, Dict, List
+from typing import Any, Text, Dict, List, Union
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+from rasa_sdk.forms import FormAction
+
 from knowledge_base.db_bridge import DbBridge
 from knowledge_base.types import InfoType
 
@@ -235,4 +237,61 @@ class ActionStoreTime(Action):
                 db_bridge.set_value(entity, time['ext_value'], type=info_type)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
+        return []
+
+
+class ActionKeepRawAttrEntity(Action):
+    def __init__(self):
+        super().__init__()
+
+    def name(self) -> Text:
+        return "action_keep_raw_attr_entity"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        message = tracker.latest_message
+
+        entity = None
+        semantic_roles = message['semantic_roles']
+        for ent in semantic_roles:
+            if ent['question'] == 'cine':
+                entity = ent
+
+        return [SlotSet("raw_attr_entity", entity)]
+
+
+class RawDataStoreForm(FormAction):
+    """Example of a custom form action"""
+
+    def name(self):
+        """Unique identifier of the form"""
+        return "raw_data_store_form"
+
+    @staticmethod
+    def required_slots(tracker: Tracker) -> List[Text]:
+        """A list of required slots that the form has to fill"""
+
+        return ["raw_attr_val"]
+
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
+        """A dictionary to map required slots to
+            - an extracted entity
+            - intent: value pairs
+            - a whole message
+            or a list of them, where a first match will be picked"""
+
+        return {
+            "raw_attr_val": self.from_text(),  # the raw value is actually the whole text entered by the user
+        }
+
+    def submit(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any],
+    ) -> List[Dict]:
+        """Define what the form has to do after all required slots are filled"""
+
+        raw_attr_entity = tracker.get_slot("raw_attr_entity")
+        raw_attr_val = tracker.get_slot("raw_attr_val")
+        db_bridge.set_value(raw_attr_entity, raw_attr_val, type=InfoType.VAL)
         return []

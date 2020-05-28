@@ -40,3 +40,11 @@
 * store_timestamp
   - action_store_time
   - utter_stored
+  
+## store following attribute
+* store_following_attr
+  - action_keep_raw_attr_entity
+  - raw_data_store_form
+  - form{"name": "raw_data_store_form"}
+  - form{"name": null}
+  - utter_stored

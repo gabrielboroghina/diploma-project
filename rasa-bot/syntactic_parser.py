@@ -127,7 +127,7 @@ class SyntacticParser(Component):
 
         return word
 
-    def __get_dependency_span(self, doc, token, include_specifiers=False):
+    def __get_dependency_span(self, doc, token, include_all_deps=False):
         """
         Build the span of words connected to a given token
         (representing attributes/prepositions/conjunctions etc).
@@ -136,8 +136,7 @@ class SyntacticParser(Component):
         def dfs(node):
             first = last = node.i
             for child in node.children:
-                if child.dep_ in ['-', 'prep', 'cât', 'cât timp'] or \
-                        (include_specifiers and child.dep_ in ['care', 'ce fel de']):
+                if child.dep_ in ['-', 'prep', 'cât', 'cât timp'] or include_all_deps:
                     child_first, child_last = dfs(child)
                     first = min(first, child_first)
                     last = max(last, child_last)
@@ -192,7 +191,7 @@ class SyntacticParser(Component):
                     "determiner": self.__get_dependency_span(doc, token.head),
                     "value": token.text,
                     "lemma": self.__lemmatize(token),
-                    "ext_value": self.__get_dependency_span(doc, token, False),
+                    "ext_value": self.__get_dependency_span(doc, token, True),
                     "specifiers": self.__get_specifiers(doc, token)
                 }
                 semantic_roles.append(entity)

@@ -101,6 +101,7 @@ class DbBridge:
         query, node_id = QueryBuilder.query_match_noun_phrase(entity)
         query += f'match ({node_id})-[:{type.value}]->(val) return val'
 
+        print(query)
         result = self.session.run(query)
         values = [record.value() for record in result]
 
