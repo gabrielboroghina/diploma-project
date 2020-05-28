@@ -43,6 +43,7 @@ class SyntacticParser(Component):
         lookups = spacy.lookups.Lookups()
         lookups.from_disk('./data/lookups')
         noun_lemmas = lookups.get_table("noun-lemmas")
+        prop_noun_lemmas = lookups.get_table("prop-noun-lemmas")
         verb_lemmas = lookups.get_table("verb-lemmas")
 
         # manually create a pronoun lemma lookup table
@@ -52,6 +53,7 @@ class SyntacticParser(Component):
 
         return {
             tag_map.NOUN: noun_lemmas,
+            tag_map.PROPN: prop_noun_lemmas,
             tag_map.VERB: verb_lemmas,
             tag_map.PRON: pron_lemmas,
         }
@@ -110,6 +112,10 @@ class SyntacticParser(Component):
         tag = token.tag_.split('__')[0]  # extract the compact tag
         pos = SyntacticParser.__part_of_speech_from_tag(tag)
         word = token.text
+
+        # proper noun
+        if word in self.lemmas[tag_map.PROPN]:
+            return self.lemmas[tag_map.PROPN][word]
 
         # POS = pronoun
         if word in self.lemmas[tag_map.PRON]:
