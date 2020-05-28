@@ -142,7 +142,8 @@ class SyntacticParser(Component):
         def dfs(node):
             first = last = node.i
             for child in node.children:
-                if child.dep_ in ['-', 'prep', 'cât', 'cât timp'] or include_all_deps:
+                if child.dep_ in ['-', 'prep', 'cât', 'cât timp'] or \
+                        (include_all_deps and child.dep_ in ['care', 'ce fel de', 'al cui']):
                     child_first, child_last = dfs(child)
                     first = min(first, child_first)
                     last = max(last, child_last)

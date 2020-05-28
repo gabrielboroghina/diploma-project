@@ -140,6 +140,53 @@ class ActionGetLocation(Action):
         return []
 
 
+def get_time_type(question, phrase, action):
+    """ Determine the type of the timestamp: a specific point in time, a start point, an end point or a duration. """
+
+    info_type = InfoType.TIME_POINT
+
+    if question == "cât timp":
+        info_type = InfoType.TIME_DURATION
+    elif phrase in ["de când"] or action in ["începe", "porni", "apărea", "veni"]:
+        info_type = InfoType.TIME_START
+    elif phrase in ["până când"] or action in ["termina", "sfârși", "încheia", "finaliza"]:
+        info_type = InfoType.TIME_END
+
+    return info_type
+
+
+def extract_sentence_components(semantic_roles):
+    """ Extract the main proposition parts of a sentence. """
+
+    components = {
+        'subj': '?',
+        'action': '?',
+        'ce': None,
+        'loc': [],
+        'time': []
+    }
+
+    action = None
+    for ent in semantic_roles:
+        if ent['question'] == "ROOT":
+            action = ent['ext_value']
+
+    for ent in semantic_roles:
+        if ent['question'] == 'cine':
+            components['subj'] = ent
+        elif ent['question'] == 'ROOT':
+            components['action'] = ent['ext_value']
+        elif ent['question'] == 'ce':
+            components['ce'] = ent
+        elif ent['question'] == 'unde':
+            components['loc'].append(ent)
+        elif ent['question'] in ['când', 'cât timp']:
+            info_type = get_time_type(ent['question'], ent['ext_value'], action)
+            components['time'].append((ent['ext_value'], info_type))
+
+    return components
+
+
 class ActionGetTime(Action):
     def __init__(self):
         super().__init__()
@@ -157,7 +204,7 @@ class ActionGetTime(Action):
         is_simple_event = True  # simple event (noun phrase) or a complex one (containing subject/other details)
 
         semantic_roles = message['semantic_roles']
-        print(semantic_roles)
+
         for ent in semantic_roles:
             if ent['question'] in ['ce', 'cine']:
                 entity = ent
@@ -169,22 +216,14 @@ class ActionGetTime(Action):
                 is_simple_event = False
 
         # determine the type of timestamp requested
-        question_phrase = times[0]['ext_value']
-        question_type = times[0]['question']
-
-        info_type = InfoType.TIME_POINT
-        if question_type == "cât timp" or action in ["dura", "ține"]:
-            info_type = InfoType.TIME_DURATION
-        elif question_phrase in ["de când"] or action in ["începe", "porni", "apărea", "veni"]:
-            info_type = InfoType.TIME_START
-        elif question_phrase in ["până când"] or action in ["termina", "sfârși", "încheia", "finaliza"]:
-            info_type = InfoType.TIME_END
+        info_type = get_time_type(times[0]['question'], times[0]['ext_value'], action)
 
         if entity:
             if is_simple_event:
                 result = db_bridge.get_value(entity, type=info_type)
             else:
-                result = "Not implemented"
+                sentence_components = extract_sentence_components(semantic_roles)
+                result = db_bridge.get_action_time(sentence_components, info_type)
             dispatcher.utter_message(result)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
@@ -208,7 +247,6 @@ class ActionStoreTime(Action):
         is_simple_event = True
 
         semantic_roles = message['semantic_roles']
-        print(semantic_roles)
 
         for ent in semantic_roles:
             if ent['question'] in ['ce', 'cine']:
@@ -218,23 +256,18 @@ class ActionStoreTime(Action):
             elif ent['question'] in ['când', 'cât timp']:
                 time = ent
             elif ent['question'] == "ROOT":
-                pass
+                action = ent['ext_value']
             else:
                 is_simple_event = False
 
-        info_type = InfoType.TIME_POINT
-        if time['ext_value'] in ['de când'] or action in ["începe", "porni", "apărea", "veni"]:
-            info_type = InfoType.TIME_START
-        elif time['ext_value'] in ['până când'] or action in ["termina", "sfârși", "încheia", "finaliza"]:
-            info_type = InfoType.TIME_END
-        elif time['question'] == "cât timp":
-            info_type = InfoType.TIME_DURATION
-
-        print(time, time['question'], info_type)
+        info_type = get_time_type(time['question'], time['ext_value'], action)
 
         if entity:
             if is_simple_event:
                 db_bridge.set_value(entity, time['ext_value'], type=info_type)
+            else:
+                sentence_components = extract_sentence_components(semantic_roles)
+                db_bridge.store_action(sentence_components)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
         return []
