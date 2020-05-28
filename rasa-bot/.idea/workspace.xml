@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731b7501-4b2e-4e7a-aa0a-33c8ec7dc2e7" name="Default Changelist" comment="Initial implementation for store_timestamp action (handle">
+    <list default="true" id="731b7501-4b2e-4e7a-aa0a-33c8ec7dc2e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledge_base/db_bridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_base/db_bridge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drafts/train_intent_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/drafts/train_intent_parser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,21 +50,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JSON&#10;Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../README.md" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/drafts" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\drafts\data" />
       <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data\lookups" />
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\knowledge_base" />
       <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\knowledge_base" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\drafts" />
       <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data\lookups" />
       <recent name="C:\Users\gabri\Desktop\Licenta\work\rasa-bot\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.rasa api">
+  <component name="RunManager" selected="Python.train_intent_parser">
     <configuration name="db_bridge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="rasa-bot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,6 +103,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/knowledge_base/db_bridge.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lemmatize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="rasa-bot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/drafts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/drafts/lemmatize.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,13 +179,39 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train_intent_parser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="rasa-bot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/drafts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/drafts/train_intent_parser.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.rasa api" />
       <item itemvalue="Python.shell" />
       <item itemvalue="Python.db_bridge" />
+      <item itemvalue="Python.lemmatize" />
+      <item itemvalue="Python.train_intent_parser" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.train_intent_parser" />
+        <item itemvalue="Python.lemmatize" />
         <item itemvalue="Python.db_bridge" />
         <item itemvalue="Python.db_bridge" />
       </list>
@@ -199,7 +249,10 @@
       <workItem from="1590044917704" duration="29312000" />
       <workItem from="1590244191802" duration="7552000" />
       <workItem from="1590305721971" duration="28758000" />
-      <workItem from="1590408564411" duration="4586000" />
+      <workItem from="1590408564411" duration="4722000" />
+      <workItem from="1590499048443" duration="6349000" />
+      <workItem from="1590564513129" duration="17571000" />
+      <workItem from="1590649403160" duration="9682000" />
     </task>
     <task id="LOCAL-00001" summary="[RASA bot] Inital commit">
       <created>1585317110133</created>
@@ -341,7 +394,70 @@
       <option name="project" value="LOCAL" />
       <updated>1590412924001</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added global README. Added syntactic annotator project to git. Small changes.">
+      <created>1590413315176</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1590413315176</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added capability to store an attribute for an entity in 2 steps: announcement and a (maybe complex) attribute value">
+      <created>1590654223862</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1590654223862</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Lemmatize the proper nouns (currently supporting a subset of person names)">
+      <created>1590659818769</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1590659818769</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660321714</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660321714</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660351587</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660351587</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660459007</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660459007</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660516193</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660516193</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660687424</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660687424</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Moved experiments/drafts from spacy-test to main project">
+      <created>1590660788156</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1590660788156</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,18 +490,25 @@
     <MESSAGE value="Initial implementation for store_timestamp action (handle simple event case). Added test results to git" />
     <MESSAGE value="Initial implementation for store_timestamp action (handle" />
     <MESSAGE value="Added global README. Added syntactic annotator project to git. Small changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added global README. Added syntactic annotator project to git. Small changes." />
+    <MESSAGE value="Added capability to store an attribute for an entity in 2 steps: announcement and a (maybe complex) attribute value" />
+    <MESSAGE value="Lemmatize the proper nouns (currently supporting a subset of person names)" />
+    <MESSAGE value="Moved experiments/drafts from spacy-test to main project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved experiments/drafts from spacy-test to main project" />
   </component>
   <component name="WindowStateProjectService">
     <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590079875385">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="294" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590079875385" />
-    <state x="465" y="99" key="CommitChangelistDialog2" timestamp="1590412923411">
+    <state x="570" y="251" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590660180549">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="570" y="251" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590660180549" />
+    <state x="464" y="95" key="CommitChangelistDialog2" timestamp="1590660786648">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="443" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1586980436259" />
-    <state x="465" y="99" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1590412923411" />
+    <state x="464" y="95" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1590660786648" />
     <state x="97" y="108" width="1487" height="794" key="DiffContextDialog" timestamp="1590078915345">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -395,31 +518,32 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="707" y="259" key="EnvironmentVariablesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078913043" />
-    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1590411597192">
+    <state x="620" y="259" key="FileChooserDialogImpl" timestamp="1590610114857">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="590" y="221" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1586977237244" />
     <state x="620" y="259" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1590411597192" />
-    <state width="1637" height="315" key="GridCell.Tab.0.bottom" timestamp="1590355602335">
+    <state x="620" y="259" key="FileChooserDialogImpl/1680.-27.1536.832/0.0.1680.1010@0.0.1680.1010" timestamp="1590610114857" />
+    <state width="1637" height="360" key="GridCell.Tab.0.bottom" timestamp="1590661008667">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="315" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
-    <state width="1637" height="315" key="GridCell.Tab.0.center" timestamp="1590355602335">
+    <state width="1637" height="360" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1590661008667" />
+    <state width="1637" height="360" key="GridCell.Tab.0.center" timestamp="1590661008666">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="315" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
-    <state width="1637" height="315" key="GridCell.Tab.0.left" timestamp="1590355602335">
+    <state width="1637" height="360" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1590661008666" />
+    <state width="1637" height="360" key="GridCell.Tab.0.left" timestamp="1590661008666">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1587749266755" />
-    <state width="1637" height="315" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
-    <state width="1637" height="315" key="GridCell.Tab.0.right" timestamp="1590355602335">
+    <state width="1637" height="360" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1590661008666" />
+    <state width="1637" height="360" key="GridCell.Tab.0.right" timestamp="1590661008667">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1557" height="278" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1587749266756" />
-    <state width="1637" height="315" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1590355602335" />
+    <state width="1637" height="360" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1590661008667" />
     <state width="1637" height="336" key="GridCell.Tab.1.bottom" timestamp="1588281871716">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -462,11 +586,11 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="604" y="209" key="VCS.ChangeListViewerDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078853644" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1590412479018">
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2" timestamp="1590660462675">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="411" y="202" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1586980674418" />
-    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1590412479018" />
+    <state x="432" y="237" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1590660462675" />
     <state x="486" y="119" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588260341500">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -475,19 +599,19 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="649" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1010@0.0.1680.1010" timestamp="1585931062767" />
-    <state x="536" y="103" width="607" height="804" key="find.popup" timestamp="1590312210682">
+    <state x="536" y="103" width="607" height="804" key="find.popup" timestamp="1590614834264">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="510" y="65" width="579" height="795" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1587734568803" />
-    <state x="536" y="103" width="607" height="804" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590312210682" />
+    <state x="536" y="103" width="607" height="804" key="find.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590614834264" />
     <state x="627" y="351" key="git4idea.ui.GitUnstashDialog" timestamp="1590078855162">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="627" y="351" key="git4idea.ui.GitUnstashDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1590078855162" />
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1590352700103">
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup" timestamp="1590660582686">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590352700103" />
+    <state x="503" y="217" width="672" height="678" key="search.everywhere.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1590660582686" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -497,9 +621,11 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/rasa_bot$train_intent_parser.coverage" NAME="train_intent_parser Coverage Results" MODIFIED="1590660995077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/drafts" />
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge.coverage" NAME="db_bridge Coverage Results" MODIFIED="1587733520387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge-base" />
     <SUITE FILE_PATH="coverage/rasa_bot$db_bridge__1_.coverage" NAME="db_bridge (1) Coverage Results" MODIFIED="1588260674535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/knowledge_base" />
-    <SUITE FILE_PATH="coverage/rasa_bot$rasa_api.coverage" NAME="rasa api Coverage Results" MODIFIED="1590355277953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/rasa_bot$shell.coverage" NAME="shell Coverage Results" MODIFIED="1590345844894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rasa_bot$rasa_api.coverage" NAME="rasa api Coverage Results" MODIFIED="1590614788448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rasa_bot$lemmatize.coverage" NAME="lemmatize Coverage Results" MODIFIED="1590660625422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/drafts" />
+    <SUITE FILE_PATH="coverage/rasa_bot$shell.coverage" NAME="shell Coverage Results" MODIFIED="1590659615221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

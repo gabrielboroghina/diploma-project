@@ -1,0 +1,22 @@
+{"label": "TIME", "pattern": [{"LOWER": "începând", "OP": "?"}, {"LOWER": "de", "OP": "?"}, {"LOWER": {"REGEX": "azi|ieri|alaltăieri|mâine|poimâine"}}], "id": "1"}
+{"label": "TIME", "pattern": [{"LOWER": "începând"}, {"LOWER": "cu"}, {"LOWER": "ziua"}, {"LOWER": "de"}, {"LOWER": {"REGEX": "azi|ieri|alaltăieri|mâine|poimâine"}}], "id": "1"}
+{"label": "TIME", "pattern": [{"LOWER": "până", "OP": "?"}, {"LOWER": {"REGEX": "azi|ieri|alaltăieri|mâine|poimâine"}}], "id": "1"}
+
+{"label": "TIME", "pattern": [{"LOWER": "începând", "OP": "?"}, {"LOWER": "de", "OP": "?"}, {"LOWER": {"REGEX": "lun(i|ea)|marț(i|ea)|miercur(e|ea)|jo(i|ea)|viner(i|ea)|sâmbăt(ă|a)|duminic(ă|a)"}}, {"LOWER": {"REGEX": "trecută|viitoare|asta|aceasta"}, "OP": "?"}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": "începând"}, {"LOWER": "cu"}, {"LOWER": "ziua"}, {"LOWER": "de"}, {"LOWER": {"REGEX": "luni|marți|miercuri|joi|vineri|sâmbătă|duminică"}}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": "până", "OP": "?"}, {"LOWER": {"REGEX": "luni|marți|miercuri|joi|vineri|sâmbătă|duminică"}}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "acum|peste|de"}}, {}, {"LOWER": {"REGEX": "secunde|minute|ore|zile|săptămâni|luni|ani"}}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "acum|peste|de"}}, {}, {"LOWER": "de"},{"LOWER": {"REGEX": "secunde|minute|ore|zile|săptămâni|luni|ani"}}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "în|din"}}, {"LOWER": "luna", "OP": "?"}, {"LOWER": {"REGEX": "ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie"}}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": "începând"}, {"LOWER": {"REGEX": "din"}}, {"LOWER": "luna", "OP": "?"}, {"LOWER": {"REGEX": "ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie"}}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "de|până"}, "OP": "?"}, {"LOWER": "pe"}, {}, {"LOWER": {"REGEX": "ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie"}}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "pe|de|până"}, "OP": "?"}, {"LOWER": {"REGEX": "la|spre"}, "OP": "?"},  {"LOWER": {"REGEX": "începutul|mijlocul|sfârșitul"}}, {"LOWER": "lui"}, {"LOWER": {"REGEX": "ianuarie|februarie|martie|aprilie|mai|iunie|iulie|august|septembrie|octombrie|noiembrie|decembrie"}}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "până|de"}, "OP": "?"}, {"LOWER": "la", "OP": "?"}, {"LOWER": {"REGEX": "zi(ua|lele)|săptămân(a|ile)|lun(a|ile)|an(ul|ii)"}}, {"LOWER": {"REGEX": "trecu(t|tă|te|ți)|viito(r|are)|acea?sta|(a|ă)sta"}, "OP": "?"}], "id": ""}
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "pe|de|până"}, "OP": "?"}, {"LOWER": {"REGEX": "la|spre"}, "OP": "?"}, {"LOWER": {"REGEX": "începutul|mijlocul|sfârșitul"}}, {"LOWER": {"REGEX": "zilei|săptămânii|lunii|anului"}}, {"LOWER": {"REGEX": "trecu(t|tă|te|ți)|viito(r|are)|acea?sta|(a|ă)sta"}, "OP": "?"}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "până|de"}, "OP": "?"}, {"LOWER": "la", "OP": "?"}, {"LOWER": {"REGEX": "(primăvar|var|toamn|iarn)(a|ă)"}}, {"LOWER": {"REGEX": "trecută|viitoare|asta|aceasta"}}], "id": ""}
+
+{"label": "TIME", "pattern": [{"LOWER": {"REGEX": "până|din"}, "OP": "?"}, {"LOWER": "în"}, {"LOWER": "anul"}, {"LOWER": {"REGEX": "[0-9]+"}}], "id": ""}
