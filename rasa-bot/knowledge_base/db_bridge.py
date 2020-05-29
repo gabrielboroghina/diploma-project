@@ -15,21 +15,25 @@ class QueryBuilder:
         QueryBuilder.id = 0
 
     @staticmethod
-    def query_create_noun_phrase(entity):
+    def query_create_noun_phrase(entity, match_existing=False):
         """ Build a Neo4j query that inserts a new entity into the database. """
+
+        action = "merge" if match_existing else "create"
 
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
         string = entity['value']
 
         if not entity['specifiers']:
-            query = f' create ({eid}:class)'
-            query += f' set {eid}.name = "{entity["lemma"]}"'
+            # single node noun phrase
+            query = f' {action} ({eid}:class {{name: "{entity["lemma"]}"}})'
         else:
-            query = f' create ({eid}:instance)-[:IS_A]->(:class {{name: "{entity["lemma"]}"}})'
+            # instance node along with some specifiers
+            query = f' {action} (cls:class {{name: "{entity["lemma"]}"}})' \
+                    f' create ({eid}:instance)-[:IS_A]->(cls)'
 
             for spec in entity['specifiers']:
-                inner_query, inner_id, inner_str = QueryBuilder.query_create_noun_phrase(spec)
+                inner_query, inner_id, inner_str = QueryBuilder.query_create_noun_phrase(spec, False)
                 query += inner_query
 
                 # link the nodes
@@ -80,7 +84,7 @@ class DbBridge:
     def set_value(self, entity, value, type=InfoType.VAL):
         """ Store a detail of an entity in the database. """
 
-        query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity)
+        query, node_id, _ = QueryBuilder.query_create_noun_phrase(entity, match_existing=True)
 
         if type == InfoType.VAL:
             query += f' create ({node_id})-[:{type.value}]->(:val {{value: "{value}"}})'
@@ -117,7 +121,7 @@ class DbBridge:
         (like location, timestamp, direct object, etc.).
         """
 
-        query, subj_node_id, _ = QueryBuilder.query_create_noun_phrase(components['subj'])
+        query, subj_node_id, _ = QueryBuilder.query_create_noun_phrase(components['subj'], match_existing=True)
 
         query += f' create ({subj_node_id})-[:ACTION]->(act:action {{name: "{components["action"]}"}})'
 

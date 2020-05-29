@@ -7,6 +7,7 @@ from spacy import displacy
 from spacy.tokens import Span
 # from dexBridge import DexBridge
 from spacy.lang.ro import tag_map
+from print_utils import TermColors
 
 nlp = spacy.load("spacy_ro")
 # nlp = spacy.load("../../UD_Romanian-RRT/models/model-best")
@@ -100,17 +101,6 @@ def pos(tag):
     return ""
 
 
-class TermColors:
-    PINK = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-
 def parsePhrase(phrase):
     print('\n', phrase, '\n------------------------------')
     doc = nlp(phrase)
@@ -118,7 +108,7 @@ def parsePhrase(phrase):
     for token in doc:
         lemma = ""  # dexBridge.lemmaForWord(token.text, pos(token.tag_))
         print(token.text, TermColors.YELLOW, lemma,
-              TermColors.PINK, token.tag_, TermColors.OKGREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]],
+              TermColors.PINK, token.tag_, TermColors.GREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]],
               TermColors.ENDC)
     for chunk in doc.noun_chunks:
         print(chunk.text, chunk.root.text, chunk.root.dep_,

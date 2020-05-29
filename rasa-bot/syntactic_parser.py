@@ -191,17 +191,38 @@ class SyntacticParser(Component):
         doc = self.nlp_spacy(message.text.lower())
 
         semantic_roles = []
+        inferred_subj = None
+
         for token in doc:
+            # identify principal components of the sentence
             if token.dep_ not in ['-'] and token.head.dep_ == 'ROOT':
-                entity = {
+                semantic_roles.append({
                     "question": token.dep_,
                     "determiner": self.__get_dependency_span(doc, token.head),
                     "value": token.text,
                     "lemma": self.__lemmatize(token),
                     "ext_value": self.__get_dependency_span(doc, token, True),
                     "specifiers": self.__get_specifiers(doc, token)
+                })
+
+            # infer the subject (me) if the action is at the 1st person, singular
+            if token.dep_ == 'ROOT' and (
+                    (tag_map.TAG_MAP[token.tag_.split('__')[0]].get('Person', '') == '1' and
+                     tag_map.TAG_MAP[token.tag_.split('__')[0]].get('Number', '') == 'Sing')
+                    or
+                    any(t.text == 'am' and t.dep_ == '-' and t.head.dep_ == 'ROOT' for t in doc)
+            ):
+                inferred_subj = {
+                    "question": "cine",
+                    "determiner": self.__get_dependency_span(doc, token),
+                    "value": "eu",
+                    "lemma": "eu",
+                    "ext_value": "eu",
+                    "specifiers": []
                 }
-                semantic_roles.append(entity)
+
+        if inferred_subj and not any(ent['question'] == 'cine' for ent in semantic_roles):
+            semantic_roles.append(inferred_subj)
 
         # add extracted entities to the message
         message.set("semantic_roles", semantic_roles, add_to_output=True)
