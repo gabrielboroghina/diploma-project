@@ -109,6 +109,15 @@
 - hackathonul s-a organizat weekend-ul trecut
 - la primăvară e gata blocul
 - voi pleca in Monaco peste 3 ore
+- am udat floarea roșie aseară
+- mâine la prânz o să tund gazonul
+- alaltăieri după amiază a plouat cu piatră la Botoșani
+- de 3 ori pe oră trebuie să verific starea panoului de control
+- o dată la 4 ani se schimbă primarii
+- Dan vine acasă din Germania în fiecare vară
+- copierea fișierelor de pe un disk pe altul a durat 4 minute
+- am alergat timp de o oră și jumătate
+- acum 3 ore și 15 minute președintele John Kennedy a ținut un discurs
 
 ## intent:get_timestamp
 - când începe vacanța de iarnă
@@ -122,6 +131,10 @@
 - pentru cât timp o să fie plecat Mihai
 - în cât timp am urcat pe vârful Omu?
 - peste cât timp începe sesiunea de comunicări științifice?
+- cât de des vin cei de la amenajări stradale să îngrijească plantele
+- de când până când se va lucra la reamenajarea clădirii?
+- în ce perioadă se vor da biletele gratis la operă
+- în ce interval o să se ia apa la apartament
 
 ## intent:get_subject
 - cine a inventat motorul cu reacție

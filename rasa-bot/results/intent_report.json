@@ -1,58 +1,9 @@
 {
-  "store_location": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 10,
-    "confused_with": {}
-  },
-  "get_subject": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
   "greet": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
-    "confused_with": {}
-  },
-  "get_attr": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 12,
-    "confused_with": {}
-  },
-  "store_request": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "store_following_attr": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 10,
-    "confused_with": {}
-  },
-  "get_specifier": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 14,
-    "confused_with": {}
-  },
-  "get_timestamp": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
     "confused_with": {}
   },
   "goodbye": {
@@ -62,11 +13,60 @@
     "support": 2,
     "confused_with": {}
   },
+  "get_location": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "store_following_attr": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "store_location": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "get_attr": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "affirm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "get_specifier": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 14,
+    "confused_with": {}
+  },
+  "get_subject": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
   "store_timestamp": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 13,
+    "support": 22,
     "confused_with": {}
   },
   "store_attr": {
@@ -76,14 +76,14 @@
     "support": 11,
     "confused_with": {}
   },
-  "get_location": {
+  "get_timestamp": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 10,
+    "support": 15,
     "confused_with": {}
   },
-  "affirm": {
+  "store_request": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -95,12 +95,12 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 106
+    "support": 119
   },
   "weighted avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 106
+    "support": 119
   }
 }

@@ -197,6 +197,7 @@
 - noile autobuze au apărut în [decembrie](time)
 - [luni](time) am fost la alergat
 - am mers la bazinul de înot [marți](time)
+- garanția de la frigider se termină [marțea](time) viitoare
 - coletul cu jacheta va ajunge [miercuri](time)
 - testul de curs la rețele neurale a fost [joi](time)
 - [vineri](time) încep promoțiile de black friday
@@ -205,28 +206,58 @@
 - [azi](time) am fost în parcul Titan
 - [Mâine](time) vine Mihai pe la mine
 - [poimâine](time) merg la mall
+- olimpiada internațională de geografie va începe [răspoimâine](time)
 - de [ieri](time) s-a făcut cald afară
 - am terminat proiecul la programare web [alaltăieri](time)
-- peste 2 [zile](time) începe examenul de bacalaureat
+- procesorul Intel i7 rulează o instrucțiune în 0.3 [nanosecunde](time)
+- execuția interogării în baza de date a durat 500 de [milisecunde](time)
 - sesiunea din browser a expirat acum 10 [secunde](time)
+- prezentarea proiectului durează 45 de [minute](time)
 - am de prezentat temele peste o [oră](time)
 - am mâncat acum 2 [ore](time)
+- peste 3 sferturi de [oră](time) o să ajungă Ina
+- întâlnirea cu managerul este peste o jumătate de [oră](time)
+- peste 2 [zile](time) începe examenul de bacalaureat
 - Maria pleacă în concediu peste 5 [săptămâni](time)
+- [săptămâna](time) viitoare încep cursurile de înot
 - conferința de bioinformatică a fost acum o [lună](time)
 - peste 2 [ani](time) termină Nicoleta masterul
 - buletinul îmi expiră peste 3 [ani](time)
 - mi-am făcut pașaportul acum un [an](time)
-- garanția de la frigider se termină [marțea](time) viitoare
-- [săptămâna](time) viitoare încep cursurile de înot
-- luna viitoare vine Florin din Spania
-- prezentarea proiectului durează 45 de [minute](time)
+- bătălia de la Mărășești a avut loc în [anul](time) 1917
+- acum 5 [decenii](time) nu existau calculatoare
+- în [secolul](time) 19 s-a dezvoltat Imperiul lui Napoleon
+- [luna](time) viitoare vine Florin din Spania
 - meciul dintre Franța și Spania va fi în [weekend](time)
-- întâlnirea cu managerul este peste o jumătate de [oră](time)
 - la [anul](time) se deschide mall-ul din Slatina
 - mi-am făcut analize [primăvara](time) trecută
 - restricțiile de circulație se încheie la [vară](time)
 - [toamna](time) viitoare încep masterul
 - Darius și-a schimbat domiciliul [iarna](time) trecută
+- curierul o să vină [diseară](time)
+- [aseară](time) am făcut cartofi prăjiți
+- tonerul de la imprimantă s-a terminat [alaltăseară](time)
+- bunica lui Alice va face cozonaci [mâine](time) [dimineață](time)
+- [ieri](time) [seara](time) a fost foarte frig afară
+- de [dimineață](time) trebuie să hrănesc animalele
+- am fost la cumpărături după [amiază](time)
+- la [răsărit](time) a început să cânte cocoșul din grădină
+- evaluarea națională a ținut 2 [ore](time) și 45 de [minute](time)
+- Jacob locuiește în Bremen de un an și 4 [luni](time)
+- trebuie să iau antibioticul o dată la 6 ore
+- bazinul de apă se umple o dată la 30 de minute
+- Marc ia vitaminele de 2 ori pe zi
+- eu merg la sală de 3 ori pe săptămână
+- mgazinul se aprovizionează în fiecare [săptămână](time)
+- în fiecare an apare un nou telefon Samsung Galaxy
+- serviciul funcționează de [luni](time) până [vineri](time)
+- de joi va putea ajunge în Germania cu trenul
+- până pe 24 iunie trebuie să trimit lucrarea de diplomă
+- festivalul de muzică ușoară și dans va fi de pe 1 septembrie pe 10 octombrie
+- de pe 23 până pe 27 am fost în concediu la munte
+- între 3 și 7 ianuarie am fost la conferință în Toronto
+- la polul nord este noapte timp de 6 [luni](time) 
+- Andra și-a ales rochia de bal după 2 [săptămâni](time)
 
 ## intent:get_timestamp
 - [când](query_word_time) vor avea loc alegerile locale din 2020
@@ -241,6 +272,15 @@
 - peste [cât timp](query_word_time) [începe sesiunea de examene](action)
 - când trebuie să merg la control oftalmologic
 - [când](query_word_time) trebuie să iau pastilele de stomac
+- [cât de des](query_word_time) se actualizează sistemul de operare?
+- [cât de des](query_word_time) trebuie să ud florile din fața casei
+- [în ce perioadă](time) se va ține concursul de fizică de la Bacău
+- [în ce perioadă](time) vor avea loc preselecțiile pentru balul bobocilor 
+- [în care perioadă](time) a fost cel mai frig afară?
+- [în ce interval](time) e deschis magazinul Kaufland de la Giurgiu?
+- [în ce interval](time) de timp a avut loc atacul
+- [de când până când](time) se vor închide magazinele
+- [de când până când](time) pot citi indexul de energie electrică
 
 ## intent:get_subject
 - [Cine](query_word_subj) [stă în căminul P16](action)?
