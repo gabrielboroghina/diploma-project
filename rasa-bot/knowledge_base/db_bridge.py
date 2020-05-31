@@ -26,25 +26,29 @@ class QueryBuilder:
 
         if not entity['specifiers']:
             # single node noun phrase
-            query = f' {action} ({eid}:class {{name: "{entity["lemma"]}"}})'
+            query = f' {action} ({eid}:class {{value: "{entity["lemma"]}"}})'
         else:
             # instance node along with some specifiers
-            query = f' {action} (cls:class {{name: "{entity["lemma"]}"}})' \
-                    f' create ({eid}:instance)-[:IS_A]->(cls)'
+            QueryBuilder.id += 1
+            cls_id = f'n{QueryBuilder.id}'
+
+            query = f' {action} ({cls_id}:class {{value: "{entity["lemma"]}"}})' \
+                    f' create ({eid}:instance)-[:IS_A]->({cls_id})'
 
             for spec in entity['specifiers']:
-                inner_query, inner_id, inner_str = QueryBuilder.query_create_noun_phrase(spec, False)
+                inner_query, inner_id, inner_str = \
+                    QueryBuilder.query_create_noun_phrase(spec, spec['question'] == 'al cui')
                 query += inner_query
 
                 # link the nodes
                 if spec['question'] in ['care', 'ce fel de']:
                     query += f' create ({eid})-[:SPEC]->({inner_id})'
-                elif spec['question'] == "al cui":
+                elif spec['question'] == 'al cui':
                     query += f' create ({inner_id})-[:HAS]->({eid})'
 
                 string += " " + inner_str
 
-            query += f' set {eid}.name = "{string}"'
+            query += f' set {eid}.value = "{string}"'
 
         return query, eid, string
 
@@ -54,10 +58,9 @@ class QueryBuilder:
 
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
-        if entity['specifiers']:
-            query = f' match ({eid})-[:IS_A]->({{name: "{entity["lemma"]}"}})'
-        else:
-            query = f' match ({eid} {{name: "{entity["lemma"]}"}})'
+
+        # match the entity as a simple node or as an instance node
+        query = f' match ({eid})-[:IS_A*0..1]->({{value: "{entity["lemma"]}"}})'
 
         for spec in entity['specifiers']:
             inner_query, inner_id = QueryBuilder.query_match_noun_phrase(spec)
@@ -103,17 +106,13 @@ class DbBridge:
         """ Get a detail of an entity from the database. """
 
         query, node_id = QueryBuilder.query_match_noun_phrase(entity)
-        query += f' match ({node_id})-[:{type.value}]->(val) return val'
+        query += f' match ({node_id})-[:{type.value}]->(val) return val, {node_id} as entity'
 
         print(query)
         result = self.session.run(query)
-        values = [record.value() for record in result]
+        values = [[record['val']['value'], record['entity']['value']] for record in result]
 
-        if not values:
-            return "Nu știu"
-        if type == InfoType.LOC:
-            return values[0]['name']
-        return values[0].get('value', "Nicio valoare")
+        return self.__prettyfy_result(values)
 
     def store_action(self, components):
         """
@@ -123,7 +122,7 @@ class DbBridge:
 
         query, subj_node_id, _ = QueryBuilder.query_create_noun_phrase(components['subj'], match_existing=True)
 
-        query += f' create ({subj_node_id})-[:ACTION]->(act:action {{name: "{components["action"]}"}})'
+        query += f' create ({subj_node_id})-[:ACTION]->(act:action {{value: "{components["action"]}"}})'
 
         if components['ce']:
             sub_query, node_id, _ = QueryBuilder.query_create_noun_phrase(components['ce'])
@@ -137,42 +136,56 @@ class DbBridge:
                 query += f' create (act)-[:LOC]->({location_node_id})'
 
         if components['time']:
-            for time in components['time']:
-                query += f' create (act)-[:{time[1].value}]->(t:time {{value: "{time[0]}"}})'
+            for i, time in enumerate(components['time']):
+                query += f' create (act)-[:{time[1].value}]->(t{i}:time {{value: "{time[0]}"}})'
 
         print(query)
         self.session.run(query)
 
     def get_action_time(self, components, info_type=InfoType.TIME_POINT):
+        """
+        Get timestamp of an action expressed through a complex sentence
+        (containing more than the entity whose time is requested).
+        """
+
         # try to find the subject of the action
         query, subj_node_id = QueryBuilder.query_match_noun_phrase(components['subj'])
 
         # match the requested action
-        query += f' match ({subj_node_id})-[:ACTION]->(act {{name: "{components["action"]}"}})'
+        query += f' match ({subj_node_id})-[:ACTION]->(act {{value: "{components["action"]}"}})'
+
+        noun_phrase_nodes = [subj_node_id]
+        if components['ce']:
+            sub_query, node_id = QueryBuilder.query_match_noun_phrase(components['ce'])
+            query += sub_query
+            query += f' match (act)-[:CE]->({node_id})'
+            noun_phrase_nodes.append(node_id)
+
+        if components['loc']:
+            for loc in components['loc']:
+                query_create_location, location_node_id = QueryBuilder.query_match_noun_phrase(loc)
+                query += query_create_location
+                query += f' match (act)-[:LOC]->({location_node_id})'
+                noun_phrase_nodes.append(location_node_id)
+
+        if components['time']:
+            for i, time in enumerate(components['time']):
+                query += f' match (act)-[:{time[1].value}]->(t {{value: "{time[0]}"}})'
 
         # extract the requested property of the action
         query += f' match (act)-[:{info_type.value}]->(time) return time'
+        if noun_phrase_nodes:
+            query += ', ' + ', '.join(noun_phrase_nodes)
         print(query)
         result = self.session.run(query)
-        values = [record.value() for record in result]
+        values = [[record['time']['value']] + [record[np]['value'] for np in noun_phrase_nodes] for record in result]
 
-        return "Nu știu" if not values else values[0].get('value', 'Nicio valoare')
+        return self.__prettyfy_result(values)
 
-    # def set_attr(self, entity_name, attr):
-    #     attr_name, attr_val = attr
-    #     print(f"[DB] Setting attribute to {entity_name} -> {attr_name}:{attr_val}")
-    #
-    #     self.session.run('merge (ent {name: $ent_name})'
-    #                      'create (attr {value: $attr_val})'
-    #                      'create (ent)-[:ATTR {name: $attr_name}]->(attr)',
-    #                      ent_name=entity_name, attr_name=attr_name, attr_val=attr_val)
-    #
-    # def get_attr(self, entity_name, attr_name):
-    #     result = self.session.run('match (p {name: $name})-[:ATTR {name: $attr_name}]->(attr)'
-    #                               'return attr.value', name=entity_name, attr_name=attr_name)
-    #
-    #     values = [record.value() for record in result]
-    #     return "Nu știu" if not values else values[0]
-
-# bridge = DbBridge()
-# print(bridge.get_value())
+    @staticmethod
+    def __prettyfy_result(values):
+        if not values:
+            return "Nu știu"
+        if len(values) == 1:
+            return values[0][0]
+        return '\n'.join([f"* {', '.join(val[1:])} -> {val[0]}" for val in values])

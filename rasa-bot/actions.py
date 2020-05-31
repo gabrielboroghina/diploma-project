@@ -181,6 +181,9 @@ def extract_sentence_components(semantic_roles):
         elif ent['question'] == 'unde':
             components['loc'].append(ent)
         elif ent['question'] in ['când', 'cât timp']:
+            if any(ask_particle in ent['ext_value'].split() for ask_particle in ['când', 'cât', 'ce', 'care']):
+                # this entity is only used to formulate the question
+                continue
             info_type = get_time_type(ent['question'], ent['ext_value'], action)
             components['time'].append((ent['ext_value'], info_type))
 
@@ -207,6 +210,8 @@ class ActionGetTime(Action):
 
         for ent in semantic_roles:
             if ent['question'] in ['ce', 'cine']:
+                if entity:
+                    is_simple_event = False
                 entity = ent
             elif ent['question'] in ['când', 'cât timp']:
                 times.append(ent)
