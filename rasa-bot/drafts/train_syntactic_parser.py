@@ -127,14 +127,14 @@ TRAIN_DATA = [
     (
         "de azi încep tema de la mate",
         {
-            "heads": [1, 2, 2, 2, 6, 6, 3],
-            "deps": ['-', 'când', 'ROOT', 'ce', '-', '-', 'care'],
+            "heads": [1, 2, 2, 2, 5, 6, 3],
+            "deps": ['prep', 'când', 'ROOT', 'ce', '-', '-', 'care'],
         }
     ),
     (
         "peste o săptămână o să vină Alina pe la mine",
         {
-            "heads": [5, 2, 0, 5, 5, 5, 5, 9, 9, 5],
+            "heads": [5, 2, 0, 5, 5, 5, 5, 8, 9, 5],
             "deps": ['când', 'cât', 'cât timp', '-', '-', 'ROOT', 'cine', '-', '-', 'unde'],
         }
     ),
@@ -142,7 +142,7 @@ TRAIN_DATA = [
         "anul trecut am luat un monitor de acasă",
         {
             "heads": [3, 0, 3, 3, 5, 3, 7, 3],
-            "deps": ['când', 'care', '-', 'ROOT', '-', 'ce', '-', 'unde'],
+            "deps": ['când', 'care', '-', 'ROOT', '-', 'ce', 'prep', 'unde'],
         }
     ),
     (
@@ -233,7 +233,7 @@ TRAIN_DATA = [
     (
         "voi avea de făcut rapoartele pentru ultima lună până pe 23 iunie 2021",
         {
-            "heads": [1, 1, 3, 1, 3, 7, 7, 4, 10, 10, 3, 10, 10],
+            "heads": [1, 1, 3, 1, 3, 7, 7, 4, 10, 10, 3, 10, 11],
             "deps": ["-", "ROOT", "-", "ce", "ce", "-", "care", "care", "prep", "-", "când", "care", "care"]
         }
     ),
@@ -384,7 +384,7 @@ TRAIN_DATA = [
         "de obicei merg la alergat în fiecare săptămână pe malul lacului morii",
         {
             "heads": [1, 2, 2, 4, 2, 7, 7, 2, 9, 2, 9, 10],
-            "deps": ["-", "cât de des", "ROOT", "-", "unde", "-", "-", "cât de des", "-", "unde", "al cui", "care"]}
+            "deps": ["-", "cât de des", "ROOT", "-", "unde", "-", "-", "cât de des", "-", "unde", "al cui", "al cui"]}
     ),
     (
         "trebuie să îmi pun picături în ochi de 3 ori pe zi",
@@ -717,18 +717,6 @@ TRAIN_DATA = [
             "deps": ["-", "ROOT", "ce", "-", "-", "care", "-", "unde", "-", "care", "-", "care"]}
     ),
     (
-        "unde am pus caietul de matematică 1",
-        {
-            "heads": [2, 2, 2, 2, 5, 3, 5],
-            "deps": ["unde", "-", "ROOT", "ce", "-", "care", "ce fel de"]}
-    ),
-    (
-        "de unde mi - am luat cravata cea grena",
-        {
-            "heads": [1, 5, 5, 4, 5, 5, 5, 8, 6],
-            "deps": ["prep", "unde", "cui", "-", "-", "ROOT", "ce", "-", "care"]}
-    ),
-    (
         "prețul ceasului meu Atlantic a fost 500 de lei",
         {
             "heads": [5, 0, 1, 1, 5, 5, 5, 8, 6],
@@ -747,12 +735,6 @@ TRAIN_DATA = [
             "deps": ["cine", "al cui", "al cui", "ROOT", "care este", "care", "care"]}
     ),
     (
-        "care sunt cele mai bune întrerupătoare",
-        {
-            "heads": [1, 1, 4, 4, 5, 1],
-            "deps": ["care este", "ROOT", "-", "-", "ce fel de", "cine"]}
-    ),
-    (
         "peste 123 de secunde trecem în noul an",
         {
             "heads": [4, 3, 3, 0, 4, 7, 7, 4],
@@ -765,28 +747,34 @@ TRAIN_DATA = [
             "deps": ["-", "când", "ROOT", "cum este", "cine"]}
     ),
     (
-        "când am fost plecat în Germania",
+        "mâine ajunge Alex la întorsura Buzăului",
         {
-            "heads": [2, 2, 2, 2, 5, 2],
-            "deps": ["când", "-", "ROOT", "ce", "-", "unde"]}
+            "heads": [1, 1, 1, 4, 1, 4],
+            "deps": ["când", "ROOT", "cine", "-", "unde", "al cui"]}
     ),
     (
-        "de cât timp era însurat ghiță",
+        "ieri s-a terminat perioada de pregătire a elevilor",
         {
-            "heads": [2, 2, 3, 3, 3, 3],
-            "deps": ["prep", "cât", "cât timp", "ROOT", "cum este", "cine"]}
+            "heads": [4, 4, 3, 4, 4, 4, 7, 5, 9, 5],
+            "deps": ["când", "pe cine", "-", "-", "ROOT", "cine", "-", "care", "-", "al cui"]}
     ),
     (
-        "cine mi - a reparat bateria de la chiuveta de la baie",
+        "am găsit rezolvarea problemei",
         {
-            "heads": [4, 4, 3, 4, 4, 4, 7, 8, 5, 10, 11, 8],
-            "deps": ["cine", "cui", "-", "-", "ROOT", "ce", "-", "-", "care", "-", "-", "care"]}
+            "heads": [1, 1, 1, 2],
+            "deps": ["-", "ROOT", "ce", "al cui"]}
     ),
     (
-        "care era valoarea maximă a presiunii admise",
+        "trebuie să mă tund până pe 1 iunie",
         {
-            "heads": [1, 1, 1, 2, 5, 2, 5],
-            "deps": ["care este", "ROOT", "cine", "care", "-", "al cui", "care"]}
+            "heads": [0, 3, 3, 0, 6, 6, 3, 6],
+            "deps": ["ROOT", "-", "pe cine", "ce", "prep", "-", "când", "care"]}
+    ),
+    (
+        "miercurea viitoare începe concursul de programare",
+        {
+            "heads": [2, 0, 2, 2, 5, 3],
+            "deps": ["când", "care", "ROOT", "cine", "-", "care"]}
     ),
 
     # ------------------------------------ questions ------------------------------------
@@ -940,10 +928,84 @@ TRAIN_DATA = [
             "heads": [1, 3, 3, 3, 3, 3],
             "deps": ["cât", "cât timp", "-", "ROOT", "cine", "când"]}
     ),
+    (
+        "când am fost plecat în Germania",
+        {
+            "heads": [2, 2, 2, 2, 5, 2],
+            "deps": ["când", "-", "ROOT", "ce", "-", "unde"]}
+    ),
+    (
+        "de cât timp era însurat ghiță",
+        {
+            "heads": [2, 2, 3, 3, 3, 3],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "cum este", "cine"]}
+    ),
+    (
+        "cine mi-a reparat bateria de la chiuveta de la baie",
+        {
+            "heads": [4, 4, 3, 4, 4, 4, 7, 8, 5, 10, 11, 8],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "ce", "-", "-", "care", "-", "-", "care"]}
+    ),
+    (
+        "care era valoarea maximă a presiunii admise",
+        {
+            "heads": [1, 1, 1, 2, 5, 2, 5],
+            "deps": ["care este", "ROOT", "cine", "care", "-", "al cui", "care"]}
+    ),
+    (
+        "care sunt dimensiunile portbagajului de la mașina lui Alin",
+        {
+            "heads": [1, 1, 1, 2, 5, 6, 3, 8, 6],
+            "deps": ["care este", "ROOT", "cine", "al cui", "-", "-", "care", "-", "al cui"]}
+    ),
+    (
+        "unde am pus ciocolata denisei",
+        {
+            "heads": [2, 2, 2, 2, 3],
+            "deps": ["unde", "-", "ROOT", "ce", "al cui"]}
+    ),
+    (
+        "care e temperatura de fierbere a apei",
+        {
+            "heads": [1, 1, 1, 4, 2, 6, 2],
+            "deps": ["care este", "ROOT", "cine", "-", "care", "-", "al cui"]}
+    ),
+    (
+        "sandalele alexandrei sunt de la magazinul colegului lui Mircea",
+        {
+            "heads": [2, 0, 2, 5, 5, 2, 5, 8, 6],
+            "deps": ["cine", "al cui", "ROOT", "prep", "-", "unde", "al cui", "-", "al cui"]}
+    ),
+    (
+        "de unde am cumpărat capacele roților mașinii",
+        {
+            "heads": [1, 3, 3, 3, 3, 4, 5],
+            "deps": ["prep", "unde", "-", "ROOT", "ce", "al cui", "al cui"]}
+    ),
+    (
+        "care sunt cele mai bune întrerupătoare",
+        {
+            "heads": [1, 1, 4, 4, 5, 1],
+            "deps": ["care este", "ROOT", "-", "-", "ce fel de", "cine"]}
+    ),
+    (
+        "unde am pus caietul de matematică 1",
+        {
+            "heads": [2, 2, 2, 2, 5, 3, 5],
+            "deps": ["unde", "-", "ROOT", "ce", "-", "care", "ce fel de"]}
+    ),
+    (
+        "de unde mi - am luat cravata cea grena",
+        {
+            "heads": [1, 5, 5, 4, 5, 5, 5, 8, 6],
+            "deps": ["prep", "unde", "cui", "-", "-", "ROOT", "ce", "-", "care"]}
+    ),
 ]
 
 
 # TODO prepozitiile compuse ar trebui sa fie inlantuite?
+
+# trebuie să mă tund până pe 1 iunie
 
 def analyze_data(phrases):
     """
@@ -1354,7 +1416,7 @@ if __name__ == "__main__":
 
     # uncomment this to train the model before the testing step
 
-    # model = train("spacy_ro", n_iter=40)
+    # model = train("spacy_ro", n_iter=35)
     # store_model(model, '../../models/spacy-syntactic')
 
     # load the last version of the model if the training was not performed

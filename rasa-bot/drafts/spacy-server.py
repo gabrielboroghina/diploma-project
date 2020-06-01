@@ -20,7 +20,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         options = {"add_lemma": True, "compact": True, "fine_grained": False}
 
         htmlDep = displacy.render(doc, style="dep", page=True, options=options)
-        with open("../../MyAnnotator/dep-parse.html", "w", encoding='utf8') as f:
+        with open("dep-parse.html", "w", encoding='utf8') as f:
             f.write(htmlDep)
 
     # Handler for the POST requests
