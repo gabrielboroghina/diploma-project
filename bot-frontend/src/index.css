@@ -26,4 +26,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-family: 'PT Sans', sans-serif;
 }

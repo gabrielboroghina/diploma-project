@@ -29,12 +29,13 @@ function App() {
             }
         ]);
 
-        sendMsgAndGetReply(msg).then((reply) => {
+        sendMsgAndGetReply(msg).then(([reply, predictedIntent]) => {
             setMessages(messages => [
                 ...messages.slice(0, -1),
                 {
                     author: "bot",
-                    text: reply
+                    text: reply,
+                    metadata: `intent: ${predictedIntent.name}, confidence: ${predictedIntent.confidence.toFixed(2)}`
                 }
             ]);
         });
@@ -44,6 +45,9 @@ function App() {
         <>
             <img src={illustration} className="illustration" alt="Bot illustration"/>
             <div className="container">
+                <div className="header">
+                    <p><span style={{color: "#cad9ea"}}>Memento</span> - Memory assistant conversational agent</p>
+                </div>
                 <div className="scrollable-pane">
                     <div className="wrapper">
                         {messages.map((msg, idx) => (
@@ -52,7 +56,6 @@ function App() {
                         ))}
                     </div>
                 </div>
-
                 <InputBox onUserMessage={sendUserInput}/>
             </div>
         </>
@@ -78,6 +81,11 @@ const InputBox = (props) => {
         inputTextField.value = "";
 
         props.onUserMessage(message);
+    };
+
+    document.onkeydown = e => {
+        if (e.ctrlKey && e.key === "i")
+            speechToTextConverter.execute();
     };
 
     return (
@@ -113,9 +121,9 @@ const MessageBubble = (props) => {
         if (lines.length <= 1)
             return lines;
 
-        return lines.map(line => {
+        return lines.map((line, idx) => {
             const tokens = line.split('➜');
-            return <>
+            return <div key={idx}>
                 <span className="emphasized-text">{tokens[0]}</span>
                 <br/>
                 <span>
@@ -123,7 +131,7 @@ const MessageBubble = (props) => {
                     {tokens[1]}
                 </span>
                 <br/>
-            </>;
+            </div>;
         });
     };
 
@@ -138,7 +146,8 @@ const MessageBubble = (props) => {
             <div>
                 {
                     props.author === "bot" &&
-                    <img src={bot} className="persona" style={{textAlign: props.author === "me" ? "right" : "left"}}/>
+                    <img src={bot} className="persona" alt="bot avatar"
+                         style={{textAlign: props.author === "me" ? "right" : "left"}}/>
                 }
                 <div className={"bubble " + (props.author === "me" ? "bubble-right" : "bubble-left")}>
                     {
