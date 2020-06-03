@@ -2,17 +2,22 @@ import React, {useState} from 'react';
 import './App.css';
 import SpeechToText from "./services/speech-to-text";
 import {sendMsgAndGetReply} from "./services/bot-bridge";
+import illustration from './res/illustration_1.png';
+import bot from './res/bot.png';
 
 function App() {
     const [messages, setMessages] = useState([]);
 
     const sendUserInput = (msg, speechToTextConfidence) => {
+        if (!msg.trim().length)
+            return;
+
         setMessages(messages => [
             ...messages,
             {
                 author: "me",
                 text: msg,
-                metadata: speechToTextConfidence ? `speech-to-text confidence: ${speechToTextConfidence}` : "typed"
+                metadata: speechToTextConfidence ? `speech-to-text confidence: ${speechToTextConfidence}` : ""
             }
         ]);
 
@@ -36,27 +41,36 @@ function App() {
     };
 
     return (
-        <div className="container">
-            <div className="scrollable-pane">
-                <div className="wrapper">
-                    {messages.map((msg, idx) => (
-                        <MessageBubble author={msg.author} msg={msg.text} metadata={msg.metadata}
-                                       key={idx}/>
-                    ))}
+        <>
+            <img src={illustration} className="illustration" alt="Bot illustration"/>
+            <div className="container">
+                <div className="scrollable-pane">
+                    <div className="wrapper">
+                        {messages.map((msg, idx) => (
+                            <MessageBubble author={msg.author} msg={msg.text} metadata={msg.metadata}
+                                           key={idx}/>
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            <InputBox onUserMessage={sendUserInput}/>
-        </div>
+                <InputBox onUserMessage={sendUserInput}/>
+            </div>
+        </>
     );
 }
 
 const InputBox = (props) => {
+    const [listeningToUser, setListeningToUser] = useState(false);
+
     const onUserVoiceInput = (msg, confidence) => {
         props.onUserMessage(msg, confidence);
     };
 
-    const speechToTextConverter = new SpeechToText(onUserVoiceInput);
+    const onAudioStateChanged = () => {
+        setListeningToUser(listeningToUser => !listeningToUser);
+    };
+
+    const speechToTextConverter = new SpeechToText(onUserVoiceInput, onAudioStateChanged);
 
     const sendUserInput = () => {
         const inputTextField = document.getElementById("input");
@@ -68,14 +82,16 @@ const InputBox = (props) => {
 
     return (
         <div className="input-box">
+            <div className="spinner-grow" style={{visibility: listeningToUser ? "visible" : "hidden"}}/>
             <button className="icon-btn tooltip" onClick={() => speechToTextConverter.execute()}>
                 <i className="fas fa-microphone"/>
-                <span className="tooltip-text">Utter a request</span>
+                {/*<span className="tooltip-text">Utter a request</span>*/}
             </button>
 
             <input id="input" className="text-field" type="text"
                    placeholder="Type a question or a store request"
                    autoComplete="off"
+                   autoFocus
                    onKeyDown={e => {
                        if (e.key === "Enter") {
                            e.preventDefault();
@@ -83,14 +99,34 @@ const InputBox = (props) => {
                        }
                    }}
             />
-            <button className="icon-btn" onClick={sendUserInput}>
+            <button className="icon-btn tooltip" onClick={sendUserInput}>
                 <i className="fas fa-paper-plane"/>
+                {/*<span className="tooltip-text">Send</span>*/}
             </button>
         </div>
     );
 };
 
 const MessageBubble = (props) => {
+    const MsgFormatter = (props) => {
+        const lines = props.msg.split('\n');
+        if (lines.length <= 1)
+            return lines;
+
+        return lines.map(line => {
+            const tokens = line.split('➜');
+            return <>
+                <span className="emphasized-text">{tokens[0]}</span>
+                <br/>
+                <span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {tokens[1]}
+                </span>
+                <br/>
+            </>;
+        });
+    };
+
     return (
         <div className="stack-layer">
             {
@@ -99,12 +135,18 @@ const MessageBubble = (props) => {
                     {props.metadata}
                 </p>
             }
-            <div className={"bubble " + (props.author === "me" ? "bubble-right" : "bubble-left")}>
+            <div>
                 {
-                    props.msg
-                        ? props.msg
-                        : <TypingIndicator/>
+                    props.author === "bot" &&
+                    <img src={bot} className="persona" style={{textAlign: props.author === "me" ? "right" : "left"}}/>
                 }
+                <div className={"bubble " + (props.author === "me" ? "bubble-right" : "bubble-left")}>
+                    {
+                        props.msg
+                            ? <MsgFormatter msg={props.msg}/>
+                            : <TypingIndicator/>
+                    }
+                </div>
             </div>
         </div>
     );

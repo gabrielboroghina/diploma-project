@@ -1,7 +1,7 @@
 const SpeechRecognition = window.webkitSpeechRecognition;
 
 class SpeechToText {
-    constructor(onSpeechResult) {
+    constructor(onSpeechResult, onAudioStateChanged) {
         let recognition = new SpeechRecognition();
         this.recognition = recognition;
         recognition.lang = 'ro-RO';
@@ -39,12 +39,14 @@ class SpeechToText {
         recognition.onaudiostart = function (event) {
             //Fired when the user agent has started to capture audio.
             console.log('SpeechRecognition.onaudiostart');
+            onAudioStateChanged();
         };
 
         recognition.onaudioend = function (event) {
             //Fired when the user agent has finished capturing audio.
             console.log('SpeechRecognition.onaudioend');
             recognition.stop();
+            onAudioStateChanged();
         };
 
         recognition.onend = function (event) {

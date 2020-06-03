@@ -24,7 +24,7 @@
 }
 
 .ticontainer .tidot {
-    background-color: #feffff;
+    background-color: #3b3c3c;
 }
 
 .tidot {
@@ -76,22 +76,27 @@
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltip-text {
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+
     visibility: hidden;
-    width: 120px;
+
     background-color: #555;
     color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 5px 0;
+
     position: absolute;
+    border-radius: 4px;
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -60px;
+
+    /*margin-left: -60px;*/
+    padding: 5px 10px;
+
     opacity: 0;
     transition: opacity 0.3s;
     transition-delay: 1s;
@@ -121,7 +126,7 @@
     flex-flow: column;
 
     background-color: white;
-    height: 80%;
+    height: 70%;
     width: 60%;
     max-width: 700px;
     box-sizing: border-box;
@@ -146,10 +151,6 @@
 
     box-sizing: border-box;
     padding: 15px 0;
-}
-
-.wrapper {
-
 }
 
 .text-field {
@@ -197,7 +198,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /*flex: 0 1 auto;*/
 
     background-color: white;
     width: 100%;
@@ -210,7 +210,7 @@
     height: auto;
     max-width: 65%;
 
-    padding: 7px 15px;
+    padding: 6px 15px;
 
     border-radius: 15px;
     color: white;
@@ -231,13 +231,14 @@
 .bubble-left {
     float: left;
 
-    background-color: rgba(164, 165, 165, 0.92);
+    background-color: rgba(224, 224, 224, 0.92);
+    color: #000000;
 }
 
 .bubble-right {
     float: right;
 
-    background-color: rgba(135, 130, 214, 0.92);
+    background-color: rgba(110, 57, 113, 0.92);
 
     animation: fadein;
     animation-duration: 0.3s;
@@ -267,4 +268,66 @@
     padding: 5px 30px;
 
     overflow: auto;
+}
+
+.emphasized-text {
+    color: rgb(96, 125, 191);
+    /*font-style: italic;*/
+}
+
+.illustration {
+    position: fixed;
+    left: 2%;
+    top: 0;
+
+    width: 25%;
+}
+
+@media only screen and (max-width: 800px) {
+    .illustration {
+        width: 50%;
+    }
+}
+
+.persona {
+    height: 25px;
+
+    background-color: #dbcbb2;
+    border-radius: 25px;
+
+    float: left;
+
+    margin-right: 5px;
+}
+
+@-webkit-keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.spinner-grow {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: text-bottom;
+    background-color: #ff2b33;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-animation: spinner-grow 0.75s linear infinite;
+    animation: spinner-grow 0.75s linear infinite;
 }

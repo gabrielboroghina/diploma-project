@@ -1,13 +1,12 @@
 import axios from 'axios';
 
-export const sendMsgAndGetReply = async (msg) => {
-    // axios.post();
+const BOT_ENDPOINT = 'http://127.0.0.1:5005/webhooks/rest/webhook';
 
-    await new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, 2000);
+export const sendMsgAndGetReply = async (msg) => {
+    const response = await axios.post(BOT_ENDPOINT, {
+        sender: "anonymus",
+        message: msg
     });
-    const botReply = "RASA replied";
-    return botReply;
+
+    return response.data?.[0]?.text || "Am întâmpinat o eroare 😥";
 };
