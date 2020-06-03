@@ -1,0 +1,119 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+
+    background-color: white;
+    height: 80%;
+    width: 60%;
+    max-width: 700px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px rgba(113, 108, 112, 0.59);
+
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        margin: 0 20px;
+    }
+}
+
+.text-field {
+    flex-grow: 1;
+
+    padding: 10px 15px;
+    margin: 0 15px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 15px;
+
+    background-color: rgba(234, 234, 234, 0.93);
+}
+
+.text-field:hover, .text-field:focus {
+    outline: none;
+}
+
+.icon-btn {
+    height: 30px;
+    width: 30px;
+
+    border-style: none;
+    border-radius: 20px;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    /*background-color: rgba(215, 216, 216, 0.93);*/
+}
+
+.icon-btn:active {
+    background-color: rgba(200, 201, 201, 0.93);
+    outline: none;
+}
+
+.icon-btn:focus {
+    outline: none;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*flex: 0 1 auto;*/
+
+    background-color: white;
+    width: 100%;
+
+    box-sizing: border-box;
+    padding: 10px 15px;
+}
+
+.scrollable-pane {
+    flex-grow: 1;
+    overflow: auto;
+
+    box-sizing: border-box;
+    padding: 15px 0;
+}
+
+.bubble {
+    height: auto;
+    max-width: 65%;
+
+    padding: 8px 15px;
+
+    border-radius: 12px;
+    color: white;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9em;
+}
+
+.bubble-left {
+    float: left;
+
+    background-color: rgba(164, 165, 165, 0.92);
+}
+
+.bubble-right {
+    float: right;
+
+    background-color: rgba(135, 130, 214, 0.92);
+}
+
+.stack-layer {
+    height: auto;
+    width: 100%;
+
+    box-sizing: border-box;
+    padding: 5px 30px;
+
+    overflow: auto;
+}
