@@ -188,4 +188,4 @@ class DbBridge:
             return "Nu știu"
         if len(values) == 1:
             return values[0][0]
-        return '\n'.join([f"* {', '.join(val[1:])} -> {val[0]}" for val in values])
+        return '\n'.join([f"▪ {', '.join(val[1:])}: ➜ {val[0]}" for val in values])

@@ -2,7 +2,8 @@ import spacy
 from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-from print_utils import TermColors
+from drafts.types import dependency_types
+from drafts.print_utils import TermColors
 
 test_sentences = [
     (
@@ -181,27 +182,60 @@ test_sentences = [
             "heads": [3, 0, 3, 3, 3, 3, 5, 3, 7],
             "deps": ["cui", "-", "-", "ROOT", "cui", "ce", "al cui", "când", "care"]}
     ),
-]
-
-dependency_types = [
-    "-",
-    "prep",
-    "ROOT",
-    "cine",
-    "care",
-    "ce fel de",
-    "ce",
-    "pe cine",
-    "unde",
-    "când",
-    "cât timp",
-    "cât de des",
-    "cum este",
-    "ce este",
-    "care este",
-    "al cui",
-    "cât",
-    "cui",
+    (
+        "care este tipografia centrală din orașul lui Marian",
+        {
+            "heads": [1, 1, 1, 2, 5, 2, 7, 5],
+            "deps": ["care este", "ROOT", "cine", "care", "prep", "care", "-", "al cui"]}
+    ),
+    (
+        "de cât timp era însurat Ghiță",
+        {
+            "heads": [2, 2, 3, 3, 3, 3],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "cum este", "cine"]}
+    ),
+    (
+        "acum 3 ore mi s-a stricat fermoarul rucsacului de laptop",
+        {
+            "heads": [2, 2, 7, 7, 7, 4, 7, 7, 7, 8, 12, 9],
+            "deps": ["prep", "cât", "cât timp", "cui", "pe cine", "-", "-", "ROOT", "cine", "al cui", "prep", "care"]}
+    ),
+    (
+        "de unde am cumpărat uscătorul de păr al Dianei",
+        {
+            "heads": [1, 3, 3, 3, 3, 6, 4, 8, 4],
+            "deps": ["prep", "unde", "-", "ROOT", "ce", "prep", "care", "-", "al cui"]}
+    ),
+    (
+        "cât timp am așteptat la coadă la pâine",
+        {
+            "heads": [1, 3, 3, 3, 5, 3, 7, 3],
+            "deps": ["cât", "cât timp", "-", "ROOT", "prep", "unde", "prep", "unde"]}
+    ),
+    (
+        "de unde a luat Mihaela revista cu benzi desenate",
+        {
+            "heads": [3, 3, 3, 3, 3, 3, 7, 5, 7],
+            "deps": ["prep", "unde", "-", "ROOT", "cine", "ce", "prep", "care", "ce fel de"]}
+    ),
+    (
+        "peste cât timp se finalizează selecția studenților pentru master",
+        {
+            "heads": [2, 2, 4, 4, 5, 4, 5, 8, 5],
+            "deps": ["prep", "cât", "cât timp", "-", "cine", "cine", "al cui", "prep", "care"]}
+    ),
+    (
+        "valoarea prețului se modifică o dată la 4 luni",
+        {
+            "heads": [3, 0, 3, 3, 5, 3, 8, 8, 3],
+            "deps": ["cine", "al cui", "-", "ROOT", "cât", "cât de des", "prep", "cât", "la cât timp"]}
+    ),
+    (
+        "trebuie să mă tund până pe 1 iunie",
+        {
+            "heads": [0, 3, 3, 0, 5, 6, 3, 6],
+            "deps": ["ROOT", "-", "pe cine", "ce", "-", "prep", "când", "care"]}
+    ),
 ]
 
 
@@ -229,18 +263,24 @@ if __name__ == "__main__":
 
     # evaluate predictions
     for i, doc in enumerate(docs):
-        for token in doc:
-            if token.dep_ != "-":
-                print(TermColors.YELLOW, token.dep_, TermColors.ENDC, f'[{token.head.text}] ->',
-                      TermColors.PINK, token.text, TermColors.ENDC)
-
         true_sentence_deps = test_sentences[i][1]
 
         # evaluate dependencies (syntactic questions) prediction
-        deps_true += true_sentence_deps['deps']
-        deps_pred += [token.dep_ for token in doc]
-        print(true_sentence_deps['deps'])
-        print([token.dep_ for token in doc])
+        sentence_deps_true = true_sentence_deps['deps']
+        sentence_deps_pred = [token.dep_ for token in doc]
+
+        deps_true += sentence_deps_true
+        deps_pred += sentence_deps_pred
+
+        if any(true != pred for (true, pred) in zip(sentence_deps_true, sentence_deps_pred)):
+            print()
+            print(sentence_deps_true)
+            print(sentence_deps_pred)
+
+            for token in doc:
+                if token.dep_ != "-":
+                    print(TermColors.YELLOW, token.dep_, TermColors.ENDC, f'[{token.head.text}] ->',
+                          TermColors.PINK, token.text, TermColors.ENDC)
 
         # evaluate heads prediction
         for j, token in enumerate(doc):
@@ -249,10 +289,13 @@ if __name__ == "__main__":
             num_deps[true_sentence_deps['deps'][j]] += 1
 
     print("Number of test examples", len(test_sentences))
+
+    # print syntactic questions evaluation scores
     print("Syntactic questions accuracy:")
     print(classification_report(deps_true, deps_pred, zero_division=0))
     plot_confusion_matrix(deps_true, deps_pred, dependency_types)
 
+    # print heads prediction accuracies
     print("Heads accuracy: ", sum(correct_heads.values()) / sum(num_deps.values()), '\n')
 
     for dep in dependency_types:

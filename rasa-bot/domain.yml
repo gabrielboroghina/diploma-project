@@ -55,10 +55,10 @@ actions:
 
 responses:
   utter_greet:
-    - text: "Salutare!"
-    - text: "Hei!"
-    - text: "Salut"
-    - text: "Bună"
+    - text: "Salutare! 🙂"
+    - text: "Hei! 😀"
+    - text: "Salut 🙂"
+    - text: "Bună 🙂"
 
   utter_happy:
     - text: "Super!"

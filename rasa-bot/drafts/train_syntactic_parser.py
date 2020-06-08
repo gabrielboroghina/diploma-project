@@ -21,8 +21,11 @@ from pathlib import Path
 import spacy
 from spacy.tokens import Span
 from spacy.util import minibatch, compounding
+import matplotlib.pyplot as plt
+import numpy as np
+from drafts.types import dependency_types
 
-from print_utils import TermColors
+from drafts.print_utils import TermColors
 
 # training data: texts, heads and dependency labels
 # for no relation, we simply chose an arbitrary dependency label, e.g. '-'
@@ -58,8 +61,8 @@ TRAIN_DATA = [
     (
         "peste o săptămână o să vină Alina pe la mine",
         {
-            "heads": [5, 2, 0, 5, 5, 5, 5, 8, 9, 5],
-            "deps": ['când', 'cât', 'cât timp', '-', '-', 'ROOT', 'cine', '-', 'prep', 'unde'],
+            "heads": [2, 2, 5, 5, 5, 5, 5, 8, 9, 5],
+            "deps": ['prep', 'cât', 'cât timp', '-', '-', 'ROOT', 'cine', '-', 'prep', 'unde'],
         }
     ),
     (
@@ -130,8 +133,8 @@ TRAIN_DATA = [
     (
         "ultima zi de lucru a mea e peste două săptămâni",
         {
-            "heads": [1, 6, 3, 1, 5, 1, 6, 6, 9, 7],
-            "deps": ['care', 'cine', 'prep', 'care', '-', 'al cui', 'ROOT', 'când', 'cât', 'cât timp'],
+            "heads": [1, 6, 3, 1, 5, 1, 6, 9, 9, 6],
+            "deps": ['care', 'cine', 'prep', 'care', '-', 'al cui', 'ROOT', 'prep', 'cât', 'cât timp'],
         }
     ),
     (
@@ -199,26 +202,26 @@ TRAIN_DATA = [
     (
         "acela și-a făcut tema acum 2 zile",
         {
-            "heads": [4, 4, 1, 4, 4, 4, 5, 8, 6],
-            "deps": ["cine", "cui", "-", "-", "ROOT", "ce", "când", "cât", "cât timp"]}
+            "heads": [4, 4, 1, 4, 4, 4, 8, 8, 5],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "ce", "prep", "cât", "cât timp"]}
     ),
     (
         "am terminat de spălat vasele acum 30 de minute",
         {
-            "heads": [1, 1, 3, 1, 3, 1, 8, 8, 5],
-            "deps": ["-", "ROOT", "-", "ce", "ce", "când", "cât", "prep", "cât timp"]}
+            "heads": [1, 1, 3, 1, 3, 8, 8, 8, 1],
+            "deps": ["-", "ROOT", "-", "ce", "ce", "prep", "cât", "prep", "cât timp"]}
     ),
     (
-        "acum un an aveam 60 de kilograme",
+        "acum 3 ore aveam 60 de kilograme",
         {
-            "heads": [3, 2, 0, 3, 6, 6, 3],
-            "deps": ["când", "-", "cât timp", "ROOT", "cât", "prep", "ce"]}
+            "heads": [2, 2, 3, 3, 6, 6, 3],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "cât", "prep", "ce"]}
     ),
     (
-        "ultima dată m-am tuns acum 2 săptămâni",
+        "ultima dată m-am tuns acum 2 luni",
         {
-            "heads": [1, 5, 5, 2, 5, 5, 5, 8, 6],
-            "deps": ["care", "când", "pe cine", "-", "-", "ROOT", "când", "cât", "cât timp"]}
+            "heads": [1, 5, 5, 2, 5, 5, 8, 8, 5],
+            "deps": ["care", "când", "pe cine", "-", "-", "ROOT", "prep", "cât", "cât timp"]}
     ),
     (
         "afară e foarte frig de azi de la prânz",
@@ -389,10 +392,10 @@ TRAIN_DATA = [
             "deps": ["cine", "prep", "care", "-", "ROOT", "prep", "când", "care"]}
     ),
     (
-        "mi-am făcut pașaportul acum un an",
+        "mi-am făcut pașaportul acum 3 săptămâni",
         {
-            "heads": [3, 0, 3, 3, 3, 3, 7, 5],
-            "deps": ["cui", "-", "-", "ROOT", "ce", "când", "cât", "cât timp"]}
+            "heads": [3, 0, 3, 3, 3, 7, 7, 3],
+            "deps": ["cui", "-", "-", "ROOT", "ce", "prep", "cât", "cât timp"]}
     ),
     (
         "concursul va fi pe 12 ianuarie",
@@ -457,8 +460,8 @@ TRAIN_DATA = [
     (
         "peste 2 ani o să termin masterul",
         {
-            "heads": [5, 2, 0, 5, 5, 5, 5],
-            "deps": ["când", "cât", "cât timp", "-", "-", "ROOT", "ce"]}
+            "heads": [2, 2, 5, 5, 5, 5, 5],
+            "deps": ["prep", "cât", "cât timp", "-", "-", "ROOT", "ce"]}
     ),
     (
         "mi-am făcut analize primăvara trecută",
@@ -493,8 +496,8 @@ TRAIN_DATA = [
     (
         "întâlnirea cu managerul este peste o jumătate de oră",
         {
-            "heads": [3, 2, 0, 3, 3, 6, 4, 8, 6],
-            "deps": ["cine", "prep", "care", "ROOT", "când", "cât", "cât timp", "prep", "ce fel de"]}
+            "heads": [3, 2, 0, 3, 6, 6, 3, 8, 6],
+            "deps": ["cine", "prep", "care", "ROOT", "prep", "cât", "cât timp", "prep", "ce fel de"]}
     ),
     (
         "pălăria Adinei este frumoasă",
@@ -511,8 +514,8 @@ TRAIN_DATA = [
     (
         "acum un an cineva a scris numele acolo",
         {
-            "heads": [5, 2, 0, 5, 5, 5, 5, 5],
-            "deps": ["când", "cât", "cât timp", "cine", "-", "ROOT", "ce", "unde"]}
+            "heads": [2, 2, 5, 5, 5, 5, 5, 5],
+            "deps": ["prep", "cât", "cât timp", "cine", "-", "ROOT", "ce", "unde"]}
     ),
     (
         "am lăsat lădița cu cartofi în pivniță",
@@ -607,14 +610,14 @@ TRAIN_DATA = [
     (
         "sesiunea din browser a expirat acum 10 secunde",
         {
-            "heads": [4, 2, 0, 4, 4, 4, 7, 5],
-            "deps": ["cine", "prep", "care", "-", "ROOT", "când", "cât", "cât timp"]}
+            "heads": [4, 2, 0, 4, 4, 7, 7, 4],
+            "deps": ["cine", "prep", "care", "-", "ROOT", "prep", "cât", "cât timp"]}
     ),
     (
         "peste 2 ani termină Nicoleta masterul",
         {
-            "heads": [3, 2, 0, 3, 3, 3],
-            "deps": ["când", "cât", "cât timp", "ROOT", "cine", "ce"]}
+            "heads": [2, 2, 3, 3, 3, 3],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "cine", "ce"]}
     ),
     (
         "prețul canapelei a fost de 1300 de lei",
@@ -667,8 +670,8 @@ TRAIN_DATA = [
     (
         "peste 123 de secunde trecem în noul an",
         {
-            "heads": [4, 3, 3, 0, 4, 7, 7, 4],
-            "deps": ["când", "cât", "prep", "cât timp", "ROOT", "prep", "care", "unde"]}
+            "heads": [3, 3, 3, 4, 4, 7, 7, 4],
+            "deps": ["prep", "cât", "prep", "cât timp", "ROOT", "prep", "care", "unde"]}
     ),
     (
         "la primăvară e gata blocul",
@@ -773,6 +776,109 @@ TRAIN_DATA = [
         {
             "heads": [4, 2, 0, 4, 4, 6, 4, 8, 4],
             "deps": ["cine", "prep", "care", "-", "ROOT", "prep", "unde", "prep", "unde"]}
+    ),
+    (
+        "cardul de memorie al telefonului e în cutia albastră din sertarul lui Adrian Enache",
+        {
+            "heads": [5, 2, 0, 4, 0, 5, 7, 5, 7, 10, 7, 12, 10, 12],
+            "deps": ["cine", "prep", "care", "-", "care", "ROOT", "prep", "unde", "care", "prep", "care", "-", "al cui",
+                     "care"]}
+    ),
+    (
+        "dioptriile mele de la ochelari erau ultima dată acestea",
+        {
+            "heads": [5, 0, 3, 4, 0, 5, 7, 5, 5],
+            "deps": ["cine", "al cui", "-", "prep", "care", "ROOT", "care", "când", "care este"]}
+    ),
+    (
+        "sala laboratorului de PP este EG321",
+        {
+            "heads": [4, 0, 3, 1, 4, 4],
+            "deps": ["cine", "al cui", "prep", "care", "ROOT", "care este"]}
+    ),
+    (
+        "până sâmbătă a fost interzis accesul",
+        {
+            "heads": [1, 3, 3, 3, 3, 3],
+            "deps": ["prep", "când", "-", "ROOT", "cum este", "cine"]}
+    ),
+    (
+        "numărul blocului fratelui Mihaelei este 10",
+        {
+            "heads": [4, 0, 1, 2, 4, 4],
+            "deps": ["cine", "al cui", "al cui", "al cui", "ROOT", "care este"]}
+    ),
+    (
+        "codul PIN de la cardul meu de sănătate este 0000",
+        {
+            "heads": [8, 0, 3, 4, 0, 4, 7, 4, 8, 8],
+            "deps": ["cine", "care", "-", "prep", "care", "al cui", "prep", "care", "ROOT", "care este"]}
+    ),
+    (
+        "viteza trenurilor din România este foarte mică",
+        {
+            "heads": [4, 0, 3, 1, 4, 6, 4],
+            "deps": ["cine", "al cui", "prep", "care", "ROOT", "-", "cum este"]}
+    ),
+    (
+        "numărul de telefon al lui Dan Miron este 4312321",
+        {
+            "heads": [7, 2, 0, 5, 5, 0, 5, 7, 7],
+            "deps": ["cine", "prep", "care", "-", "-", "al cui", "care", "ROOT", "care este"]}
+    ),
+    (
+        "seria mea de la buletin este GG2020",
+        {
+            "heads": [5, 0, 3, 4, 0, 5, 5],
+            "deps": ["cine", "al cui", "-", "prep", "care", "ROOT", "care este"]}
+    ),
+    (
+        "secvența de mutări pentru câștigarea jocului este ab43bdnfdsa90",
+        {
+            "heads": [6, 2, 0, 4, 0, 4, 6, 6],
+            "deps": ["cine", "prep", "care", "prep", "care", "al cui", "ROOT", "care este"]}
+    ),
+    (
+        "prețul canapelei a fost 1300 de lei",
+        {
+            "heads": [3, 0, 3, 3, 3, 6, 4],
+            "deps": ["cine", "al cui", "-", "ROOT", "care este", "prep", "ce fel de"]}
+    ),
+    (
+        "trebuie să deschid poarta casei în 30 de secunde",
+        {
+            "heads": [0, 2, 0, 2, 3, 8, 8, 8, 2],
+            "deps": ["ROOT", "-", "ce", "ce", "al cui", "prep", "cât", "prep", "cât timp"]}
+    ),
+    (
+        "suprafața apartamentului de la Ploiești este de 60mp",
+        {
+            "heads": [5, 0, 3, 4, 1, 5, 7, 5],
+            "deps": ["cine", "al cui", "-", "prep", "care", "ROOT", "prep", "care este"]}
+    ),
+    (
+        "lunea trecută a sosit mobilă pentru noua terasă",
+        {
+            "heads": [3, 0, 3, 3, 3, 7, 7, 4],
+            "deps": ["când", "care", "-", "ROOT", "ce", "prep", "care", "ce fel de"]}
+    ),
+    (
+        "în care săptămână e examenul de învățare automată",
+        {
+            "heads": [2, 2, 3, 3, 3, 6, 4, 6],
+            "deps": ["prep", "care", "când", "ROOT", "cine", "prep", "care", "ce fel de"]}
+    ),
+    (
+        "unde am lăsat șosetele norocoase de la colegul meu",
+        {
+            "heads": [2, 2, 2, 2, 3, 6, 7, 3, 7],
+            "deps": ["unde", "-", "ROOT", "ce", "care", "-", "prep", "care", "al cui"]}
+    ),
+    (
+        "Bianca Zăvelcă o să se ducă la facultate la anul",
+        {
+            "heads": [5, 0, 5, 5, 5, 5, 7, 5, 9, 5],
+            "deps": ["cine", "care", "-", "-", "-", "ROOT", "prep", "unde", "prep", "când"]}
     ),
 
     # ------------------------------------ questions ------------------------------------
@@ -1004,12 +1110,38 @@ TRAIN_DATA = [
             "heads": [2, 2, 5, 5, 5, 5, 5, 5],
             "deps": ["prep", "cât", "cât timp", "-", "-", "ROOT", "cum este", "cine"]}
     ),
+    (
+        "care sunt ministerele cu probleme",
+        {
+            "heads": [1, 1, 1, 4, 2],
+            "deps": ["care este", "ROOT", "cine", "prep", "care"]}
+    ),
+    (
+        "cine a văzut un arici mic în curte aseară",
+        {
+            "heads": [2, 2, 2, 4, 2, 4, 7, 2, 2],
+            "deps": ["cine", "-", "ROOT", "-", "ce", "ce fel de", "prep", "unde", "când"]}
+    ),
+    (
+        "despre ce task au vorbit colegii ieri la ședință",
+        {
+            "heads": [2, 2, 4, 4, 4, 4, 4, 8, 4],
+            "deps": ["prep", "care", "comp ind", "-", "ROOT", "cine", "când", "prep", "unde"]}
+    ),
+    (
+        "unde și-a pus Evelina geamantanul cu haine",
+        {
+            "heads": [4, 4, 1, 4, 4, 4, 4, 8, 6],
+            "deps": ["unde", "cui", "-", "-", "ROOT", "cine", "ce", "prep", "care"]}
+    ),
+    (
+        "peste câte ore se termină programul de la mașina de spălat",
+        {
+            "heads": [2, 2, 4, 4, 4, 4, 7, 8, 5, 10, 8],
+            "deps": ["prep", "cât", "cât timp", "-", "ROOT", "cine", "-", "prep", "care", "prep", "care"]}
+    ),
 ]
 
-
-# TODO prepozitiile compuse ar trebui sa fie inlantuite?
-
-# trebuie să mă tund până pe 1 iunie
 
 def analyze_data(phrases):
     """
@@ -1025,6 +1157,17 @@ def analyze_data(phrases):
     dep_freq = {k: v for k, v in sorted(dep_freq.items(), key=lambda item: item[1])}
     print('Depencencies frequencies:')
     print(dep_freq)
+
+    print("TRAIN EXAMPLES: ", len(TRAIN_DATA))
+
+    y_pos = np.arange(len(dependency_types))
+
+    plt.barh(y_pos, [dep_freq[q] for q in dependency_types], align='center', alpha=0.5)
+    plt.yticks(y_pos, dependency_types)
+    plt.xlabel('Number of examples')
+    plt.ylabel('Syntactic question (label)')
+    plt.title('Syntactic question frequencies over train examples')
+    plt.show()
 
 
 @plac.annotations(
@@ -1048,7 +1191,6 @@ def train(model=None, n_iter=30):
     # nlp.add_pipe(parser, first=True)
     parser = [pipe for (name, pipe) in nlp.pipeline if name == "parser"][0]
 
-    print("TRAIN EXAMPLES: ", len(TRAIN_DATA))
     for text, annotations in TRAIN_DATA:
         for dep in annotations.get("deps", []):
             parser.add_label(dep)
@@ -1417,7 +1559,7 @@ if __name__ == "__main__":
     analyze_data(TRAIN_DATA)
 
     # uncomment this to train the model before the testing step
-    model = train("spacy_ro", n_iter=30)
+    model = train("spacy_ro", n_iter=35)
     store_model(model, '../../models/spacy-syntactic')
 
     # test the model
