@@ -66,6 +66,21 @@
 - am lăsat suportul de brad la țară în garaj
 - pachetul de creioane colorate este pe polița de pe perete
 - mi-am așezat prosoapele pe suport
+- am cumpărat florile [de la](prep) mireille
+- am luat veioza [de la](prep) București
+- sandalele sunt de la magazinul benvenutti
+- trandafirii sunt [de la](prep) Nicu
+- chitara mea este de la Andrei
+- am mers cu mașina până la Iași
+- telefonul lui Jan este [pe](prep) noptieră
+- tricoul meu de alergat e în șifonier pe hol
+- trusa de machiaj a Anisiei este în geamantanul verde
+- ganterele lui Horia sunt sub canapea
+- bormașina cu percuție a lui Vlad e [la](prep) Timișoara
+- pungile acestea sunt de la mall
+- Bob se află [pe](prep) stația spațială
+- Clara a venit [de pe](prep) muntele Olimp
+- Rodica se întoarce [de la](prep) festivalul Untold
 
 ## intent:get_location
 - [Unde](query_word_loc) se află ochelarii
@@ -244,9 +259,9 @@
 - la [răsărit](time) a început să cânte cocoșul din grădină
 - evaluarea națională a ținut 2 [ore](time) și 45 de [minute](time)
 - Jacob locuiește în Bremen de un an și 4 [luni](time)
-- trebuie să iau antibioticul o dată la 6 ore
+- trebuie să iau antibioticul o dată la 6 [ore](time)
 - bazinul de apă se umple o dată la 30 de minute
-- Marc ia vitaminele de 2 ori pe zi
+- Marc ia vitaminele de 2 ori pe [zi](time)
 - eu merg la sală de 3 ori pe săptămână
 - mgazinul se aprovizionează în fiecare [săptămână](time)
 - în fiecare an apare un nou telefon Samsung Galaxy
@@ -254,10 +269,11 @@
 - de joi va putea ajunge în Germania cu trenul
 - până pe 24 iunie trebuie să trimit lucrarea de diplomă
 - festivalul de muzică ușoară și dans va fi de pe 1 septembrie pe 10 octombrie
-- de pe 23 până pe 27 am fost în concediu la munte
+- de pe 23 până pe 27 am fost în concediu
 - între 3 și 7 ianuarie am fost la conferință în Toronto
 - la polul nord este noapte timp de 6 [luni](time) 
 - Andra și-a ales rochia de bal după 2 [săptămâni](time)
+- de la [ora](time) 18 se oprește curentul electric
 
 ## intent:get_timestamp
 - [când](query_word_time) vor avea loc alegerile locale din 2020

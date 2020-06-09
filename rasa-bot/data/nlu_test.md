@@ -27,6 +27,14 @@
 - am lăsat mașina la service-ul auto din Crângași
 - pliculețele de praf de copt sunt în cutiuța din primul sertar
 - am așezat etuiul de la ochelari peste teancul de reviste din hol
+- am luat ornamentele de la dedeman
+- roșiile din lădiță sunt de la țară
+- gladiolele sunt de la florăria din oraș
+- cartea de matematică a Mariei este pe biroul meu
+- insigna de la facultate este pe rucsacul negru
+- geanta de voiaj este de la Samsonite
+- cadoul este de la colegul meu de apartament
+- am luat ochelarii de la mall
 
 ## intent:get_location
 - unde am pus caietul de matematică 1?
@@ -96,7 +104,7 @@
 - care bomboane sunt de la auchan
 
 ## intent:store_timestamp
-- mâine se termină perioada de rodaj al mașinii
+- mâine se termină perioada de rodaj a mașinii
 - examenul la ML este peste 4 zile
 - testul practic de EIM o să fie săptămâna viitoare
 - peste o zi expiră prăjiturile
@@ -135,6 +143,7 @@
 - de când până când se va lucra la reamenajarea clădirii?
 - în ce perioadă se vor da biletele gratis la operă
 - în ce interval o să se ia apa la apartament
+- peste cât timp o să se aprindă focul de tabără
 
 ## intent:get_subject
 - cine a inventat motorul cu reacție
