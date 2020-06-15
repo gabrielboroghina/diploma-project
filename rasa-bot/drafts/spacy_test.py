@@ -7,7 +7,7 @@ from spacy import displacy
 from spacy.tokens import Span
 # from dexBridge import DexBridge
 from spacy.lang.ro import tag_map
-from print_utils import TermColors
+from drafts.print_utils import TermColors
 
 nlp = spacy.load("spacy_ro")
 # nlp = spacy.load("../../UD_Romanian-RRT/models/model-best")

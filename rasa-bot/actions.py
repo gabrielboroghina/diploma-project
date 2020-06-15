@@ -7,6 +7,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from rasa_sdk.forms import FormAction
+import re
 
 from knowledge_base.db_bridge import DbBridge
 from knowledge_base.types import InfoType
@@ -43,13 +44,6 @@ class ActionStoreAttribute(Action):
             db_bridge.set_value(entity, value)
         else:
             dispatcher.utter_message(entity_extraction_failure_msg)
-
-        # doc = self.spacy_nlp(phrase)
-        # dispatcher.utter_message(' '.join([token.tag_ for token in doc]))
-        #
-        # object = list(tracker.get_latest_entity_values('obj'))
-        # attribute = list(tracker.get_latest_entity_values('location'))
-        # dispatcher.utter_message(f"{object} -> {attribute}")
 
         return []
 
@@ -145,13 +139,16 @@ def get_time_type(question, phrase, action):
 
     info_type = InfoType.TIME_POINT
 
-    if question == "cât timp":
-        info_type = InfoType.TIME_DURATION
-    elif phrase in ["de când"] or action in ["începe", "porni", "apărea", "veni"]:
+    if phrase.startswith("de ") or action in ["începe", "porni"]:
         info_type = InfoType.TIME_START
-    elif phrase in ["până când"] or action in ["termina", "sfârși", "încheia", "finaliza"]:
+    elif phrase.startswith("până ") or action in ["termina", "sfârși", "încheia", "finaliza"]:
         info_type = InfoType.TIME_END
+    elif question == "cât timp" and re.match(r'^(?:acum|peste|după|la) ', phrase):
+        info_type = InfoType.TIME_POINT
+    elif question == "cât timp" or phrase in ["cât timp"]:
+        info_type = InfoType.TIME_DURATION
 
+    print("Time indicator type", info_type.name)
     return info_type
 
 

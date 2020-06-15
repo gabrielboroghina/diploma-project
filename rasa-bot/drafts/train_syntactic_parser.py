@@ -277,7 +277,7 @@ TRAIN_DATA = [
         "după două săptămâni o să plec de aici",
         {
             "heads": [5, 2, 0, 5, 5, 5, 7, 5],
-            "deps": ["când", "cât", "cât timp", "-", "-", "ROOT", "prep", "unde"]}
+            "deps": ["prep", "cât", "cât timp", "-", "-", "ROOT", "prep", "unde"]}
     ),
     (
         "acasă nu mai sunt pungi de 2 ore",
@@ -1559,7 +1559,7 @@ if __name__ == "__main__":
     analyze_data(TRAIN_DATA)
 
     # uncomment this to train the model before the testing step
-    model = train("spacy_ro", n_iter=35)
+    model = train("spacy_ro", n_iter=40)
     store_model(model, '../../models/spacy-syntactic')
 
     # test the model
