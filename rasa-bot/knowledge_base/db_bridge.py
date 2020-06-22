@@ -69,7 +69,7 @@ class QueryBuilder:
             # link the nodes
             if spec['question'] in ['care', 'ce fel de']:
                 query += f' match ({eid})-[:SPEC]->({inner_id})'
-            elif spec['question'] == "al cui":
+            elif spec['question'] == 'al cui':
                 query += f' match ({inner_id})-[:HAS]->({eid})'
 
         return query, eid

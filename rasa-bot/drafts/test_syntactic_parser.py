@@ -236,6 +236,202 @@ test_sentences = [
             "heads": [0, 3, 3, 0, 5, 6, 3, 6],
             "deps": ["ROOT", "-", "pe cine", "ce", "-", "prep", "când", "care"]}
     ),
+    (
+        "am cumpărat 2 kilograme de piersici de la un vânzător din piață",
+        {
+            "heads": [1, 1, 3, 1, 5, 3, 7, 9, 9, 1, 11, 9],
+            "deps": ["-", "ROOT", "cât", "ce", "prep", "ce fel de", "-", "prep", "-", "unde", "prep", "ce fel de"]}
+    ),
+    (
+        "calculatorul lui Andrei are 2 procesoare Intel",
+        {
+            "heads": [3, 2, 0, 3, 5, 3, 5],
+            "deps": ["cine", "-", "al cui", "ROOT", "cât", "ce", "ce fel de"]}
+    ),
+    (
+        "Anisia merge o dată pe săptămână la mallul de pe bulevardul Timișoara",
+        {
+            "heads": [1, 1, 3, 1, 5, 1, 7, 1, 9, 10, 7, 10],
+            "deps": ["cine", "ROOT", "cât", "cât de des", "prep", "la cât timp", "prep", "unde", "-", "prep", "care",
+                     "care"]}
+    ),
+    (
+        "l-am pus pe darius la volanul mașinii mele",
+        {
+            "heads": [3, 0, 3, 3, 5, 3, 7, 3, 7, 8],
+            "deps": ["pe cine", "-", "-", "ROOT", "prep", "pe cine", "prep", "unde", "al cui", "al cui"]}
+    ),
+    (
+        "Mașina ambulanței a dus - o pe Tereza la un spital din București",
+        {
+            "heads": [3, 0, 3, 3, 5, 3, 7, 3, 10, 10, 3, 12, 10],
+            "deps": ["cine", "al cui", "-", "ROOT", "-", "pe cine", "prep", "pe cine", "prep", "-", "unde", "prep",
+                     "ce fel de"]}
+    ),
+    (
+        "tura de la uzină se schimbă de 2 ori pe zi",
+        {
+            "heads": [5, 2, 3, 0, 5, 5, 8, 8, 5, 10, 5],
+            "deps": ["cine", "-", "prep", "care", "-", "ROOT", "prep", "cât", "cât de des", "prep", "la cât timp"]}
+    ),
+    (
+        "sesiunea de restanțe a durat de pe 3 iunie pe 10 iunie",
+        {
+            "heads": [4, 2, 0, 4, 4, 6, 7, 4, 7, 10, 4, 10],
+            "deps": ["cine", "prep", "care", "-", "ROOT", "-", "prep", "când", "care", "prep", "când", "care"]}
+    ),
+    (
+        "m-a durut capul ieri seara",
+        {
+            "heads": [3, 0, 3, 3, 3, 3, 5],
+            "deps": ["pe cine", "-", "-", "ROOT", "cine", "când", "care"]}
+    ),
+    (
+        "pe liviu l - au luat la țară pe 19 aprilie",
+        {
+            "heads": [1, 5, 5, 2, 5, 5, 7, 5, 9, 5, 9],
+            "deps": ["prep", "pe cine", "pe cine", "-", "-", "ROOT", "prep", "unde", "prep", "când", "care"]}
+    ),
+    (
+        "marți o să trimit cererea de înscriere la facultate",
+        {
+            "heads": [3, 3, 3, 3, 3, 6, 4, 8, 6],
+            "deps": ["când", "-", "-", "ROOT", "ce", "prep", "care", "prep", "ce fel de"]}
+    ),
+    (
+        "reparația unei turbine stricate a durat foarte mult timp",
+        {
+            "heads": [5, 2, 0, 2, 5, 5, 7, 8, 5],
+            "deps": ["cine", "-", "al cui", "ce fel de", "-", "ROOT", "-", "cât", "cât timp"]}
+    ),
+    (
+        "exemplele din manual sunt foarte complicate",
+        {
+            "heads": [3, 2, 0, 3, 5, 3],
+            "deps": ["cine", "prep", "care", "ROOT", "-", "cum este"]}
+    ),
+    (
+        "data de expirare de pe cutia de cereale integrale este 23 august",
+        {
+            "heads": [9, 2, 0, 4, 5, 0, 7, 5, 7, 9, 9, 10],
+            "deps": ["cine", "prep", "care", "-", "prep", "care", "prep", "care", "ce fel de", "ROOT", "care este",
+                     "care"]}
+    ),
+    (
+        "am luat lecții de chitară 4 ani",
+        {
+            "heads": [1, 1, 1, 4, 2, 1, 1],
+            "deps": ["-", "ROOT", "ce", "prep", "ce fel de", "cât", "cât timp"]}
+    ),
+    (
+        "în februarie se vor achiziționa 5 autospeciale noi",
+        {
+            "heads": [1, 4, 4, 4, 4, 6, 4, 6],
+            "deps": ["prep", "când", "-", "-", "ROOT", "cât", "ce", "ce fel de"]}
+    ),
+    (
+        "în 3 minute încep știrile de la ora 7",
+        {
+            "heads": [2, 2, 3, 3, 3, 6, 7, 4, 7],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "cine", "-", "prep", "care", "care"]}
+    ),
+    (
+        "codul de acces la laboratorul de biologie moleculară este 42132",
+        {
+            "heads": [8, 2, 0, 4, 2, 6, 4, 6, 8, 8],
+            "deps": ["cine", "prep", "care", "prep", "ce fel de", "prep", "care", "ce fel de", "ROOT", "care este"]}
+    ),
+    (
+        "i-am lăsat fratelui Dianei cheile de la motocicleta lui Damian",
+        {
+            "heads": [3, 0, 3, 3, 3, 4, 3, 8, 9, 6, 11, 9],
+            "deps": ["cui", "-", "-", "ROOT", "cui", "al cui", "ce", "-", "prep", "care", "-", "al cui"]}
+    ),
+    (
+        "primăria i-a oferit lui gigi premiul de onoare",
+        {
+            "heads": [4, 4, 1, 4, 4, 6, 4, 4, 9, 7],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "-", "cui", "ce", "prep", "care"]}
+    ),
+    (
+        "voi ajunge la control peste un an",
+        {
+            "heads": [1, 1, 3, 1, 6, 6, 1],
+            "deps": ["-", "ROOT", "prep", "unde", "prep", "cât", "cât timp"]}
+    ),
+    (
+        "lui daniel i-au mărit salariul",
+        {
+            "heads": [1, 5, 5, 2, 5, 5, 5],
+            "deps": ["-", "cui", "cui", "-", "-", "ROOT", "ce"]}
+    ),
+    (
+        "acum 2 secunde era destul de întuneric afară",
+        {
+            "heads": [2, 2, 3, 3, 5, 6, 3, 3],
+            "deps": ["prep", "cât", "cât timp", "ROOT", "-", "-", "cum este", "unde"]}
+    ),
+    (
+        "în 1978 a fost prima ediție a festivalului simfonia lalelelor",
+        {
+            "heads": [1, 3, 3, 3, 5, 3, 7, 5, 7, 8],
+            "deps": ["prep", "când", "-", "ROOT", "care", "cine", "-", "al cui", "care", "al cui"]}
+    ),
+    (
+        "magazinul de echipamente electronice s-a deschis de 3 luni",
+        {
+            "heads": [7, 2, 0, 2, 7, 4, 7, 7, 10, 10, 7],
+            "deps": ["cine", "prep", "care", "ce fel de", "pe cine", "-", "-", "ROOT", "prep", "cât", "cât timp"]}
+    ),
+    (
+        "care e codul de la seiful din dormitor",
+        {
+            "heads": [1, 1, 1, 4, 5, 2, 7, 5],
+            "deps": ["care este", "ROOT", "cine", "-", "prep", "care", "prep", "care"]}
+    ),
+    (
+        "toamna viitoare se va deschide noul bazin de înot din oraș",
+        {
+            "heads": [4, 0, 4, 4, 4, 6, 4, 8, 6, 10, 6],
+            "deps": ["când", "care", "-", "-", "ROOT", "care", "ce", "prep", "care", "prep", "care"]}
+    ),
+    (
+        "numărul de identificare de pe laptop este AN490238jf",
+        {
+            "heads": [6, 2, 0, 4, 5, 0, 6, 6],
+            "deps": ["cine", "prep", "care", "-", "prep", "care", "ROOT", "care este"]}
+    ),
+    (
+        "trebuie să termin licența până miercuri",
+        {
+            "heads": [0, 2, 0, 2, 5, 2],
+            "deps": ["ROOT", "-", "ce", "ce", "prep", "când"]}
+    ),
+    (
+        "avionul i-a stropit pe oamenii aceia acum o jumătate de oră",
+        {
+            "heads": [4, 4, 1, 4, 4, 6, 4, 6, 10, 10, 4, 12, 10],
+            "deps": ["cine", "pe cine", "-", "-", "ROOT", "prep", "pe cine", "care", "prep", "cât", "cât timp", "prep",
+                     "ce fel de"]}
+    ),
+    (
+        "săptămâna trecută s - au afișat notele de la arhitecturi de calculatoare",
+        {
+            "heads": [5, 0, 5, 2, 5, 5, 5, 8, 9, 6, 11, 9],
+            "deps": ["când", "care", "pe cine", "-", "-", "ROOT", "cine", "-", "prep", "care", "prep", "ce fel de"]}
+    ),
+    (
+        "azi emil a câștigat proba de înot de la olimpiadă",
+        {
+            "heads": [3, 3, 3, 3, 3, 6, 4, 8, 9, 4],
+            "deps": ["când", "cine", "-", "ROOT", "ce", "prep", "care", "-", "prep", "care"]}
+    ),
+    (
+        "cât timp a ținut prezentarea de specializări de master",
+        {
+            "heads": [1, 3, 3, 3, 3, 6, 4, 8, 6],
+            "deps": ["cât", "cât timp", "-", "ROOT", "cine", "prep", "care", "prep", "ce fel de"]}
+    ),
 ]
 
 
@@ -280,7 +476,7 @@ if __name__ == "__main__":
             for token in doc:
                 if token.dep_ != "-":
                     print(TermColors.YELLOW, token.dep_, TermColors.ENDC, f'[{token.head.text}] ->',
-                          TermColors.PINK, token.text, TermColors.ENDC)
+                          TermColors.GREEN, token.text, TermColors.ENDC)
 
         # evaluate heads prediction
         for j, token in enumerate(doc):

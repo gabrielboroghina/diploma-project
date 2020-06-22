@@ -21,10 +21,10 @@ from pathlib import Path
 import spacy
 from spacy.tokens import Span
 from spacy.util import minibatch, compounding
+from spacy import displacy
 import matplotlib.pyplot as plt
 import numpy as np
 from drafts.types import dependency_types
-
 from drafts.print_utils import TermColors
 
 # training data: texts, heads and dependency labels
@@ -880,6 +880,124 @@ TRAIN_DATA = [
             "heads": [5, 0, 5, 5, 5, 5, 7, 5, 9, 5],
             "deps": ["cine", "care", "-", "-", "-", "ROOT", "prep", "unde", "prep", "când"]}
     ),
+    (
+        "Oana și-a luat geacă de iarnă marți",
+        {
+            "heads": [4, 4, 1, 4, 4, 4, 7, 5, 4],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "ce", "prep", "ce fel de", "când"]}
+    ),
+    (
+        "am primit o scrisoare de recomandare de la un profesor din facultatea mea",
+        {
+            "heads": [1, 1, 3, 1, 5, 3, 7, 9, 9, 1, 11, 9, 11],
+            "deps": ["-", "ROOT", "-", "ce", "-", "ce fel de", "-", "prep", "-", "unde", "prep", "ce fel de", "al cui"]}
+    ),
+    (
+        "vinerea trecută s-a rupt un șurub de prindere de la gard",
+        {
+            "heads": [5, 0, 5, 2, 5, 5, 7, 5, 9, 7, 11, 12, 7],
+            "deps": ["când", "care", "pe cine", "-", "-", "ROOT", "-", "cine", "prep", "ce fel de", "-", "prep",
+                     "ce fel de"]}
+    ),
+    (
+        "în vaza de la geam sunt 35 de trandafiri de la o florărie cunoscută",
+        {
+            "heads": [1, 5, 3, 4, 1, 5, 8, 8, 5, 10, 12, 12, 8, 12],
+            "deps": ["prep", "unde", "-", "prep", "care", "ROOT", "cât", "prep", "ce", "-", "prep", "-", "ce fel de",
+                     "ce fel de"]}
+    ),
+    (
+        "primăvara viitoare încep lucrările de la noua autostradă",
+        {
+            "heads": [2, 0, 2, 2, 5, 7, 7, 3],
+            "deps": ["când", "care", "ROOT", "cine", "-", "prep", "care", "care"]}
+    ),
+    (
+        "peste 3 ani se va închide o fabrică de pâine",
+        {
+            "heads": [2, 2, 5, 5, 5, 5, 7, 5, 9, 7],
+            "deps": ["prep", "cât", "cât timp", "-", "-", "ROOT", "-", "cine", "prep", "ce fel de"]}
+    ),
+    (
+        "pe Maria am văzut-o la magazinul de articole de pescuit joia trecută",
+        {
+            "heads": [1, 3, 3, 3, 5, 3, 7, 3, 9, 7, 11, 9, 3, 12],
+            "deps": ["prep", "pe cine", "-", "ROOT", "-", "pe cine", "prep", "unde", "prep", "care", "prep",
+                     "ce fel de", "când", "care"]}
+    ),
+    (
+        "cartea cu desene de colorat este plină",
+        {
+            "heads": [5, 2, 0, 4, 2, 5, 5],
+            "deps": ["cine", "prep", "care", "prep", "ce fel de", "ROOT", "cum este"]}
+    ),
+    (
+        "l-am pus pe Doru la cârma avionului",
+        {
+            "heads": [3, 0, 3, 3, 5, 3, 7, 3, 7],
+            "deps": ["pe cine", "-", "-", "ROOT", "prep", "pe cine", "prep", "unde", "al cui"]}
+    ),
+    (
+        "cărămida l-a lovit pe zidar la piciorul stâng",
+        {
+            "heads": [4, 4, 1, 4, 4, 6, 4, 8, 4, 8],
+            "deps": ["cine", "pe cine", "-", "-", "ROOT", "prep", "pe cine", "prep", "unde", "care"]}
+    ),
+    (
+        "pe mine m-a prins ploaia în parcare sâmbătă",
+        {
+            "heads": [1, 5, 5, 2, 5, 5, 5, 8, 5, 5],
+            "deps": ["prep", "pe cine", "pe cine", "-", "-", "ROOT", "cine", "prep", "unde", "când"]}
+    ),
+    (
+        "un purice l-a mușcat pe Grivei azi noapte",
+        {
+            "heads": [1, 5, 5, 2, 5, 5, 7, 5, 5, 8],
+            "deps": ["-", "cine", "pe cine", "-", "-", "ROOT", "prep", "pe cine", "când", "care"]}
+    ),
+    (
+        "l-am certat pe colegul meu de cămin alaltăseară",
+        {
+            "heads": [3, 0, 3, 3, 5, 3, 5, 8, 5, 3],
+            "deps": ["pe cine", "-", "-", "ROOT", "prep", "pe cine", "al cui", "prep", "care", "când"]}
+    ),
+    (
+        "i-am lăsat Elenei 500 de euro sub un dosar din raft",
+        {
+            "heads": [3, 0, 3, 3, 3, 7, 7, 3, 10, 10, 3, 12, 10],
+            "deps": ["cui", "-", "-", "ROOT", "cui", "cât", "prep", "ce", "prep", "-", "unde", "prep", "ce fel de"]}
+    ),
+    (
+        "andi i-a luat corinei o mașină scumpă din italia",
+        {
+            "heads": [4, 4, 1, 4, 4, 4, 7, 4, 7, 10, 7],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "cui", "-", "ce", "ce fel de", "prep", "ce fel de"]}
+    ),
+    (
+        "banca i-a dat prietenului meu 20 de mii de lei",
+        {
+            "heads": [4, 4, 1, 4, 4, 4, 5, 9, 9, 4, 11, 9],
+            "deps": ["cine", "cui", "-", "-", "ROOT", "cui", "al cui", "cât", "prep", "ce", "prep", "ce fel de"]}
+    ),
+    (
+        "de miercurea viitoare se deschide un cinematograf din oraș",
+        {
+            "heads": [1, 4, 1, 4, 4, 6, 4, 8, 6],
+            "deps": ["prep", "când", "care", "ROOT", "ROOT", "-", "cine", "prep", "ce fel de"]}
+    ),
+    (
+        "am cunoscut-o pe Ileana la conferința de algoritmi de optimizare de la Toronto",
+        {
+            "heads": [1, 1, 3, 1, 5, 1, 7, 1, 9, 7, 11, 9, 13, 14, 7],
+            "deps": ["-", "ROOT", "-", "pe cine", "prep", "pe cine", "prep", "unde", "prep", "care", "prep",
+                     "ce fel de", "-", "prep", "care"]}
+    ),
+    (
+        "de paște o să se întoarcă marin la un post de televiziune",
+        {
+            "heads": [1, 5, 5, 5, 5, 5, 5, 9, 9, 5, 11, 9],
+            "deps": ["prep", "când", "-", "-", "-", "ROOT", "cine", "prep", "-", "unde", "prep", "ce fel de"]}
+    ),
 
     # ------------------------------------ questions ------------------------------------
     (
@@ -1140,6 +1258,18 @@ TRAIN_DATA = [
             "heads": [2, 2, 4, 4, 4, 4, 7, 8, 5, 10, 8],
             "deps": ["prep", "cât", "cât timp", "-", "ROOT", "cine", "-", "prep", "care", "prep", "care"]}
     ),
+    (
+        "unde am lăsat pernuța maro de pe scaunul din colțul camerei",
+        {
+            "heads": [2, 2, 2, 2, 3, 6, 7, 3, 9, 7, 9],
+            "deps": ["unde", "-", "ROOT", "ce", "care", "-", "prep", "care", "prep", "care", "al cui"]}
+    ),
+    (
+        "de unde vine primarul comunei cu nume complicat",
+        {
+            "heads": [1, 2, 2, 2, 3, 6, 4, 6],
+            "deps": ["prep", "unde", "ROOT", "cine", "al cui", "prep", "care", "ce fel de"]}
+    ),
 ]
 
 
@@ -1164,9 +1294,9 @@ def analyze_data(phrases):
 
     plt.barh(y_pos, [dep_freq[q] for q in dependency_types], align='center', alpha=0.5)
     plt.yticks(y_pos, dependency_types)
-    plt.xlabel('Number of examples')
+    plt.xlabel('Number of occurrences')
     plt.ylabel('Syntactic question (label)')
-    plt.title('Syntactic question frequencies over train examples')
+    plt.title('Syntactic question frequencies in the train examples')
     plt.show()
 
 
@@ -1212,11 +1342,13 @@ def train(model=None, n_iter=30):
     return nlp
 
 
-def dep_span(doc, token, merge_attr=False):
+def dep_span(doc, token, span_level=0):
     def dfs(node):
         first = last = node.i
         for child in node.children:
-            if child.dep_ in ['-', 'prep'] or (merge_attr and child.dep_ in ['care', 'ce fel de', 'cât', 'al cui']):
+            if child.dep_ in ['-'] or \
+                    (span_level >= 1 and child.dep_ == "prep") or \
+                    (span_level >= 2 and child.dep_ in ['care', 'ce fel de', 'cât', 'al cui']):
                 child_first, child_last = dfs(child)
                 first = min(first, child_first)
                 last = max(last, child_last)
@@ -1229,9 +1361,10 @@ def dep_span(doc, token, merge_attr=False):
 
 def print_parse_result(doc):
     for token in doc:
-        if token.dep_ != "-":
-            print(TermColors.YELLOW, token.dep_, TermColors.ENDC, f'[{dep_span(doc, token.head)}] ->',
-                  TermColors.PINK, dep_span(doc, token, True), TermColors.ENDC)
+        if token.dep_ != "-" and token.dep_ != 'prep':
+            print(TermColors.YELLOW, token.dep_, TermColors.ENDC,
+                  f'[{dep_span(doc, token.head, 0)}] ->',
+                  TermColors.RED, dep_span(doc, token, 2), TermColors.ENDC)
 
 
 def store_model(nlp, output_dir=None):
@@ -1553,6 +1686,14 @@ def test_model(nlp, interactive=False):
         for doc in docs:
             print('\n', doc.text)
             print_parse_result(doc)
+
+        # show a visual result as a web page with the help of displacy
+        docs = [nlp(phrase) for phrase in texts]
+        options = {"add_lemma": False, "compact": True, "fine_grained": False}
+
+        html_dep = displacy.render(docs, style="dep", page=True, options=options)
+        with open("deps.html", "w", encoding='utf8') as f:
+            f.write(html_dep)
 
 
 if __name__ == "__main__":

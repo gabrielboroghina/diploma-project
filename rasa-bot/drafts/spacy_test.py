@@ -108,7 +108,7 @@ def parsePhrase(phrase):
     for token in doc:
         lemma = ""  # dexBridge.lemmaForWord(token.text, pos(token.tag_))
         print(token.text, TermColors.YELLOW, lemma,
-              TermColors.PINK, token.tag_, TermColors.GREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]],
+              TermColors.PURPLE, token.tag_, TermColors.GREEN, tag_map.TAG_MAP[token.tag_.split('__')[0]],
               TermColors.ENDC)
     for chunk in doc.noun_chunks:
         print(chunk.text, chunk.root.text, chunk.root.dep_,
