@@ -22,6 +22,7 @@ const depType = [
     "cui",
     "prep",
     "cât de des",
+    "la cât timp",
 ];
 
 let parseRes = {
