@@ -94,7 +94,7 @@ class ActionStoreLocation(Action):
         semantic_roles = message['semantic_roles']
         print(semantic_roles)
         for ent in semantic_roles:
-            if ent['question'] in ['ce', 'cine']:
+            if ent['question'] == 'ce' or (ent['question'] == 'cine' and not entity):
                 entity = ent
             elif ent['question'] == 'unde':
                 location = ent
@@ -123,7 +123,7 @@ class ActionGetLocation(Action):
         semantic_roles = message['semantic_roles']
         print(semantic_roles)
         for ent in semantic_roles:
-            if ent['question'] in ['ce', 'cine']:
+            if ent['question'] == 'ce' or (ent['question'] == 'cine' and not entity):
                 entity = ent
 
         if entity:
@@ -134,8 +134,11 @@ class ActionGetLocation(Action):
         return []
 
 
-def get_time_type(question, phrase, action):
+def get_time_type(ent, action):
     """ Determine the type of the timestamp: a specific point in time, a start point, an end point or a duration. """
+
+    question = ent['question']
+    phrase = (ent.get('pre', "") + " " + ent['ext_value']).strip()
 
     info_type = InfoType.TIME_POINT
 
@@ -181,8 +184,8 @@ def extract_sentence_components(semantic_roles):
             if any(ask_particle in ent['ext_value'].split() for ask_particle in ['când', 'cât', 'ce', 'care']):
                 # this entity is only used to formulate the question
                 continue
-            info_type = get_time_type(ent['question'], ent['ext_value'], action)
-            components['time'].append((ent['ext_value'], info_type))
+            info_type = get_time_type(ent, action)
+            components['time'].append(((ent.get('pre', "") + " " + ent['ext_value']).strip(), info_type))
 
     return components
 
@@ -218,7 +221,7 @@ class ActionGetTime(Action):
                 is_simple_event = False
 
         # determine the type of timestamp requested
-        info_type = get_time_type(times[0]['question'], times[0]['ext_value'], action)
+        info_type = get_time_type(times[0], action)
 
         if entity:
             if is_simple_event:
@@ -262,11 +265,11 @@ class ActionStoreTime(Action):
             else:
                 is_simple_event = False
 
-        info_type = get_time_type(time['question'], time['ext_value'], action)
+        info_type = get_time_type(time, action)
 
         if entity:
             if is_simple_event:
-                db_bridge.set_value(entity, time['ext_value'], type=info_type)
+                db_bridge.set_value(entity, (time['pre'] + " " + time['ext_value']).strip(), type=info_type)
             else:
                 sentence_components = extract_sentence_components(semantic_roles)
                 db_bridge.store_action(sentence_components)

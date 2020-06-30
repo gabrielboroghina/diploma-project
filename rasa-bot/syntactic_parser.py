@@ -85,7 +85,7 @@ class SyntacticParser(Component):
     def __part_of_speech_from_tag(tag):
         """ Return the part of speech code for a given POS detailed tag. """
 
-        pos_tag_map = {
+        stub_tag_map = {
             "A": tag_map.ADJ,
             "D": tag_map.DET,
             "C": tag_map.CCONJ,
@@ -100,7 +100,7 @@ class SyntacticParser(Component):
 
         if tag in tag_map.TAG_MAP:
             return tag_map.TAG_MAP[tag][tag_map.POS]
-        return pos_tag_map.get(tag[0])
+        return stub_tag_map.get(tag[0])
 
     def __lemmatize(self, token):
         """
@@ -136,22 +136,38 @@ class SyntacticParser(Component):
     def __get_dependency_span(self, doc, token, include_all_deps=False):
         """
         Build the span of words connected to a given token
-        (representing attributes/prepositions/conjunctions etc).
+        (representing attributes/prepositions/articles etc).
         """
 
         def dfs(node):
+            """
+            Depth First Search through the dependency tree
+            to determine the span that includes a certain token.
+            """
+
             first = last = node.i
+            prep_first = prep_last = None
             for child in node.children:
                 if child.dep_ in ['-', 'prep', 'cât'] or \
                         (include_all_deps and child.dep_ in ['care', 'ce fel de', 'al cui']):
-                    child_first, child_last = dfs(child)
-                    first = min(first, child_first)
-                    last = max(last, child_last)
-            return first, last
+                    child_first, child_last, _, _ = dfs(child)
 
-        first, last = dfs(token)  # compute bounds of the span
+                    if child.dep_ == 'prep':
+                        prep_first = child_first
+                        prep_last = child_last
+                    else:
+                        first = min(first, child_first)
+                        last = max(last, child_last)
+
+            return first, last, prep_first, prep_last
+
+        first, last, prep_first, prep_last = dfs(token)  # compute bounds of the span
         span = Span(doc, first, last + 1)
-        return span.text
+
+        prep_span = Span(doc, prep_first, prep_last + 1) if prep_first is not None else None
+        prep = prep_span.text if prep_span else ""
+
+        return span.text, prep
 
     def __get_specifiers(self, doc, parent):
         """ Extract attributes (that identifies a specific instance of an entity) of a given token. """
@@ -161,17 +177,19 @@ class SyntacticParser(Component):
             if token.head == parent:
                 if token.dep_ in ['care', 'ce fel de', 'cât'] or \
                         token.dep_ == 'cât timp' and token.head.dep_ != "ROOT":
+                    ext_value, prep = self.__get_dependency_span(doc, token, True)
                     specifiers.append({
                         "question": token.dep_,
-                        "determiner": self.__get_dependency_span(doc, token.head),
-                        "value": self.__get_dependency_span(doc, token, True),
-                        "lemma": self.__get_dependency_span(doc, token, True),
+                        "determiner": self.__get_dependency_span(doc, token.head)[0],
+                        "pre": prep,
+                        "value": ext_value,
+                        "lemma": self.__get_dependency_span(doc, token, True)[0],
                         "specifiers": []
                     })
                 elif token.dep_ in ['al cui']:
                     specifiers.append({
                         "question": token.dep_,
-                        "determiner": self.__get_dependency_span(doc, token.head),
+                        "determiner": self.__get_dependency_span(doc, token.head)[0],
                         "value": token.text,
                         "lemma": self.__lemmatize(token),
                         "specifiers": self.__get_specifiers(doc, token)
@@ -196,12 +214,14 @@ class SyntacticParser(Component):
         for token in doc:
             # identify principal components of the sentence
             if token.dep_ not in ['-'] and token.head.dep_ == 'ROOT':
+                ext_value, prep = self.__get_dependency_span(doc, token, True)
                 semantic_roles.append({
                     "question": token.dep_,
-                    "determiner": self.__get_dependency_span(doc, token.head),
+                    "determiner": self.__get_dependency_span(doc, token.head)[0],
+                    "pre": prep,
                     "value": token.text,
                     "lemma": self.__lemmatize(token),
-                    "ext_value": self.__get_dependency_span(doc, token, True),
+                    "ext_value": ext_value,
                     "specifiers": self.__get_specifiers(doc, token)
                 })
 
@@ -214,7 +234,7 @@ class SyntacticParser(Component):
             ):
                 inferred_subj = {
                     "question": "cine",
-                    "determiner": self.__get_dependency_span(doc, token),
+                    "determiner": self.__get_dependency_span(doc, token)[0],
                     "value": "eu",
                     "lemma": "eu",
                     "ext_value": "eu",

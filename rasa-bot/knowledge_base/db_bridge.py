@@ -22,17 +22,17 @@ class QueryBuilder:
 
         QueryBuilder.id += 1
         eid = f'n{QueryBuilder.id}'
-        string = entity['value']
+        string = (entity.get('pre', "") + " " + entity['value']).strip()
 
         if not entity['specifiers']:
             # single node noun phrase
-            query = f' {action} ({eid}:class {{value: "{entity["lemma"]}"}})'
+            query = f' {action} ({eid}:class {{value: "{entity["lemma"]}", pre: "{entity.get("pre", "")}"}})'
         else:
             # instance node along with some specifiers
             QueryBuilder.id += 1
             cls_id = f'n{QueryBuilder.id}'
 
-            query = f' {action} ({cls_id}:class {{value: "{entity["lemma"]}"}})' \
+            query = f' {action} ({cls_id}:class {{value: "{entity["lemma"]}", pre: "{entity.get("pre", "")}"}})' \
                     f' create ({eid}:instance)-[:IS_A]->({cls_id})'
 
             for spec in entity['specifiers']:
@@ -60,7 +60,7 @@ class QueryBuilder:
         eid = f'n{QueryBuilder.id}'
 
         # match the entity as a simple node or as an instance node
-        query = f' match ({eid})-[:IS_A*0..1]->({{value: "{entity["lemma"]}"}})'
+        query = f' match ({eid})-[:IS_A*0..1]->({{value: "{entity["lemma"]}", pre: "{entity.get("pre", "")}"}})'
 
         for spec in entity['specifiers']:
             inner_query, inner_id = QueryBuilder.query_match_noun_phrase(spec)

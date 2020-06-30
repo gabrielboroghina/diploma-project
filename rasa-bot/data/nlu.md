@@ -14,7 +14,9 @@
 - bye
 - pa
 - paa
+- paaa
 - pa pa
+- papa
 - mersi
 - merci
 - mulțumesc
