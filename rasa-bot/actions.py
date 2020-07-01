@@ -151,7 +151,6 @@ def get_time_type(ent, action):
     elif question == "cât timp" or phrase in ["cât timp"]:
         info_type = InfoType.TIME_DURATION
 
-    print("Time indicator type", info_type.name)
     return info_type
 
 
@@ -332,4 +331,4 @@ class RawDataStoreForm(FormAction):
         raw_attr_entity = tracker.get_slot("raw_attr_entity")
         raw_attr_val = tracker.get_slot("raw_attr_val")
         db_bridge.set_value(raw_attr_entity, raw_attr_val, type=InfoType.VAL)
-        return []
+        return [SlotSet("raw_attr_val", None)]

@@ -37,7 +37,7 @@ class QueryBuilder:
 
             for spec in entity['specifiers']:
                 inner_query, inner_id, inner_str = \
-                    QueryBuilder.query_create_noun_phrase(spec, spec['question'] == 'al cui')
+                    QueryBuilder.query_create_noun_phrase(spec, True)
                 query += inner_query
 
                 # link the nodes
@@ -66,7 +66,7 @@ class QueryBuilder:
             inner_query, inner_id = QueryBuilder.query_match_noun_phrase(spec)
             query += inner_query
 
-            # link the nodes
+            # link the specifier nodes
             if spec['question'] in ['care', 'ce fel de']:
                 query += f' match ({eid})-[:SPEC]->({inner_id})'
             elif spec['question'] == 'al cui':
