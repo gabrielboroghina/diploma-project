@@ -1,5 +1,46 @@
 # Memory-assistant conversational agent
 
+## Description
+
+Conversational agent (for Romanian), able to store information received from the user through natural language
+sentences (text/speech) in a knowledge graph and also able to extract this information when requested by the user.
+
+#### Functions
+
+##### Memorize
+1. Determine the type of fact transmitted by the user
+2. Extract relevant components of the fact as semantic entities
+3. Represent the fact in a persistent knowledge base
+
+##### Remember
+1. Determine the type of the requested information
+2. Extract semantic entities from the user’s sentence
+3. Try to find the requested detail in the knowledge base and present it to the user
+
+#### Architecture
+
+##### Processing Pipeline
+
+![Processing Pipeline](rasa-bot/results/pipeline.svg "Processing Pipeline")
+
+Pipeline:
+- Web User Interface
+- Convert speech to text (Web Speech API)
+- Detect the **intent**
+- Parse the input utterance (detect **syntactic functions**, using **syntactic parsing** 
+(*=build the tree that reveals the syntactic functions of the words, together with the tokens they depend on*))
+
+![Syntactic parsing](rasa-bot/results/syntactic_parsing.png "Syntactic parsing example")
+
+- Select response (custom action)
+- Execute the action:
+  - Select **semantic entities** relevant for the specific intent
+  - Update/Query the **knowledge base** (graph database)
+
+##### Implementation Architecture
+
+![Software Architecture](rasa-bot/results/sw_arch.svg "Software Architecture")
+
 ## Project structure
 
 * **rasa-bot** - This is the main project comprising the _conversational agent_
