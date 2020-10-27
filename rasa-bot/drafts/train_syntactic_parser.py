@@ -1724,10 +1724,12 @@ def analyze_data(phrases):
     y_pos = np.arange(len(dependency_types))
 
     plt.barh(y_pos, [dep_freq[q] for q in dependency_types], align='center', alpha=0.5)
-    plt.yticks(y_pos, dependency_types)
-    plt.xlabel('Number of occurrences')
-    plt.ylabel('Syntactic question (label)')
-    plt.title('Syntactic question frequencies in the train examples')
+    plt.xticks(fontsize=12)
+    plt.yticks(y_pos, dependency_types, fontsize=12)
+    plt.xlabel('Number of occurrences', fontsize=13)
+    plt.ylabel('Syntactic question (label)', fontsize=13)
+    plt.title('Syntactic question frequencies in the train examples', fontsize=13)
+    plt.savefig("synt_questions_freq.svg", format="svg", bbox_inches='tight')
     plt.show()
 
 
@@ -2136,10 +2138,13 @@ def plot_confusion_matrix(y_true, y_pred, labels):
     conf_mat = confusion_matrix(y_true, y_pred, labels=labels)
 
     sns.heatmap(conf_mat, annot=conf_mat, fmt='g', cmap='Greens',
-                xticklabels=labels, yticklabels=labels)
-    plt.xlabel('Predicted')
-    plt.ylabel('True')
-    plt.title("Syntactic questions prediction")
+                xticklabels=labels, yticklabels=labels, annot_kws={"size": 11})
+    plt.xticks(fontsize=13)
+    plt.yticks(fontsize=13)
+    plt.xlabel('Predicted', fontsize=14)
+    plt.ylabel('True', fontsize=14)
+    plt.title("Syntactic questions prediction", fontsize=14)
+    plt.savefig("synt_quest_pred.svg", format="svg", bbox_inches='tight')
     plt.show()
 
 

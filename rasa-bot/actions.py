@@ -260,7 +260,7 @@ class ActionStoreTime(Action):
             elif ent['question'] in ['când', 'cât timp']:
                 time = ent
             elif ent['question'] == "ROOT":
-                action = ent['ext_value']
+                action = ent['lemma']
             else:
                 is_simple_event = False
 
